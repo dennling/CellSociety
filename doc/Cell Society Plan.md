@@ -1,6 +1,6 @@
 **Introduction**
 
-**	**This program is meant to process input from an XML file and then successfully animate 2D grid cell automata simulations. To efficiently animate different simulations and leave space for future implementations, we intend to design our program to be as flexible as possible with limited dependencies. In particular, we have split our program into meaningful classes that allow for the easy flow of objects and data. We utilize superclasses and subclasses to minimize duplicated code, allowing our program to remain efficient and readable. The primary architecture of our program allows for the open extension of new simulation and cell types while mostly closing off access to inner method and classes.
+This program is meant to process input from an XML file and then successfully animate 2D grid cell automata simulations. To efficiently animate different simulations and leave space for future implementations, we intend to design our program to be as flexible as possible with limited dependencies. In particular, we have split our program into meaningful classes that allow for the easy flow of objects and data. We utilize superclasses and subclasses to minimize duplicated code, allowing our program to remain efficient and readable. The primary architecture of our program allows for the open extension of new simulation and cell types while mostly closing off access to inner method and classes.
 
 **Overview**
 
@@ -12,7 +12,7 @@ Main will be a simple class that merely creates the stage and then launches the 
 
 Setup will contain the major initializations of the program by reading in the file and calling all necessary methods from three other major classes: Game, Simulation, and SceneBuilder. This is shown below:
 
-	![image alt text](image_1.jpg)
+![image alt text](image_1.jpg)
 
 Game will be a superclass that contains the logic of our games. Each individual simulation will have a class that extends game in order to utilize the similar methods that are necessary to handle cell updating and simulation logic. The exact details are as described in the following picture:
 
@@ -40,7 +40,7 @@ As far as erroneous situations that should be reported to the user, our program 
 
 **Design Detail**
 
-**	**Each component described in the overview is fleshed out by the images following the description. Each class will complete a function as stated in the specification as follows: 
+Each component described in the overview is fleshed out by the images following the description. Each class will complete a function as stated in the specification as follows: 
 
 Our main class will contain a single method that launches the game and initializes the stage. We chose to keep the main class short because we wanted to group classes by purpose and function, and we felt like starting the application is a large enough purpose to keep it as a distinct class. 
 
