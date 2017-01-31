@@ -18,24 +18,33 @@ public abstract class Game {
 		myGrid = new Cell[gridSize][gridSize];
 		for (int i = 0; i < gridSize; i++) {
 			for (int k = 0; k < gridSize; k++) {
-				myGrid[i][k] = new Cell(i, k, "normal", new Rectangle());
+				myGrid[i][k] = setCellType(i, k);
 			}
 		}
+		updateCellNeighbors();
 	}
 	
 	public void updateGrid() {
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
 				Cell currentCell = myGrid[i][k];
-				if (currentCell.getNeighbors() == null) {
-					currentCell.updateNeighbors(myGrid);
-				}
 				gameLogic(currentCell);
+			}
+		}
+		updateCellNeighbors();
+	}
+	
+	private void updateCellNeighbors() {
+		for (int i = 0; i < myGrid.length; i++) {
+			for (int k = 0; k < myGrid.length; k++) {
+				Cell currentCell = myGrid[i][k];
+				currentCell.updateNeighbors(myGrid);
 			}
 		}
 	}
 
 	protected abstract void gameLogic(Cell currentCell);
+	protected abstract Cell setCellType(int x, int y);
 	
 	public Cell[][] getGrid() {
 		return myGrid;

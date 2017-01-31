@@ -19,11 +19,40 @@ public class Cell{
 		myGridX = x;
 		myGridY = y;
 		myType = type;
-		myNeighbors = null;
 		myShape = shape;
+		initiateNeighbors();
 		setColor();
 	}
 	
+	private void initiateNeighbors() {
+		myNeighbors = new Cell[8];
+		for (int i = 0; i < myNeighbors.length; i++) {
+			myNeighbors[i] = new Cell(0, 0, "unassigned", null);
+		}
+	}
+	
+	/**
+	 * Because all cells have to update according to what they're previous state is, 
+	 * Must create new cells and assign the same properties as neighboring cells
+	 * @param grid
+	 */
+	
+	public void updateNeighbors(Cell[][] grid) {
+		int[][] possibleNeighbors = setPossibleNeighbors();
+		int size = grid.length;
+		for (int i = 0; i < myNeighbors.length; i++) {
+			int currentX = myGridX + possibleNeighbors[i][0];
+			int currentY = myGridY + possibleNeighbors[i][1];
+			if (currentX >= 0 && currentX < size) {
+				if (currentY >= 0 && currentY < size) {
+					Cell currentNeighbor = myNeighbors[i];
+					Cell currentGrid = grid[currentX][currentY];
+					currentNeighbor.changeType(currentGrid.getType());
+					currentNeighbor.changeLocation(currentX, currentY);
+				}
+			}	
+		}
+	}
 	
 	/**
 	 * Used as a reference for updateNeighbors(Cell[][] grid). Allows for simplified code
@@ -33,22 +62,6 @@ public class Cell{
 		int[][] possibleNeighbors = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1},
 				{1, 0}, {1, -1}, {0, -1}};
 		return possibleNeighbors;
-	}
-	
-	public void updateNeighbors(Cell[][] grid) {
-		myNeighbors = new Cell[8];
-		int[][] possibleNeighbors = setPossibleNeighbors();
-		int size = grid.length;
-		for (int i = 0; i < myNeighbors.length; i++) {
-			int currentX = myGridX + possibleNeighbors[i][0];
-			int currentY = myGridY + possibleNeighbors[i][1];
-			myNeighbors[i] = null;
-			if (currentX >= 0 && currentX < size) {
-				if (currentY >= 0 && currentY < size) {
-					myNeighbors[i] = grid[currentX][currentY];
-				}
-			}	
-		}
 	}
 	
 	private void setColor() {
@@ -67,6 +80,16 @@ public class Cell{
 	
 	public Shape getShape() {
 		return myShape;
+	}
+	
+	public void changeType(String type) {
+		myType = type;
+		setColor();
+	}
+	
+	public void changeLocation(int x, int y){
+		myGridX = x;
+		myGridY = y;
 	}
 	
 	
