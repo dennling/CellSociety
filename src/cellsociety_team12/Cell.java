@@ -5,7 +5,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.util.Pair;
-
+//dennis was here
 public class Cell{
 	
 	private int myGridX;
@@ -13,7 +13,6 @@ public class Cell{
 	private String myType;
 	private Shape myShape;
 	private Cell[] myNeighbors;
-
 	
 	public Cell(int x, int y, String type, Shape shape) {
 		myGridX = x;
@@ -23,7 +22,6 @@ public class Cell{
 		myShape = shape;
 		setColor();
 	}
-	
 	
 	/**
 	 * Used as a reference for updateNeighbors(Cell[][] grid). Allows for simplified code
