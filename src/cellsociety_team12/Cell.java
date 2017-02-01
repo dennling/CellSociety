@@ -20,14 +20,16 @@ public class Cell{
 		myGridY = y;
 		myType = type;
 		myShape = shape;
-		initiateNeighbors();
-		setColor();
+		if (!type.equals("neighbor")){
+			initiateNeighbors(shape);
+			setColor();
+		}
 	}
 	
-	private void initiateNeighbors() {
+	private void initiateNeighbors(Shape shape) {
 		myNeighbors = new Cell[8];
 		for (int i = 0; i < myNeighbors.length; i++) {
-			myNeighbors[i] = new Cell(0, 0, "unassigned", null);
+			myNeighbors[i] = new Cell(0, 0, "neighbor", shape);
 		}
 	}
 	
@@ -67,6 +69,12 @@ public class Cell{
 	private void setColor() {
 		if (myType.equals("normal")) {
 			myShape.setFill(Color.BLUE);
+		} else if (myType.equals("alive")) {
+			myShape.setFill(Color.RED);
+		} else if (myType.equals("dead")) {
+			myShape.setFill(Color.BLACK);
+		} else {
+			myShape.setFill(Color.WHITE);
 		}
 	}
 	
@@ -84,7 +92,7 @@ public class Cell{
 	
 	public void changeType(String type) {
 		myType = type;
-		setColor();
+		setColor(); //CAUSES PROBLEMS WHEN UPDATING NEIGHBORS
 	}
 	
 	public void changeLocation(int x, int y){
