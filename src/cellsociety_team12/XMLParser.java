@@ -3,19 +3,21 @@ package cellsociety_team12;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 
 public class XMLParser {
 	
-	
-	
+	private static final String ROOT_ATTRIBUTE = "type";
 	private static final DocumentBuilder DOCUMENT_BUILDER = getDocumentBuilder();
 	
 	public GameData getData(File data) {
@@ -46,7 +48,7 @@ public class XMLParser {
 	}
 	
 	private boolean isValidInput(Element root, String dataType) {
-		return root.getAttribute(dataType).equals(dataType);
+		return root.getAttribute(ROOT_ATTRIBUTE).equals(dataType);
 	}
 	
 	private String getTextValue(Element root, String dataField) {

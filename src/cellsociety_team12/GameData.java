@@ -11,14 +11,16 @@ public class GameData {
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
 			"initialPositions");
-	
-	
+
 	private HashMap<String, String> myData;
 	
 	
-	public GameData(Map<String, String> data) {
-		data = myData;
+	
+	
+	public GameData(HashMap<String, String> data) {
+		myData = data;
 	}
+	
 	
 	public String getGameType() {
 		return myData.get(DATA_FIELDS.get(0));
@@ -36,11 +38,16 @@ public class GameData {
 			String[] sublist = listPositions[i].split(" ");
 			intPositions[i][0] = Integer.parseInt(sublist[0]);
 			intPositions[i][1] = Integer.parseInt(sublist[1]);
+			checkBounds(intPositions[i][0]);
+			checkBounds(intPositions[i][1]);
 		}
 		return intPositions;
 	}
 	
-	
-	
+	private void checkBounds(int k) {
+		if (k > getDimensions() || k < 0) {
+			throw new XMLException();
+		}
+	}
 	
 }
