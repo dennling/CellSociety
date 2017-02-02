@@ -4,20 +4,21 @@ import javafx.scene.shape.Rectangle;
 
 import javax.xml.parsers.SAXParser;
 
+import cells.Cell;
+
 public abstract class Game {
 	
 	private Cell[][] myGrid;
 	
 	
-	public Game() {
-		createGrid();
+	public Game(GameData data) {
+		createGrid(data.getDimensions());
 	}
 	
-	private void createGrid() {
-		int gridSize = 3;
-		myGrid = new Cell[gridSize][gridSize];
-		for (int i = 0; i < gridSize; i++) {
-			for (int k = 0; k < gridSize; k++) {
+	private void createGrid(int dimensions) {
+		myGrid = new Cell[dimensions][dimensions];
+		for (int i = 0; i < dimensions; i++) {
+			for (int k = 0; k < dimensions; k++) {
 				myGrid[i][k] = setCellType(i, k);
 			}
 		}

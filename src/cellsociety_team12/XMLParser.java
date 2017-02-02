@@ -25,7 +25,7 @@ public class XMLParser {
 		if (!isValidInput(root, GameData.DATA_TYPE)) {
 			throw new XMLException();
 		}
-		HashMap<String, String> dataFields = new HashMap<String, String>();
+		HashMap<String, String[]> dataFields = new HashMap<String, String[]>();
 		for (String field : GameData.DATA_FIELDS) {
 			dataFields.put(field, getTextValue(root, field));
 		}
@@ -51,17 +51,14 @@ public class XMLParser {
 		return root.getAttribute(ROOT_ATTRIBUTE).equals(dataType);
 	}
 	
-	private String getTextValue(Element root, String dataField) {
-		String allValues = "";
+	private String[] getTextValue(Element root, String dataField) {
 		NodeList values = root.getElementsByTagName(dataField);
 		if (values == null) {
-			return "";
+			return new String[0];
 		} else {
+			String[] allValues = new String[values.getLength()];
 			for (int i = 0; i < values.getLength(); i++) {
-				allValues += values.item(i).getTextContent();
-				if (i != values.getLength()) {
-					allValues += " ";
-				}
+				allValues[i] = values.item(i).getTextContent();
 			}
 			return allValues;
 		}

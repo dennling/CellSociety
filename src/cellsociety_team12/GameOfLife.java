@@ -1,11 +1,12 @@
 package cellsociety_team12;
 
+import cells.Cell;
 import javafx.scene.shape.Rectangle;
 
 public class GameOfLife extends Game{
 
-	public GameOfLife() {
-		super();
+	public GameOfLife(GameData data) {
+		super(data);
 	}
 	
 	

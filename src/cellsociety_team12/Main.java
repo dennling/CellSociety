@@ -77,8 +77,6 @@ public class Main extends Application {
 			try {
 				GameData data = new XMLParser().getData(dataFile);
 				
-				System.out.println(data.getGameType());
-				
 			} catch (XMLException e) {
 				Alert a = new Alert(AlertType.ERROR);
                 a.setContentText(String.format("ERROR reading file %s", dataFile.getPath()));
