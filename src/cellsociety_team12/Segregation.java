@@ -5,7 +5,6 @@ import cells.Cell;
 public class Segregation extends Game{
 	public Segregation(GameData data) {
 		super(data);
-		// TODO Auto-generated constructor stub
 	}
 
 	private Grid myGrid = getGrid();
