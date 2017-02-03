@@ -4,40 +4,26 @@ import javafx.scene.shape.Rectangle;
 
 import javax.xml.parsers.SAXParser;
 
+import cells.Cell;
+
 public abstract class Game {
 	
-	private Cell[][] myGrid;
+	//private Cell[][] myGrid;
+	private Grid myGrid;
 	
 	
-	public Game() {
-		createGrid();
+	public Game(GameData data) {
+		myGrid = createGrid(data.getDimensions());
+		setInitialPositions(data);
+		
 	}
 	
-	private void createGrid() {
-		int gridSize = 3;
-		myGrid = new Cell[gridSize][gridSize];
-		for (int i = 0; i < gridSize; i++) {
-			for (int k = 0; k < gridSize; k++) {
-				myGrid[i][k] = new Cell(i, k, "normal", new Rectangle());
-			}
-		}
-	}
-	
-	public void updateGrid() {
-		for (int i = 0; i < myGrid.length; i++) {
-			for (int k = 0; k < myGrid.length; k++) {
-				Cell currentCell = myGrid[i][k];
-				if (currentCell.getNeighbors() == null) {
-					currentCell.updateNeighbors(myGrid);
-				}
-				gameLogic(currentCell);
-			}
-		}
-	}
-
+	protected abstract Grid createGrid(int dimensions);
 	protected abstract void gameLogic(Cell currentCell);
+	protected abstract void setInitialPositions(GameData data);
+	protected abstract void setDefaultPositions(GameData data);
 	
-	public Cell[][] getGrid() {
+	public Grid getGrid() {
 		return myGrid;
 	}
 	
