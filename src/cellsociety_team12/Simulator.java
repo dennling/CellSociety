@@ -40,7 +40,6 @@ public class Simulator implements EventHandler<ActionEvent>{
 	
 	public void step(double elapsedTime){
 		myGame.updateGrid();
-		//animation.stop();
 	}
 
 	@Override

@@ -17,8 +17,8 @@ public class GameData {
 	
 	
 	
-	public GameData(HashMap<String, String[]> data) { //FIX THIS BY MAKING IT ABSTRACT
-		myData = data;
+	public GameData(Map<String, String[]> data) {//HashMap<String, String[]> data) { //FIX THIS BY MAKING IT ABSTRACT
+		myData = (HashMap<String, String[]>) data;
 	}
 	
 	
