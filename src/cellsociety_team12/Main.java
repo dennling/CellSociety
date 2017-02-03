@@ -3,6 +3,7 @@ package cellsociety_team12;
 import java.io.File;
 import java.util.Arrays;
 
+import cells.Cell;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -47,35 +48,36 @@ public class Main extends Application {
 		s.show();
 		*/
 	
-		/*
-		Group r = new Group();
-		s.setTitle("But");
-		Scene scene = new Scene(r, 500, 500, Color.WHITE);
-		GameOfLife game = new GameOfLife();
-		game.updateGrid();
-		Cell[][] grid = game.getGrid();
-		for (int i = 0; i < grid.length; i++) {
-			for (int k = 0; k < grid[0].length; k++){
-				
-				Cell cell = grid[i][k];
-				Rectangle shape = (Rectangle) cell.getShape();
-				shape.setWidth(500/3);
-				shape.setHeight(500/3);
-				shape.setX(0 + (i*shape.getWidth()));
-				shape.setY(0 + (k*shape.getHeight()));
-				System.out.println(i);
-				System.out.println(k);
-				System.out.println(Arrays.toString(cell.getNeighbors()));
-				r.getChildren().add(shape);
-			}
-		}
-		s.setScene(scene);
-		s.show();
-		*/
+		GameOfLife game;
 		File dataFile = myChooser.showOpenDialog(s);
 		if (dataFile != null) {
 			try {
 				GameData data = new XMLParser().getData(dataFile);
+				game = new GameOfLife(data);
+				
+				
+				Group r = new Group();
+				s.setTitle("But");
+				Scene scene = new Scene(r, 500, 500, Color.WHITE);
+				//game.updateGrid();
+				Cell[][] grid = game.getGrid();
+				for (int i = 0; i < grid.length; i++) {
+					for (int k = 0; k < grid[0].length; k++){
+						
+						Cell cell = grid[i][k];
+						Rectangle shape = (Rectangle) cell.getShape();
+						shape.setWidth(500/100);
+						shape.setHeight(500/100);
+						shape.setX(0 + (i*shape.getWidth()));
+						shape.setY(0 + (k*shape.getHeight()));
+						r.getChildren().add(shape);
+					}
+				}
+				s.setScene(scene);
+				s.show();
+				
+				
+				
 				
 			} catch (XMLException e) {
 				Alert a = new Alert(AlertType.ERROR);
@@ -83,6 +85,7 @@ public class Main extends Application {
                 a.showAndWait();
 			}
 		}
+		
 		
 	}
 	

@@ -13,6 +13,9 @@ public abstract class Game {
 	
 	public Game(GameData data) {
 		createGrid(data.getDimensions());
+		setInitialPositions(data);
+
+		
 	}
 	
 	private void createGrid(int dimensions) {
@@ -66,6 +69,8 @@ public abstract class Game {
 
 	protected abstract void gameLogic(Cell currentCell);
 	protected abstract Cell setCellType(int x, int y);
+	protected abstract void setInitialPositions(GameData data);
+	protected abstract void setDefaultPositions();
 	
 	public Cell[][] getGrid() {
 		return myGrid;

@@ -1,6 +1,7 @@
 package cellsociety_team12;
 
 import cells.Cell;
+import cells.GameOfLifeCell;
 import javafx.scene.shape.Rectangle;
 
 public class GameOfLife extends Game{
@@ -8,7 +9,6 @@ public class GameOfLife extends Game{
 	public GameOfLife(GameData data) {
 		super(data);
 	}
-	
 	
 	@Override
 	protected void gameLogic(Cell currentCell) {
@@ -20,17 +20,34 @@ public class GameOfLife extends Game{
 			}
 		}
 		if (liveCount == 3) {
-			currentCell.changeType("alive");
+			currentCell.setType("alive");
 		} else if (liveCount == 2) {
-			currentCell.changeType("alive");
+			currentCell.setType("alive");
 		} else {
-			currentCell.changeType("dead");
+			currentCell.setType("dead");
 		}
 	}
 	
 	@Override
-	protected Cell setCellType(int x, int y) {
-		return new Cell(x, y, "dead", new Rectangle());
+	protected GameOfLifeCell setCellType(int x, int y) {
+		return new GameOfLifeCell(x, y, "dead", new Rectangle());
+	}
+
+	@Override
+	protected void setInitialPositions(GameData data) {
+		if (data.getInitialPositions().length == 0) {
+			setDefaultPositions();
+		} else {
+			int[][] positions = data.getInitialPositions();
+			for (int[] each : positions) {
+				getGrid()[each[0]][each[1]].setType("alive");
+			}
+		}
+		
+	}
+	
+	protected void setDefaultPositions() {
+		
 	}
 
 }

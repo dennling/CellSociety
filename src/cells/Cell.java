@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.util.Pair;
 
-public class Cell{
+public abstract class Cell{
 	
 	private int myGridX;
 	private int myGridY;
@@ -21,17 +21,20 @@ public class Cell{
 		myType = type;
 		myShape = shape;
 		if (!type.equals("neighbor")){
-			initiateNeighbors(shape);
+			initiateNeighbors();
 			setColor();
 		}
 	}
 	
-	private void initiateNeighbors(Shape shape) {
+	private void initiateNeighbors() {
 		myNeighbors = new Cell[8];
 		for (int i = 0; i < myNeighbors.length; i++) {
-			myNeighbors[i] = new Cell(0, 0, "neighbor", shape);
+			myNeighbors[i] = specifyNeighborCell();
 		}
 	}
+	
+	protected abstract Cell specifyNeighborCell();
+
 	
 	/**
 	 * Because all cells have to update according to what they're previous state is, 
@@ -49,8 +52,10 @@ public class Cell{
 				if (currentY >= 0 && currentY < size) {
 					Cell currentNeighbor = myNeighbors[i];
 					Cell currentGrid = grid[currentX][currentY];
-					currentNeighbor.changeType(currentGrid.getType());
-					currentNeighbor.changeLocation(currentX, currentY);
+					if (currentGrid != null) {
+						currentNeighbor.setType(currentGrid.getType());
+						currentNeighbor.setLocation(currentX, currentY);
+					}
 				}
 			}	
 		}
@@ -66,17 +71,7 @@ public class Cell{
 		return possibleNeighbors;
 	}
 	
-	private void setColor() {
-		if (myType.equals("normal")) {
-			myShape.setFill(Color.BLUE);
-		} else if (myType.equals("alive")) {
-			myShape.setFill(Color.RED);
-		} else if (myType.equals("dead")) {
-			myShape.setFill(Color.BLACK);
-		} else {
-			myShape.setFill(Color.WHITE);
-		}
-	}
+	protected abstract void setColor();
 	
 	public String getType() {
 		return myType;
@@ -90,12 +85,12 @@ public class Cell{
 		return myShape;
 	}
 	
-	public void changeType(String type) {
+	public void setType(String type) {
 		myType = type;
-		setColor(); //CAUSES PROBLEMS WHEN UPDATING NEIGHBORS
+		setColor(); 
 	}
 	
-	public void changeLocation(int x, int y){
+	public void setLocation(int x, int y){
 		myGridX = x;
 		myGridY = y;
 	}
