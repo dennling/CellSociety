@@ -77,5 +77,24 @@ public abstract class Grid {
 		}
 		return (Cell[]) column.toArray();
 	}
+	
+	/* Way to remove repeated double for loop
+	 
+	private void iterateGrid(String method) {
+		for (int i = 0; i < myGrid.length; i++) {
+			for (int k = 0; k < myGrid.length; k++) {
+				if (method.equals("updateGrid")) {
+					Cell currentCell = myGrid[i][k];
+					gameLogic(currentCell);
+				} else if (method.equals("updateNeighbors")) {
+					Cell currentCell = myGrid[i][k];
+					currentCell.updateNeighbors(myGrid);
+				} else {
+					myGrid[i][k] = setCellType(i, k);
+				}
+			}
+		}
+	}
+	*/
 
 }

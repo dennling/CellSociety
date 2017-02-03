@@ -1,4 +1,8 @@
 package cellsociety_team12;
+//AUTHOR: HENRY TAYLOR
+
+
+import java.util.Random;
 
 import cells.Cell;
 import cells.GameOfLifeCell;
@@ -27,27 +31,33 @@ public class GameOfLife extends Game{
 			currentCell.setType("dead");
 		}
 	}
-	
-	@Override
-	protected GameOfLifeCell setCellType(int x, int y) {
-		return new GameOfLifeCell(x, y, "dead", new Rectangle());
-	}
 
 	@Override
 	protected void setInitialPositions(GameData data) {
 		if (data.getInitialPositions().length == 0) {
-			setDefaultPositions();
+			setDefaultPositions(data);
 		} else {
 			int[][] positions = data.getInitialPositions();
 			for (int[] each : positions) {
-				getGrid()[each[0]][each[1]].setType("alive");
+				getGrid().getCell(each[0],each[1]).setType("alive");
 			}
 		}
 		
 	}
 	
-	protected void setDefaultPositions() {
-		
+	@Override
+	protected Grid createGrid(int dimensions) {
+		return new GameOfLifeGrid(dimensions, this);
+	}
+	
+	@Override
+	protected void setDefaultPositions(GameData data) {
+		for(int i =0; i < data.getDimensions()/2; i++) {
+			Random numberGenerator = new Random();
+			int randomX = numberGenerator.nextInt(data.getDimensions());
+			int randomY = numberGenerator.nextInt(data.getDimensions());
+			getGrid().getCell(randomX, randomY).setType("alive");
+		}
 	}
 
 }
