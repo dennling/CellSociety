@@ -3,7 +3,6 @@ package cellsociety_team12;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -16,6 +15,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -55,7 +56,14 @@ public class SceneBuilder{
 		root.setCenter(cells);
 		for (int i=0; i<grid.getRows(); i++){
 			for (int j=0; j<grid.getColumns(); j++){
-				cells.getChildren().add(grid.getCell(i, j).getShape());
+				Rectangle shape = (Rectangle) grid.getCell(i, j).getShape();
+				shape.setWidth((screenWidth*0.9)/grid.getRows());
+				shape.setHeight((screenHeight*.625)/grid.getColumns());
+				shape.setX(i*shape.getWidth());
+				shape.setY(j*shape.getHeight());
+				//System.out.println(grid.getCell(i,j).getType());
+				cells.getChildren().add(shape);
+				//cells.getChildren().add(grid.getCell(i, j).getShape());
 			}
 		}
 	}

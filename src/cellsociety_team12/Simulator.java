@@ -39,8 +39,9 @@ public class Simulator implements EventHandler<ActionEvent>{
 	}
 	
 	public void step(double elapsedTime){
-		myGame.updateGrid(); 
-		System.out.println(frames_per_second);
+		animation.stop();
+		//myGame.updateGrid();
+		//animation.stop();
 	}
 
 	@Override
