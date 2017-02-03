@@ -31,23 +31,15 @@ public class GameOfLife extends Game{
 			currentCell.setType("dead");
 		}
 	}
-
-	@Override
-	protected void setInitialPositions(GameData data) {
-		if (data.getInitialPositions().length == 0) {
-			setDefaultPositions(data);
-		} else {
-			int[][] positions = data.getInitialPositions();
-			for (int[] each : positions) {
-				getGrid().getCell(each[0],each[1]).setType("alive");
-			}
-		}
-		
-	}
 	
 	@Override
 	protected Grid createGrid(int dimensions) {
 		return new GameOfLifeGrid(dimensions, this);
+	}
+	
+	@Override
+	protected String setInitialCellType() {
+		return "alive";
 	}
 	
 	@Override

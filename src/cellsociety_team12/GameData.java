@@ -45,7 +45,7 @@ public class GameData {
 	
 	private void checkBounds(int k) {
 		if (k > getDimensions() || k < 0) {
-			throw new XMLException();
+			throw new XMLException("Initial starting point is out of bounds %s", k);
 		}
 	}
 	

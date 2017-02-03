@@ -14,5 +14,4 @@ public class GameOfLifeGrid extends Grid {
 	protected GameOfLifeCell cellType(int x, int y) {
 		return new GameOfLifeCell(x, y, "dead", new Rectangle());
 	}
-	
 }
