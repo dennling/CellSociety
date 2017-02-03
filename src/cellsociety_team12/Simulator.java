@@ -1,12 +1,14 @@
 package cellsociety_team12;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.util.Duration;
 
 
@@ -55,7 +57,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 			frames_per_second = frames_per_second * .5;
 		}
 		if (event.getSource() == loadButton){
-			
+			loadFile();
 		}
 		if (event.getSource() == playPauseButton){
 			if (animation.getCurrentRate() == 0){
@@ -89,6 +91,17 @@ public class Simulator implements EventHandler<ActionEvent>{
 			}
 		}
 	}
+	
+	private void loadFile() {
+        TextInputDialog input = new TextInputDialog("");
+        input.setTitle("load file");
+        input.setContentText("Enter Your File");
+        Optional<String> response = input.showAndWait();
+        
+        if (response.isPresent()) {
+            System.out.println(response.get());
+        }
+    }
 	
 	
 }
