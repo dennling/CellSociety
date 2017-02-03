@@ -9,11 +9,10 @@ public abstract class Grid {
 
 	private Cell[][] myGrid;
 	private Game myGame;
-	private GridPane myGridPane;
 	
 	public Grid(int dimensions, Game game){
-		myGridPane = new GridPane();
 		initializeGrid(dimensions);
+		myGame = game;
 	}
 	
 	private void initializeGrid(int dimensions) {
@@ -21,7 +20,6 @@ public abstract class Grid {
 		for (int i = 0; i < dimensions; i++) {
 			for (int k = 0; k < dimensions; k++) {
 				myGrid[i][k] = cellType(i, k);
-				myGridPane.add(myGrid[i][k].getShape(), i, k);
 			}
 		}
 		updateCellNeighbors();
@@ -37,7 +35,7 @@ public abstract class Grid {
 		updateCellNeighbors();
 	}
 	
-	private void updateCellNeighbors() {
+	public void updateCellNeighbors() {
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
 				Cell currentCell = myGrid[i][k];
@@ -46,18 +44,10 @@ public abstract class Grid {
 		}
 	}
 	
-	private void initializeGridPane() {
-		
-	}
-	
 	protected abstract Cell cellType(int x, int y);
 	
 	public Cell getCell(int x, int y) {
 		return myGrid[x][y];
-	}
-	
-	public GridPane getGridPane() {
-		return myGridPane;
 	}
 	
 	public Cell[] getRow(int x) {
@@ -89,7 +79,7 @@ public abstract class Grid {
 	public Cell[][] getGrid(){
 		return myGrid;
 	}
-	
+
 	/* Way to remove repeated double for loop
 	 
 	private void iterateGrid(String method) {

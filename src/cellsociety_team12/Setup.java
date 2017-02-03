@@ -1,10 +1,19 @@
 package cellsociety_team12;
 
 import java.io.File;
-
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import cells.Cell;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class Setup {
 	
@@ -15,10 +24,16 @@ public class Setup {
 	private Simulator mySimulator;
 	static final double HEIGHT_ADJUST_FACTOR = .625;
 	static final double WIDTH_ADJUST_FACTOR = .9;
+	private GameData myData;
+	
+	public static final String FILE_EXTENSION = "*.xml";
+	private FileChooser myChooser = makeChooser(FILE_EXTENSION);
+	
 	
 	public Setup(Stage stage){ //will need a file input normally
 		// declare data object from XML Parser
 		myStage = stage;
+		getData();
 		String title = "Wator";
 		String author = "Advait";
 		int screenHeight = 400;
@@ -26,18 +41,17 @@ public class Setup {
 		Color color = Color.WHITE;
 		double simulationHeight = screenHeight * HEIGHT_ADJUST_FACTOR;
 		double simulationWidth = screenWidth * WIDTH_ADJUST_FACTOR;
-		// need to implement these subclasses
-//		String type = "Wator";
-//		switch (type){
-//			case "Wator": myGame = new watorGame();
-//			break;
-//			case "Game of Life": myGame = new gameOfLife();
-//			break;
-//			case "Segregation": myGame = new segregationGame();
-//			break;
-//			case "Fire": myGame = new fireGame();
-//		}
-		myGame = new Game(simulationWidth, simulationHeight); // this is assuming there is a new Game class
+
+		switch (myData.getGameType()){
+			//case "Wator": myGame = new watorGame();
+			//break;
+			case "GameOfLife": myGame = new GameOfLife(myData);
+			break;
+			//case "Segregation": myGame = new segregationGame();
+			//break;
+			//case "Fire": myGame = new fireGame();
+			//break;
+		}
 		mySceneBuilder = new SceneBuilder(title, author, screenHeight, screenWidth, color, myGame);
 		myScene = mySceneBuilder.getScene();
 		stage.setScene(myScene);
@@ -45,6 +59,32 @@ public class Setup {
 		stage.show();
 		stage.setResizable(false);
 		mySimulator = new Simulator(myGame, mySceneBuilder.getButtons());
+		
+	}
+
+	public Scene getScene() {
+		return myScene;
+	}
+	
+	private void getData() {
+		File dataFile = myChooser.showOpenDialog(myStage);
+		if (dataFile != null) {
+			try {
+				myData = new XMLParser().getData(dataFile);
+			} catch (XMLException e) {
+				Alert a = new Alert(AlertType.ERROR);
+	            a.setContentText(String.format("ERROR reading file %s", dataFile.getPath()));
+	            a.showAndWait();
+			}
+		}
+	}
+	
+	private FileChooser makeChooser(String extension) {
+		FileChooser chooser = new FileChooser();
+		chooser.setTitle("Open Data File");
+		chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+		chooser.getExtensionFilters().setAll(new ExtensionFilter("Text Files", extension));
+		return chooser;
 		
 	}
 	

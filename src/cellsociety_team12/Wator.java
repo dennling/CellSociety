@@ -1,5 +1,7 @@
  package cellsociety_team12;
 
+import java.util.Random;
+
 import cells.Cell;
 import cells.WatorCell;
 
@@ -64,21 +66,20 @@ public class Wator extends Game{
 
 	@Override
 	protected Grid createGrid(int dimensions) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected void setInitialPositions(GameData data) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void setDefaultPositions(GameData data) {
-		// TODO Auto-generated method stub
-		
+		return new WatorGrid(dimensions, this);
 	}
 	
+	@Override
+	protected void setDefaultPositions(GameData data) {
+		Random numberGenerator = new Random();
+		int randomX = numberGenerator.nextInt(data.getDimensions());
+		int randomY = numberGenerator.nextInt(data.getDimensions());
+		getGrid().getCell(randomX, randomY).setType("fish");
+	}
+
+	@Override
+	protected String setInitialCellType() {
+		return "empty";
+	}
 	
 }

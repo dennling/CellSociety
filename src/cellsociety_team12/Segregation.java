@@ -60,17 +60,15 @@ public class Segregation extends Game{
 		return null;
 	}
 
-
 	@Override
-	protected void setInitialPositions(GameData data) {
+	protected void setDefaultPositions(GameData data) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void setDefaultPositions(GameData data) {
-		// TODO Auto-generated method stub
-		
+	protected String setInitialCellType() {
+		return "empty";
 	}
 	
 	

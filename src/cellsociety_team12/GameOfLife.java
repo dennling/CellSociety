@@ -2,6 +2,7 @@ package cellsociety_team12;
 //AUTHOR: HENRY TAYLOR
 
 
+import java.util.Arrays;
 import java.util.Random;
 
 import cells.Cell;
@@ -23,31 +24,25 @@ public class GameOfLife extends Game{
 				liveCount += 1;
 			}
 		}
-		if (liveCount == 3) {
-			currentCell.setType("alive");
-		} else if (liveCount == 2) {
-			currentCell.setType("alive");
+		if (currentCell.getType().equals("dead")) {
+			if (liveCount == 3) {
+				currentCell.setType("alive");
+			}
 		} else {
-			currentCell.setType("dead");
-		}
-	}
-
-	@Override
-	protected void setInitialPositions(GameData data) {
-		if (data.getInitialPositions().length == 0) {
-			setDefaultPositions(data);
-		} else {
-			int[][] positions = data.getInitialPositions();
-			for (int[] each : positions) {
-				getGrid().getCell(each[0],each[1]).setType("alive");
+			if (liveCount > 3 || liveCount < 2) {
+				currentCell.setType("dead");
 			}
 		}
-		
 	}
 	
 	@Override
 	protected Grid createGrid(int dimensions) {
 		return new GameOfLifeGrid(dimensions, this);
+	}
+	
+	@Override
+	protected String setInitialCellType() {
+		return "alive";
 	}
 	
 	@Override

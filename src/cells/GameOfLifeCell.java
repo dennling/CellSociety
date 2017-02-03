@@ -19,11 +19,11 @@ public class GameOfLifeCell extends Cell{
 	@Override
 	protected void setColor() {
 		if (getType().equals("dead")) {
-			getShape().setFill(Color.WHITE);
+			getShape().setFill(Color.TAN);
 		} else if (getType().equals("alive")) {
-			getShape().setFill(Color.BLACK);
+			getShape().setFill(Color.BLUE);
 		}
-		
+		getShape().setStroke(Color.BLACK);
 	}
 
 }
