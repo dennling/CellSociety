@@ -1,7 +1,6 @@
 package cellsociety_team12;
 
 import java.io.File;
-import java.util.Arrays;
 
 import cells.Cell;
 import javafx.application.Application;
@@ -17,37 +16,15 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
+	
 	public static final String FILE_EXTENSION = "*.xml";
 	
 	private FileChooser myChooser = makeChooser(FILE_EXTENSION);
 	
-	@Override
-	public void start(Stage s) throws Exception {
-		//THE CODE THAT WILL ACTUALLY BE USED
-		/*
-		Setup setup = new Setup();
-		s.setTitle(setup.retrieveTitle);
-		Scene scene = setup.init();
-		s.setScene(scene);
-		s.show();*/
-		
-		//USED FOR CLASS TESTING
-		
-		/*
-		Group r = new Group();
-		s.setTitle("But");
-		Scene scene = new Scene(r, 500, 500, Color.WHITE);
-		Cell cell = new Cell(50, 50, "fake", new Rectangle());
-		Rectangle shape = (Rectangle) cell.getShape();
-		shape.setX(500/2);
-		shape.setY(500/2);
-		shape.setWidth(100);
-		shape.setHeight(50);
-		r.getChildren().add(shape);
-		s.setScene(scene);
-		s.show();
-		*/
 	
+	
+	
+	public void start(Stage s) throws Exception {
 		GameOfLife game;
 		File dataFile = myChooser.showOpenDialog(s);
 		if (dataFile != null) {
@@ -81,24 +58,23 @@ public class Main extends Application {
 				
 			} catch (XMLException e) {
 				Alert a = new Alert(AlertType.ERROR);
-                a.setContentText(String.format("ERROR reading file %s", dataFile.getPath()));
-                a.showAndWait();
+	            a.setContentText(String.format("ERROR reading file %s", dataFile.getPath()));
+	            a.showAndWait();
 			}
-		}
-		
-		
-	}
-	
-	private FileChooser makeChooser(String extension) {
-		FileChooser chooser = new FileChooser();
-		chooser.setTitle("Open Data File");
-		chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-		chooser.getExtensionFilters().setAll(new ExtensionFilter("Text Files", extension));
-		return chooser;
-		
 	}
 	
 	
+}
+
+private FileChooser makeChooser(String extension) {
+	FileChooser chooser = new FileChooser();
+	chooser.setTitle("Open Data File");
+	chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+	chooser.getExtensionFilters().setAll(new ExtensionFilter("Text Files", extension));
+	return chooser;
+	
+}
+
 	public static void main(String[] args) {
 		launch();
 	}

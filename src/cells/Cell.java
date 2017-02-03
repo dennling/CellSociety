@@ -60,7 +60,7 @@ public abstract class Cell{
 			}	
 		}
 	}
-	
+
 	/**
 	 * Used as a reference for updateNeighbors(Cell[][] grid). Allows for simplified code
 	 * as the Cell's neighbors are updated. Checks all 8 possible neighbors
