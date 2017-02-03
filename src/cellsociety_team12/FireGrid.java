@@ -1,7 +1,7 @@
 package cellsociety_team12;
 
 import javafx.scene.shape.Rectangle;
-import cells.GameOfLifeCell;
+import cells.FireCell;
 
 public class FireGrid extends Grid {
 
@@ -10,8 +10,8 @@ public class FireGrid extends Grid {
 	}
 
 	@Override
-	protected GameOfLifeCell cellType(int x, int y) {
-		return new GameOfLifeCell(x, y, "tree", new Rectangle());
+	protected FireCell cellType(int x, int y) {
+		return new FireCell(x, y, "tree", new Rectangle());
 	}
 	
 }

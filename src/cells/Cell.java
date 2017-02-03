@@ -59,7 +59,7 @@ public abstract class Cell{
 			}	
 		}
 	}
-	
+
 	/**
 	 * Used as a reference for updateNeighbors(Cell[][] grid). Allows for simplified code
 	 * as the Cell's neighbors are updated. Checks all 8 possible neighbors
@@ -92,6 +92,14 @@ public abstract class Cell{
 	public void setLocation(int x, int y){
 		myGridX = x;
 		myGridY = y;
+	}
+	
+	public int getX(){
+		return myGridX;
+	}
+	
+	public int getY(){
+		return myGridY;
 	}
 	
 	

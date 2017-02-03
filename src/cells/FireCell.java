@@ -1,6 +1,5 @@
-package cellsociety_team12;
+package cells;
 
-import cells.Cell;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
