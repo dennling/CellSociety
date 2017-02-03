@@ -14,6 +14,7 @@ public abstract class Game {
 	public Game(GameData data) {
 		myGrid = createGrid(data.getDimensions());
 		setInitialPositions(data);
+		myGrid.updateCellNeighbors();
 		
 	}
 	

@@ -21,9 +21,9 @@ public class GameOfLifeCell extends Cell{
 		if (getType().equals("dead")) {
 			getShape().setFill(Color.TAN);
 		} else if (getType().equals("alive")) {
-			getShape().setFill(Color.BLACK);
+			getShape().setFill(Color.BLUE);
 		}
-		//getShape().setStroke(Color.BLACK);
+		getShape().setStroke(Color.BLACK);
 	}
 
 }
