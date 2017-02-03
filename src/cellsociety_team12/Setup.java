@@ -40,12 +40,11 @@ public class Setup {
 		myGame = new Game(simulationWidth, simulationHeight); // this is assuming there is a new Game class
 		mySceneBuilder = new SceneBuilder(title, author, screenHeight, screenWidth, color, myGame);
 		myScene = mySceneBuilder.getScene();
-		mySimulator = new Simulator(myGame, myScene);
 		stage.setScene(myScene);
 		stage.setTitle(title);
 		stage.show();
 		stage.setResizable(false);
-		mySimulator = new Simulator(myGame, myScene);
+		mySimulator = new Simulator(myGame, mySceneBuilder.getButtons());
 		
 	}
 	

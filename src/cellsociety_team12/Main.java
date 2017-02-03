@@ -10,7 +10,6 @@ public class Main extends Application {
 		Setup startGame = new Setup(s);
 	}
 	
-	
 	public static void main(String[] args) {
 		launch();
 	}

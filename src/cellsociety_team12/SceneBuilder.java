@@ -1,5 +1,10 @@
 package cellsociety_team12;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -20,7 +25,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class SceneBuilder {
+public class SceneBuilder{
 	
 	private BorderPane root;
 	private String gameTitle;
@@ -30,6 +35,13 @@ public class SceneBuilder {
 	private Color background;
 	private Game myGame;
 	private Scene myScene;
+	private Button stepButton;
+	private Button speedButton;
+	private Button slowButton;
+	private Button loadButton;
+	private Button playPauseButton;
+	private List<Button> buttonList;
+	
 	
 	public SceneBuilder(String title, String author, int height, int width, Color color, Game game){
 		screenHeight = height;
@@ -55,6 +67,12 @@ public class SceneBuilder {
 	}
 	
 	private void createUI(){
+		makeButtons();
+		makeHeader();
+		makeSides();
+	}
+
+	private VBox makeButtons() {
 		VBox buttons = new VBox();
 		HBox row1 = new HBox();
 		HBox row2 = new HBox();
@@ -68,48 +86,26 @@ public class SceneBuilder {
 		row1.setAlignment(Pos.CENTER);
 		row2.setAlignment(Pos.CENTER);
 		buttons.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-		Button stepButton = new Button("Step");
-		Button speedButton = new Button("Speed Up");
-		Button slowButton = new Button("Slow Down");
-		Button loadButton = new Button("Load File");
-		Button playPauseButton = new Button ("Pause");
+		buttonList = new ArrayList<Button>();
+		stepButton = makeButton("Step");
+		speedButton = makeButton("Speed Up");
+		slowButton = makeButton("Slow Down");
+		loadButton = makeButton("Load File");
+		playPauseButton = makeButton("Pause");
 		row1.getChildren().addAll(playPauseButton, stepButton, loadButton);
 		row2.getChildren().addAll(speedButton, slowButton);
-		VBox header = new VBox();
-		header.setSpacing(1);
-		root.setTop(header);
-		Text titleText = new Text(gameTitle);
-		titleText.setFont(Font.font("futura", 13));
-		Text authorText = new Text("Credit to " + gameAuthor);
-		authorText.setFont(Font.font("futura", 13));
-		header.getChildren().addAll(titleText, authorText);
-		header.setAlignment(Pos.CENTER);
-		header.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-		header.setMinHeight(screenHeight/8);
 		buttons.setMinHeight(screenHeight/4);
-		VBox left = new VBox();
-		VBox right = new VBox();
-		left.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-		right.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-		root.setLeft(left);
-		root.setRight(right);
-		left.setMinWidth(screenWidth/20);
-		right.setMinWidth(screenWidth/20);
+		return buttons;
 	}
 	
-	private void createUI2(){
-		HBox buttons = new HBox();
-		root.setBottom(buttons);
-		buttons.setPadding(new Insets(10, 10, 10, 10)); //make magic numbers constants 
-		buttons.setSpacing(10);
-		buttons.setAlignment(Pos.CENTER);
-		buttons.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-		Button stepButton = new Button("Step");
-		Button speedButton = new Button("Speed Up");
-		Button slowButton = new Button("Slow Down");
-		Button loadButton = new Button("Load File");
-		Button playPauseButton = new Button ("Pause");
-		buttons.getChildren().addAll(stepButton, speedButton, slowButton, loadButton, playPauseButton);
+	private Button makeButton(String text){
+		Button button = new Button(text);
+		buttonList.add(button);
+		button.setMinWidth(100);
+		return button;
+	}
+
+	private void makeHeader() {
 		VBox header = new VBox();
 		header.setSpacing(1);
 		root.setTop(header);
@@ -121,7 +117,9 @@ public class SceneBuilder {
 		header.setAlignment(Pos.CENTER);
 		header.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
 		header.setMinHeight(screenHeight/8);
-		buttons.setMinHeight(screenHeight/8);
+	}
+
+	private void makeSides() {
 		VBox left = new VBox();
 		VBox right = new VBox();
 		left.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -134,6 +132,10 @@ public class SceneBuilder {
 	
 	public Scene getScene(){
 		return myScene;
+	}
+	
+	public List<Button> getButtons(){
+		return buttonList;
 	}
 	
 }

@@ -53,7 +53,7 @@ public class Cell{
 	
 	private void setColor() {
 		if (myType.equals("normal")) {
-			myShape.setFill(Color.BLUE);
+			//myShape.setFill(Color.BLUE);
 		}
 	}
 	
