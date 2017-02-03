@@ -9,7 +9,6 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.util.Duration;
 
-
 public class Simulator implements EventHandler<ActionEvent>{
 	
 	private double frames_per_second = 60;
@@ -39,8 +38,8 @@ public class Simulator implements EventHandler<ActionEvent>{
 	}
 	
 	public void step(double elapsedTime){
-		myGame.updateGrid(); 
-		System.out.println(frames_per_second);
+		myGame.updateGrid();
+		System.out.println(FRAMES_PER_SECOND);
 	}
 
 	@Override
@@ -49,10 +48,10 @@ public class Simulator implements EventHandler<ActionEvent>{
 			
 		}
 		if (event.getSource() == speedButton){
-			frames_per_second = frames_per_second * 2;
+			FRAMES_PER_SECOND = FRAMES_PER_SECOND * 2;
 		}
 		if (event.getSource() == slowButton){
-			frames_per_second = frames_per_second * .5;
+			FRAMES_PER_SECOND = FRAMES_PER_SECOND * .5;
 		}
 		if (event.getSource() == loadButton){
 			

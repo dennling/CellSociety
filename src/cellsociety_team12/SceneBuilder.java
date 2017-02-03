@@ -3,7 +3,8 @@ package cellsociety_team12;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -12,10 +13,15 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -50,12 +56,12 @@ public class SceneBuilder{
 		createUI();
 	}
 	
-	private void displayGrid(Grid grid){
+	private void displayGrid(Cell[][] grid){
 		Group cells = new Group(); //center pane contains a group (make bigger) that contains the grid pane 
 		root.setCenter(cells);
-		for (int i=0; i<grid.getRows(); i++){
-			for (int j=0; j<grid.getColumns(); j++){
-				cells.getChildren().add(grid.getCell(i, j).getShape());
+		for (int i=0; i<grid.length; i++){
+			for (int j=0; j<grid.length; j++){
+				cells.getChildren().add(grid[i][j].getShape());
 			}
 		}
 	}
