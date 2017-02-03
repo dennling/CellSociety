@@ -1,7 +1,12 @@
-package cellsociety_team12;
+ package cellsociety_team12;
 
+import cells.Cell;
 
 public class Wator extends Game{
+	public Wator(GameData data) {
+		super(data);
+	}
+
 	private int fishBreed = 1;
 	private int sharkStarve = 5;
 	private int sharkBreed = 20;
@@ -48,6 +53,24 @@ public class Wator extends Game{
 			
 			
 		}
+	}
+
+	@Override
+	protected Grid createGrid(int dimensions) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void setInitialPositions(GameData data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setDefaultPositions(GameData data) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
