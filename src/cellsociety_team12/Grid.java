@@ -12,6 +12,7 @@ public abstract class Grid {
 	
 	public Grid(int dimensions, Game game){
 		initializeGrid(dimensions);
+		myGame = game;
 	}
 	
 	private void initializeGrid(int dimensions) {
