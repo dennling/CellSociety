@@ -1,10 +1,10 @@
 package cellsociety_team12;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import cells.Cell;
 
 import javax.xml.parsers.SAXParser;
-
-import cells.Cell;
 
 public abstract class Game {
 	
@@ -19,8 +19,11 @@ public abstract class Game {
 	}
 	
 	protected abstract Grid createGrid(int dimensions);
+	
 	protected abstract void gameLogic(Cell currentCell);
+	
 	protected abstract void setInitialPositions(GameData data);
+	
 	protected abstract void setDefaultPositions(GameData data);
 	
 	public Grid getGrid() {

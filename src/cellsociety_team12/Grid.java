@@ -78,6 +78,14 @@ public abstract class Grid {
 		return (Cell[]) column.toArray();
 	}
 	
+	public int getRows(){
+		return myGrid.length;
+	}
+	
+	public int getColumns(){
+		return myGrid[0].length;
+	}
+	
 	/* Way to remove repeated double for loop
 	 
 	private void iterateGrid(String method) {
