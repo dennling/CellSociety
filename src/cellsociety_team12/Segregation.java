@@ -25,8 +25,8 @@ public class Segregation extends Game{
 			for(int i=0; i<myGrid.length; i++){
 				for(int j=0; j<myGrid.length; j++){
 					if(myGrid[i][j].getType().equals("empty")) {
-						//currentCell.setX(i);
-						//currentCell.setY(j);
+						//myGrid[i][j].setType(currentCell.getType());
+						//currentCell.setType("empty");
 						break;
 					}
 				}

@@ -8,10 +8,10 @@ public class Wator extends Game{
 
 	@Override
 	protected void gameLogic(Cell currentCell) {
-		Cell[] neighbors = currentCell.getNeighbors();
+		Cell[] neighbors = currentCell.getNeighbors(); //adjacent is always closest 4
 		
 		if(currentCell.getType().equals("fish")){
-			//if(currentCell.getBreedTime()>=fishBreed){ //if enough time has passed to breed...
+			//if(currentCell.getTime()>=fishBreed){ //if enough time has passed to breed...
 				for(int i=0; i<neighbors.length; i++){
 					if(neighbors[i].getType().equals("empty")){
 						//neighbors[i].setType("fish"); place fish
@@ -24,7 +24,7 @@ public class Wator extends Game{
 		}
 		
 		if(currentCell.getType().equals("shark")){
-			//if(currentCell.getBreedTime()>=sharkBreed){ //if enough time has passed to breed...
+			//if(currentCell.getTime()>=sharkBreed){ //if enough time has passed to breed...
 			for(int i=0; i<neighbors.length; i++){
 				if(neighbors[i].getType().equals("empty")){
 					//neighbors[i].setType("shark"); place shark
@@ -41,7 +41,10 @@ public class Wator extends Game{
 				}
 			}
 			
-			//check starve time
+			/*check starve time
+			if(currentCell.getTime()>=sharkStarve){
+				currentCell.setType("empty");
+			}*/
 			
 			
 		}
