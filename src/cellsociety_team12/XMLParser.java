@@ -23,7 +23,7 @@ public class XMLParser {
 	public GameData getData(File data) {
 		Element root = getRoot(data);
 		if (!isValidInput(root, GameData.DATA_TYPE)) {
-			throw new XMLException();
+			throw new XMLException("XML file does not represent %s", GameData.DATA_TYPE);
 		}
 		HashMap<String, String[]> dataFields = new HashMap<String, String[]>();
 		for (String field : GameData.DATA_FIELDS) {
@@ -41,9 +41,9 @@ public class XMLParser {
 			Document xmlFile = (Document) DOCUMENT_BUILDER.parse(data);
 			return xmlFile.getDocumentElement();
 		} catch (SAXException e) {
-			throw new XMLException();
+			throw new XMLException(e);
 		} catch (IOException e) {
-			throw new XMLException();
+			throw new XMLException(e);
 		}
 	}
 	
@@ -69,7 +69,7 @@ public class XMLParser {
 		try {
 			return DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
-			throw new XMLException();
+			throw new XMLException(e);
 		}
 	}
 

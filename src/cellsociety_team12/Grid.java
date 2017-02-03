@@ -9,10 +9,8 @@ public abstract class Grid {
 
 	private Cell[][] myGrid;
 	private Game myGame;
-	private GridPane myGridPane;
 	
 	public Grid(int dimensions, Game game){
-		myGridPane = new GridPane();
 		initializeGrid(dimensions);
 	}
 	
@@ -21,7 +19,6 @@ public abstract class Grid {
 		for (int i = 0; i < dimensions; i++) {
 			for (int k = 0; k < dimensions; k++) {
 				myGrid[i][k] = cellType(i, k);
-				myGridPane.add(myGrid[i][k].getShape(), i, k);
 			}
 		}
 		updateCellNeighbors();
@@ -46,18 +43,10 @@ public abstract class Grid {
 		}
 	}
 	
-	private void initializeGridPane() {
-		
-	}
-	
 	protected abstract Cell cellType(int x, int y);
 	
 	public Cell getCell(int x, int y) {
 		return myGrid[x][y];
-	}
-	
-	public GridPane getGridPane() {
-		return myGridPane;
 	}
 	
 	public Cell[] getRow(int x) {
