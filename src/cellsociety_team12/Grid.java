@@ -35,7 +35,7 @@ public abstract class Grid {
 		updateCellNeighbors();
 	}
 	
-	private void updateCellNeighbors() {
+	public void updateCellNeighbors() {
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
 				Cell currentCell = myGrid[i][k];

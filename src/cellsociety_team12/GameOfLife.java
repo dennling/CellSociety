@@ -2,6 +2,7 @@ package cellsociety_team12;
 //AUTHOR: HENRY TAYLOR
 
 
+import java.util.Arrays;
 import java.util.Random;
 
 import cells.Cell;
@@ -23,12 +24,14 @@ public class GameOfLife extends Game{
 				liveCount += 1;
 			}
 		}
-		if (liveCount == 3) {
-			currentCell.setType("alive");
-		} else if (liveCount == 2) {
-			currentCell.setType("alive");
+		if (currentCell.getType().equals("dead")) {
+			if (liveCount == 3) {
+				currentCell.setType("alive");
+			}
 		} else {
-			currentCell.setType("dead");
+			if (liveCount > 3 || liveCount < 2) {
+				currentCell.setType("dead");
+			}
 		}
 	}
 	

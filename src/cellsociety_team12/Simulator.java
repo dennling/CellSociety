@@ -12,7 +12,7 @@ import javafx.util.Duration;
 
 public class Simulator implements EventHandler<ActionEvent>{
 	
-	private double frames_per_second = 60;
+	private double frames_per_second = 5;
     private double millisecond_delay = 1000 / frames_per_second;
     private double second_delay = 1.0 / frames_per_second;
 	private Timeline animation;
@@ -29,8 +29,8 @@ public class Simulator implements EventHandler<ActionEvent>{
 		myButtonList = buttonList;
 		initializeButtons();
 		
-		KeyFrame frame = new KeyFrame(Duration.millis(1000/60),
-                e -> {this.step(1/60);});
+		KeyFrame frame = new KeyFrame(Duration.millis(millisecond_delay),
+                e -> {this.step(second_delay);});
 		
 		animation = new Timeline();
 		animation.setCycleCount(Timeline.INDEFINITE);
@@ -39,8 +39,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 	}
 	
 	public void step(double elapsedTime){
-		animation.stop();
-		//myGame.updateGrid();
+		myGame.updateGrid();
 		//animation.stop();
 	}
 
