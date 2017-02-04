@@ -47,8 +47,8 @@ public class Setup {
 			//break;
 			case "GameOfLife": myGame = new GameOfLife(myData);
 			break;
-			//case "Segregation": myGame = new segregationGame();
-			//break;
+			case "Segregation": myGame = new Segregation(myData);
+			break;
 			//case "Fire": myGame = new fireGame();
 			//break;
 		}

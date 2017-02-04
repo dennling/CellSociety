@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.w3c.dom.Element;
+
 public class GameData {
 
 	public static final String DATA_TYPE = "GameData";
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
-			"initialPositions");
+			"initialPositions","prob");
 
 	private HashMap<String, String[]> myData;
 	
@@ -47,6 +49,10 @@ public class GameData {
 		if (k > getDimensions() || k < 0) {
 			throw new XMLException("Initial starting point is out of bounds %s", k);
 		}
+	}
+	
+	public double getProb(){
+		return Double.parseDouble(myData.get(DATA_FIELDS.get(3))[0]);
 	}
 	
 	

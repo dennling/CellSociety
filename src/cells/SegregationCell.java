@@ -23,7 +23,7 @@ public class SegregationCell extends Cell{
 			getShape().setFill(Color.BLUE);
 		}
 		else{
-			getShape().setFill(Color.WHITE);
+			getShape().setFill(Color.BLACK);
 		}
 		
 	}
