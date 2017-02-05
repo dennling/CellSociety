@@ -10,7 +10,7 @@ public class GameData {
 	public static final String DATA_TYPE = "GameData";
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
-			"initialPositions");
+			"initialPositions", "gameTitle", "gameAuthor");
 
 	private HashMap<String, String[]> myData;
 	
@@ -24,6 +24,14 @@ public class GameData {
 	
 	public String getGameType() {
 		return myData.get(DATA_FIELDS.get(0))[0];
+	}
+	
+	public String getTitle() {
+		return myData.get(DATA_FIELDS.get(3))[0];
+	}
+	
+	public String getAuthor() {
+		return myData.get(DATA_FIELDS.get(4))[0];
 	}
 	
 	public int getDimensions() {

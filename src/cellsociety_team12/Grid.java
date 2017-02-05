@@ -68,11 +68,11 @@ public abstract class Grid {
 		return (Cell[]) column.toArray();
 	}
 	
-	public int getRows(){
+	public int getNumberOfRows(){
 		return myGrid.length;
 	}
 	
-	public int getColumns(){
+	public int getNumberOfColumns(){
 		return myGrid[0].length;
 	}
 	
@@ -96,3 +96,4 @@ public abstract class Grid {
 	*/
 
 }
+
