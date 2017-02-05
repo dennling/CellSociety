@@ -65,8 +65,10 @@ public class Segregation extends Game{
 	}
 	
 	@Override
-	protected String setInitialCellType() {
-		return "empty";
+	protected String setInitialCellType(int type) {
+		if(type == 0) return "one";
+		else if(type == 1) return "two";
+		else return "empty";
 	}
 	
 	@Override

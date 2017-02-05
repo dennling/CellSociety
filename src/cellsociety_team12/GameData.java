@@ -12,7 +12,7 @@ public class GameData {
 	public static final String DATA_TYPE = "GameData";
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
-			"initialPositions","prob");
+			"initialPositions","prob","initialPositions2", "initialPositions3");
 
 	private HashMap<String, String[]> myData;
 	
@@ -32,8 +32,19 @@ public class GameData {
 		return Integer.parseInt(myData.get(DATA_FIELDS.get(1))[0]);
 	}
 	
-	public int[][] getInitialPositions() {
-		String[] stringPositions = myData.get(DATA_FIELDS.get(2));
+	public String[] getPositions1(){
+		return myData.get(DATA_FIELDS.get(2));
+	}
+	
+	public String[] getPositions2(){
+		return myData.get(DATA_FIELDS.get(4));
+	}
+	
+	public String[] getPositions3(){
+		return myData.get(DATA_FIELDS.get(5));
+	}
+	
+	public int[][] getInitialPositions(String[] stringPositions) {
 		int[][] intPositions = new int[stringPositions.length][2];
 		for (int i = 0; i < stringPositions.length; i++) {
 			String[] sublist = stringPositions[i].split(" ");
@@ -41,7 +52,7 @@ public class GameData {
 			intPositions[i][1] = Integer.parseInt(sublist[1]);
 			checkBounds(intPositions[i][0]);
 			checkBounds(intPositions[i][1]);
-		}
+		}	
 		return intPositions;
 	}
 	

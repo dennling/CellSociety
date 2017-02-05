@@ -78,7 +78,7 @@ public class Wator extends Game{
 	}
 
 	@Override
-	protected String setInitialCellType() {
+	protected String setInitialCellType(int type) {
 		return "empty";
 	}
 	

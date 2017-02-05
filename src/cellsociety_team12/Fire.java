@@ -45,7 +45,7 @@ public class Fire extends Game{
 
 
 	@Override
-	protected String setInitialCellType() {
+	protected String setInitialCellType(int type) {
 		return "tree";
 	}
 

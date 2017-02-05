@@ -41,7 +41,7 @@ public class GameOfLife extends Game{
 	}
 	
 	@Override
-	protected String setInitialCellType() {
+	protected String setInitialCellType(int type) {
 		return "alive";
 	}
 	

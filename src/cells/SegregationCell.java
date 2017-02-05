@@ -23,9 +23,10 @@ public class SegregationCell extends Cell{
 			getShape().setFill(Color.BLUE);
 		}
 		else{
-			getShape().setFill(Color.BLACK);
+			getShape().setFill(Color.WHITE);
 		}
-		
+		getShape().setStroke(Color.BLACK);
+
 	}
 
 }

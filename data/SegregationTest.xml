@@ -8,5 +8,10 @@
     <initialPositions>1 3</initialPositions>
     <initialPositions>2 3</initialPositions>
     <initialPositions>3 3</initialPositions>
-    <prob> 0.5 </prob>
+        <initialPositions2>1 1</initialPositions2>
+        <initialPositions2>2 4</initialPositions2>
+        <initialPositions2>3 1</initialPositions2>
+        <initialPositions2>1 2</initialPositions2>
+    
+    <prob> 0.75 </prob>
 </data>
