@@ -142,10 +142,6 @@ public class SceneBuilder{
 		button.setFont(Font.font(FONT_TYPE));
 		return button;
 	}
-	
-	public void setActionStepButton(EventHandler<ActionEvent> e){
-		stepButton.setOnAction(e);
-	}
 
 	private void makeHeader() {
 		VBox header = new VBox();
