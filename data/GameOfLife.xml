@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data type="GameData">
     <gametype>GameOfLife</gametype>
+    <gameTitle>Game of Life</gameTitle>
+    <gameAuthor> John Horton Conway</gameAuthor>
     <dimension>6</dimension>
     <initialPositions>2 2</initialPositions>
     <initialPositions>3 2</initialPositions>
@@ -9,3 +11,4 @@
     <initialPositions>2 3</initialPositions>
     <initialPositions>3 3</initialPositions>
 </data>
+

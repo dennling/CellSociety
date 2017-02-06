@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data type="GameData">
     <gametype>Segregation</gametype>
+    <gameTitle>Segregation</gameTitle>
+    <gameAuthor> Someone</gameAuthor>
     <dimension>6</dimension>
     <initialPositions>2 2</initialPositions>
     <initialPositions>3 2</initialPositions>

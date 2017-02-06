@@ -1,42 +1,55 @@
 package cellsociety_team12;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
 public class Simulator implements EventHandler<ActionEvent>{
 	
-
-	private double frames_per_second = 1;
-    private double millisecond_delay = 1000 / frames_per_second;
-    private double second_delay = 1.0 / frames_per_second;
+	private static final double DEFAULT_FRAMES_PER_SECOND = 1;
+	private static final int STEP_CYCLE_COUNT = 1;
+	private static final int DEFAULT_RATE = 1;
+	private static final double SPEED_UP_FACTOR = 2;
+	private static final double SLOW_DOWN_FACTOR = .5;
+	private static final String DEFAULT_RESOURCES = "resources/English";
+	private double frames_per_second = DEFAULT_FRAMES_PER_SECOND;
+	private ResourceBundle myResources;
 	private Timeline animation;
 	private Game myGame;
+	private Stage myStage;
 	private List<Button> myButtonList;
 	private Button stepButton;
 	private Button speedButton;
 	private Button slowButton;
 	private Button loadButton;
 	private Button playPauseButton;
+	private Button resetButton;
 	
-	public Simulator(Game game, List<Button> buttonList){
+	public Simulator(Game game, List<Button> buttonList, Stage stage){
+		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCES);
 		myGame = game;
+		myStage = stage;
 		myButtonList = buttonList;
 		initializeButtons();
 		
-		KeyFrame frame = new KeyFrame(Duration.millis(millisecond_delay),
-                e -> {this.step(second_delay);});
+
+		KeyFrame frame = new KeyFrame(Duration.millis(1000 / frames_per_second),
+                e -> {this.step(1.0 / frames_per_second);});
+		
 		animation = new Timeline();
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
 		animation.play();
 	}
+
 	
 	public void step(double elapsedTime){
 		myGame.updateGrid();
@@ -45,49 +58,65 @@ public class Simulator implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getSource() == stepButton){
-			
+			if (animation.getCycleCount() != STEP_CYCLE_COUNT){
+				animation.stop();
+				animation.setCycleCount(STEP_CYCLE_COUNT);
+			}
+			animation.play();
 		}
 		if (event.getSource() == speedButton){
-			frames_per_second = frames_per_second * 2;
+			animation.setRate(animation.getRate() * SPEED_UP_FACTOR);
 		}
 		if (event.getSource() == slowButton){
-			frames_per_second = frames_per_second * .5;
+			animation.setRate(animation.getRate() * SLOW_DOWN_FACTOR);
 		}
 		if (event.getSource() == loadButton){
-			
+			animation.stop();
+			Setup newGame = new Setup(myStage);
 		}
 		if (event.getSource() == playPauseButton){
 			if (animation.getCurrentRate() == 0){
 				animation.play();
+				playPauseButton.setText(myResources.getString("PauseButtonText"));
 			}
 			else{
 				animation.pause();
+				playPauseButton.setText(myResources.getString("PlayButtonText"));
 			}
+		}
+		if (event.getSource() == resetButton){
+			animation.stop();
+			animation.setCycleCount(Timeline.INDEFINITE);
+			animation.setRate(DEFAULT_RATE);
+			animation.play();
 		}
 		
 	}
 	
 	private void initializeButtons(){
 		for (Button b : myButtonList){
-			switch(b.getText()){
-				case "Step": stepButton = b;
-				stepButton.setOnAction(this);
-				break;
-				case "Speed Up": speedButton = b;
-				speedButton.setOnAction(this);
-				break;
-				case "Slow Down": slowButton = b;
-				slowButton.setOnAction(this);
-				break;
-				case "Pause": playPauseButton = b;
-				playPauseButton.setOnAction(this);
-				break;
-				case "Load File": loadButton = b;
-				loadButton.setOnAction(this);
-				break;
+			String buttonText = b.getText();
+			if (buttonText == myResources.getString("StepButtonText")){
+				stepButton = b;
 			}
+			else if (buttonText == myResources.getString("SpeedButtonText")){
+				speedButton = b;
+			}
+			else if (buttonText == myResources.getString("SlowButtonText")){
+				slowButton = b;
+			}
+			else if (buttonText == myResources.getString("ResetButtonText")){
+				resetButton = b;
+			}
+			else if (buttonText == myResources.getString("PauseButtonText")){
+				playPauseButton = b;
+			}
+			else if (buttonText == myResources.getString("LoadButtonText")){
+				loadButton = b;
+			}
+			b.setOnAction(this);
 		}
 	}
 	
-	
 }
+

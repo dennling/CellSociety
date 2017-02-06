@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data type="GameData">
     <gametype>Fire</gametype>
+    <gameTitle>Fire</gameTitle>
+    <gameAuthor> Someone</gameAuthor>
     <dimension>10</dimension>
     <initialPositions>5 5</initialPositions>
    

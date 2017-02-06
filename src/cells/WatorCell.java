@@ -29,7 +29,8 @@ public class WatorCell extends Cell{
 		else{
 			getShape().setFill(Color.BLUE);
 		}
-		
+		getShape().setStroke(Color.BLACK);
+
 	}
 	
 	public int getTime() {

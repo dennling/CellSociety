@@ -2,6 +2,8 @@
 <data type="GameData">
     <gametype>Wator</gametype>
     <dimension>12</dimension>
+    <gameTitle>Wator</gameTitle>
+    <gameAuthor> Someone</gameAuthor>
     <initialPositions>5 5</initialPositions>
         <initialPositions>3 3</initialPositions>
         <initialPositions>4 4</initialPositions>

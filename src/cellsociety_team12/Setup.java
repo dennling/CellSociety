@@ -15,32 +15,34 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 
+
 public class Setup {
+	
+	private static final double SCREEN_HEIGHT = 400;
+	private static final double SCREEN_WIDTH = 600;
+	private static final Color DEFAULT_COLOR = Color.WHITE;
+	public static final String FILE_EXTENSION = "*.xml";
 	
 	private Scene myScene;
 	private Stage myStage;
 	private SceneBuilder mySceneBuilder;
 	private Game myGame;
 	private Simulator mySimulator;
-	static final double HEIGHT_ADJUST_FACTOR = .625;
-	static final double WIDTH_ADJUST_FACTOR = .9;
 	private GameData myData;
-	
-	public static final String FILE_EXTENSION = "*.xml";
-	private FileChooser myChooser = makeChooser(FILE_EXTENSION);
-	
-	
-	public Setup(Stage stage){ //will need a file input normally
-		// declare data object from XML Parser
+	private FileChooser myChooser;
+
+	public Setup(Stage stage){ 
 		myStage = stage;
+		double screenHeight = SCREEN_HEIGHT;
+		double screenWidth = SCREEN_WIDTH;
+		Color color = DEFAULT_COLOR;
+		
+		myChooser = makeChooser(FILE_EXTENSION);
+		
 		getData();
-		String title = "Wator";
-		String author = "Advait";
-		int screenHeight = 400;
-		int screenWidth = 600;
-		Color color = Color.WHITE;
-		double simulationHeight = screenHeight * HEIGHT_ADJUST_FACTOR;
-		double simulationWidth = screenWidth * WIDTH_ADJUST_FACTOR;
+		
+		String title = myData.getTitle();
+		String author = myData.getAuthor();
 
 		switch (myData.getGameType()){
 
@@ -53,18 +55,22 @@ public class Setup {
 			case "Wator": myGame = new Wator(myData);
 			break;
 		}
+		
 		mySceneBuilder = new SceneBuilder(title, author, screenHeight, screenWidth, color, myGame);
 		myScene = mySceneBuilder.getScene();
-		stage.setScene(myScene);
-		stage.setTitle(title);
-		stage.show();
-		stage.setResizable(false);
-		mySimulator = new Simulator(myGame, mySceneBuilder.getButtons());
-		
+		myStage.setScene(myScene);
+		myStage.setTitle(title);
+		myStage.show();
+		myStage.setResizable(false);
+		mySimulator = new Simulator(myGame, mySceneBuilder.getButtons(), myStage);
 	}
-
-	public Scene getScene() {
+	
+	public Scene getScene(){
 		return myScene;
+	}
+	
+	public Stage getStage(){
+		return myStage;
 	}
 	
 	private void getData() {
@@ -80,13 +86,13 @@ public class Setup {
 		}
 	}
 	
-	private FileChooser makeChooser(String extension) {
+	public FileChooser makeChooser(String extension) {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Open Data File");
 		chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 		chooser.getExtensionFilters().setAll(new ExtensionFilter("Text Files", extension));
-		return chooser;
-		
+		return chooser;		
 	}
 	
 }
+
