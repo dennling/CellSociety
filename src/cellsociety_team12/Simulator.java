@@ -53,6 +53,10 @@ public class Simulator implements EventHandler<ActionEvent>{
 	public void step(double elapsedTime){
 		myGame.updateGrid();
 	}
+	
+	public void takeEventHandler(EventHandler<ActionEvent> eventHandler){
+		;
+	}
 
 	@Override
 	public void handle(ActionEvent event) {
@@ -117,5 +121,8 @@ public class Simulator implements EventHandler<ActionEvent>{
 		}
 	}
 	
+	public void loadFile(){
+		
+	}
 }
 

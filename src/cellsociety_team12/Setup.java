@@ -60,6 +60,7 @@ public class Setup {
 		myStage.show();
 		myStage.setResizable(false);
 		mySimulator = new Simulator(myGame, mySceneBuilder.getButtons(), myStage);
+		mySceneBuilder.setActionStepButton(e -> mySimulator.loadFile());
 	}
 	
 	public Scene getScene(){
