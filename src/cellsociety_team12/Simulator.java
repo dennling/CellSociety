@@ -13,7 +13,7 @@ import javafx.util.Duration;
 public class Simulator implements EventHandler<ActionEvent>{
 	
 
-	private double frames_per_second = 5;
+	private double frames_per_second = 1;
     private double millisecond_delay = 1000 / frames_per_second;
     private double second_delay = 1.0 / frames_per_second;
 	private Timeline animation;

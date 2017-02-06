@@ -39,7 +39,7 @@ public abstract class Grid {
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
 				Cell currentCell = myGrid[i][k];
-				currentCell.updateNeighbors(myGrid);
+				currentCell.updateNeighbors8(myGrid);
 			}
 		}
 	}

@@ -26,4 +26,15 @@ public class GameOfLifeCell extends Cell{
 		getShape().setStroke(Color.BLACK);
 	}
 
+	@Override
+	protected int[][] setPossibleNeighbors()  {
+		int[][] possibleNeighbors = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1},
+			{1, 0}, {1, -1}, {0, -1}};	
+	return possibleNeighbors;
+	}
+
+
+	
+	
+
 }

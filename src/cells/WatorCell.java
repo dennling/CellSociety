@@ -47,4 +47,10 @@ public class WatorCell extends Cell{
 		timeSharkStarve = in;
 	}
 	
+	@Override
+	protected int[][] setPossibleNeighbors()  {
+		int[][] possibleNeighbors = new int[][]{{-1, 0}, {0, 1}, 
+			{1, 0}, {0, -1}};	
+	return possibleNeighbors;
+	}
 }

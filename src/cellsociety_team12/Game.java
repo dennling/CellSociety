@@ -6,26 +6,29 @@ import cells.Cell;
 public abstract class Game {
 	
 	private Grid myGrid;
-	
+	private String gameName;
 	
 	public Game(GameData data) {
+		gameName = data.getGameType();
 		myGrid = createGrid(data.getDimensions());
 		setInitialPositions(data);
 		myGrid.updateCellNeighbors();
 	}
 	
-	private void setInitialPositions(GameData data) {
-		//if (data.getInitialPositions().length == 0) {
-		//setDefaultPositions(data);
-		//} else {
-			String[] pos1 = data.getPositions1(); 
+	private void setInitialPositions(GameData data) {	
+		String[] pos1 = data.getPositions1(); 
+
+		if (data.getInitialPositions(data.getPositions1()).length == 0) {
+				setDefaultPositions(data);
+		} 
+		else {
 			String[] pos2 = data.getPositions2(); 
 			String[] pos3 = data.getPositions3(); 
-			if(pos1.length> 0) System.out.print("1: " + pos1.length); setPositions(data, pos1, 0);
-			if(pos2.length > 0) System.out.print("2: " + pos2.length); setPositions(data, pos2, 1);
-			if(pos3.length > 0) System.out.print("3: " + pos3.length); setPositions(data, pos3, 2);
-				
-		//}
+			if(pos1.length > 0) setPositions(data, pos1, 0);
+			if(pos2.length > 0) setPositions(data, pos2, 1);
+			if(pos3.length > 0) setPositions(data, pos3, 2);
+
+		}
 	}
 	
 	private void setPositions(GameData data, String[] initialPositions, int type){
@@ -52,6 +55,10 @@ public abstract class Game {
 		myGrid.updateGrid();
 	}
 
+	public String getName(){
+		return gameName;
+	}
+	
 
 	
 }

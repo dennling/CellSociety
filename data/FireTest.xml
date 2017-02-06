@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data type="GameData">
+    <gametype>Fire</gametype>
+    <dimension>10</dimension>
+    <initialPositions>5 5</initialPositions>
+   
+    
+    <prob> 0.7 </prob>
+</data>

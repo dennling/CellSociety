@@ -5,23 +5,29 @@ import java.util.Random;
 import cells.Cell;
 
 public class Fire extends Game{
+	
+
+	private Grid myGrid = getGrid();
+	private Cell[][] grid = myGrid.getGrid();
+	private double fireChance;
+	
 	public Fire(GameData data) {
 		super(data);
+		fireChance = data.getProb();
 	}
-
-	//private Grid myGrid = getGrid();
-	private double fireChance = 0.5;
 
 	@Override
 	protected void gameLogic(Cell currentCell) {
 		Cell[] neighbors = currentCell.getNeighbors();//neighbors does not include diagonals
-		
+		System.out.println(fireChance+"");
+		System.out.println(neighbors.length+"");
 		if(currentCell.getType().equals("fire")){
 			for(int i=0; i<neighbors.length; i++){ 
+				Cell checkSet = grid[neighbors[i].getX()][neighbors[i].getY()];
 				if(neighbors[i].getType().equals("tree")){
 					double roll = Math.random(); 
 					if(roll<=fireChance){
-						neighbors[i].setType("fire"); //set neighbor to be on fire
+						checkSet.setType("fire"); //set neighbor to be on fire
 					}
 				}
 			}
@@ -46,7 +52,8 @@ public class Fire extends Game{
 
 	@Override
 	protected String setInitialCellType(int type) {
-		return "tree";
+		if(type == 0) return "fire";
+		else return "tree";
 	}
 
 }

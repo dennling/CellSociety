@@ -25,7 +25,17 @@ public class FireCell extends Cell{
 		else{
 			getShape().setFill(Color.YELLOW);
 		}
+		getShape().setStroke(Color.BLACK);
+
 		
 	}
+
+	@Override
+	protected int[][] setPossibleNeighbors()  {
+		int[][] possibleNeighbors = new int[][]{{-1, 0}, {0, 1}, 
+			{1, 0}, {0, -1}};	
+	return possibleNeighbors;
+	}
+
 
 }

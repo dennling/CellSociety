@@ -43,14 +43,15 @@ public class Setup {
 		double simulationWidth = screenWidth * WIDTH_ADJUST_FACTOR;
 
 		switch (myData.getGameType()){
-			//case "Wator": myGame = new watorGame();
-			//break;
+
 			case "GameOfLife": myGame = new GameOfLife(myData);
 			break;
 			case "Segregation": myGame = new Segregation(myData);
 			break;
-			//case "Fire": myGame = new fireGame();
-			//break;
+			case "Fire": myGame = new Fire(myData);
+			break;
+			case "Wator": myGame = new Wator(myData);
+			break;
 		}
 		mySceneBuilder = new SceneBuilder(title, author, screenHeight, screenWidth, color, myGame);
 		myScene = mySceneBuilder.getScene();
