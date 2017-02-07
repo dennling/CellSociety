@@ -1,7 +1,9 @@
 package cellsociety_team12;
 
 import java.io.File;
-
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import cells.Cell;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -43,14 +45,15 @@ public class Setup {
 		String author = myData.getAuthor();
 
 		switch (myData.getGameType()){
-			//case "Wator": myGame = new watorGame();
-			//break;
+
 			case "GameOfLife": myGame = new GameOfLife(myData);
 			break;
-			//case "Segregation": myGame = new segregationGame();
-			//break;
-			//case "Fire": myGame = new fireGame();
-			//break;
+			case "Segregation": myGame = new Segregation(myData);
+			break;
+			case "Fire": myGame = new Fire(myData);
+			break;
+			case "Wator": myGame = new Wator(myData);
+			break;
 		}
 		
 		mySceneBuilder = new SceneBuilder(title, author, screenHeight, screenWidth, color, myGame);
@@ -88,8 +91,7 @@ public class Setup {
 		chooser.setTitle("Open Data File");
 		chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 		chooser.getExtensionFilters().setAll(new ExtensionFilter("Text Files", extension));
-		return chooser;
-		
+		return chooser;		
 	}
 	
 }

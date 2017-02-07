@@ -3,7 +3,6 @@ package cellsociety_team12;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -21,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -78,6 +76,7 @@ public class SceneBuilder{
 	private void displayGrid(Grid grid){
 		Group cells = new Group(); 
 		root.setCenter(cells);
+
 		for (int i=0; i<grid.getNumberOfRows(); i++){
 			for (int j=0; j<grid.getNumberOfColumns(); j++){
 				Rectangle shape = (Rectangle) grid.getCell(i, j).getShape();

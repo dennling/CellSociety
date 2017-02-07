@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data type="GameData">
+    <gametype>Wator</gametype>
+    <dimension>12</dimension>
+    <gameTitle>Wator</gameTitle>
+    <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
+    <initialPositions>5 5</initialPositions>
+        <initialPositions>3 3</initialPositions>
+        <initialPositions>4 4</initialPositions>
+        <initialPositions>2 2</initialPositions>
+        <initialPositions>1 1</initialPositions>
+        <initialPositions>10 10</initialPositions>
+        <initialPositions>2 4</initialPositions>
+        <initialPositions>3 1</initialPositions>
+        <initialPositions>2 5</initialPositions>
+        
+            <initialPositions2>6 6</initialPositions2>
+            <initialPositions2>1 2</initialPositions2>
+            <initialPositions2>4 5</initialPositions2>
+         
+   
+    
+    <fishBreed> 2 </fishBreed>
+    <sharkBreed> 10 </sharkBreed>
+    <sharkStarve> 5 </sharkStarve>
+</data>

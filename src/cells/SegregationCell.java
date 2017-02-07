@@ -1,29 +1,32 @@
 package cells;
-//AUTHOR: HENRY TAYLOR
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class GameOfLifeCell extends Cell{
+public class SegregationCell extends Cell{
 
-	public GameOfLifeCell(int x, int y, String type, Shape shape) {
+	public SegregationCell(int x, int y, String type, Shape shape) {
 		super(x, y, type, shape);
 	}
 
 	@Override
 	protected Cell specifyNeighborCell() {
-		return new GameOfLifeCell(0, 0, "neighbor", new Rectangle());
+		return new SegregationCell(0, 0, "neighbor", new Rectangle());
 	}
 
 	@Override
 	protected void setColor() {
-		if (getType().equals("dead")) {
-			getShape().setFill(Color.TAN);
-		} else if (getType().equals("alive")) {
+		if (getType().equals("one")) {
+			getShape().setFill(Color.RED);
+		} else if (getType().equals("two")) {
 			getShape().setFill(Color.BLUE);
 		}
+		else{
+			getShape().setFill(Color.WHITE);
+		}
 		getShape().setStroke(Color.BLACK);
+
 	}
 
 	@Override
@@ -33,8 +36,5 @@ public class GameOfLifeCell extends Cell{
 	return possibleNeighbors;
 	}
 
-
-	
-	
 
 }

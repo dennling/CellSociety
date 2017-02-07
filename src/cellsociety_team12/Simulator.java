@@ -14,7 +14,7 @@ import javafx.util.Duration;
 
 public class Simulator implements EventHandler<ActionEvent>{
 	
-	private static final double DEFAULT_FRAMES_PER_SECOND = 5;
+	private static final double DEFAULT_FRAMES_PER_SECOND = 1;
 	private static final int STEP_CYCLE_COUNT = 1;
 	private static final int DEFAULT_RATE = 1;
 	private static final double SPEED_UP_FACTOR = 2;
@@ -42,6 +42,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 		totalDuration = 0;
 		initializeButtons();
 		
+
 		KeyFrame frame = new KeyFrame(Duration.millis(1000 / frames_per_second),
                 e -> {this.step(1.0 / frames_per_second);});
 		
@@ -54,7 +55,6 @@ public class Simulator implements EventHandler<ActionEvent>{
 	
 	public void step(double elapsedTime){
 		myGame.updateGrid();
-		System.out.println(animation.getCycleDuration());
 		totalDuration += animation.getCycleDuration().toMillis();
 	}
 

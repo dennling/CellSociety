@@ -5,18 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.w3c.dom.Element;
+
 public class GameData {
 
 	public static final String DATA_TYPE = "GameData";
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
-			"initialPositions", "gameTitle", "gameAuthor");
+			"initialPositions","prob","initialPositions2", "initialPositions3", "fishBreed","sharkBreed","sharkStarve", "gameTitle","gameAuthor");
 
 	private HashMap<String, String[]> myData;
-	
-	
-	
-	
+
 	public GameData(HashMap<String, String[]> data) { //FIX THIS BY MAKING IT ABSTRACT
 		myData = data;
 	}
@@ -27,19 +26,30 @@ public class GameData {
 	}
 	
 	public String getTitle() {
-		return myData.get(DATA_FIELDS.get(3))[0];
+		return myData.get(DATA_FIELDS.get(9))[0];
 	}
 	
 	public String getAuthor() {
-		return myData.get(DATA_FIELDS.get(4))[0];
+		return myData.get(DATA_FIELDS.get(10))[0];
 	}
 	
 	public int getDimensions() {
 		return Integer.parseInt(myData.get(DATA_FIELDS.get(1))[0]);
 	}
 	
-	public int[][] getInitialPositions() {
-		String[] stringPositions = myData.get(DATA_FIELDS.get(2));
+	public String[] getPositions1(){
+		return myData.get(DATA_FIELDS.get(2));
+	}
+	
+	public String[] getPositions2(){
+		return myData.get(DATA_FIELDS.get(4));
+	}
+	
+	public String[] getPositions3(){
+		return myData.get(DATA_FIELDS.get(5));
+	}
+	
+	public int[][] getInitialPositions(String[] stringPositions) {
 		int[][] intPositions = new int[stringPositions.length][2];
 		for (int i = 0; i < stringPositions.length; i++) {
 			String[] sublist = stringPositions[i].split(" ");
@@ -47,7 +57,7 @@ public class GameData {
 			intPositions[i][1] = Integer.parseInt(sublist[1]);
 			checkBounds(intPositions[i][0]);
 			checkBounds(intPositions[i][1]);
-		}
+		}	
 		return intPositions;
 	}
 	
@@ -57,5 +67,18 @@ public class GameData {
 		}
 	}
 	
+	public double getProb(){
+		return Double.parseDouble(myData.get(DATA_FIELDS.get(3))[0]);
+	}
+	
+	public double getFishBreed(){
+		return Double.parseDouble(myData.get(DATA_FIELDS.get(6))[0]);
+	}
+	public double getSharkBreed(){
+		return Double.parseDouble(myData.get(DATA_FIELDS.get(7))[0]);
+	}
+	public double getSharkStarve(){
+		return Double.parseDouble(myData.get(DATA_FIELDS.get(8))[0]);
+	}
 	
 }

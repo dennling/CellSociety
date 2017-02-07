@@ -65,6 +65,8 @@ public class XMLParser {
 	}
 	
 	
+	
+	
 	private static DocumentBuilder getDocumentBuilder() {
 		try {
 			return DocumentBuilderFactory.newInstance().newDocumentBuilder();
