@@ -1,5 +1,7 @@
 package cellsociety_team12;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import cells.Cell;
@@ -23,87 +25,79 @@ public class Wator extends Game{
 
 	@Override
 	protected void gameLogic(Cell currentCell) {
+		WatorCell currCell = (WatorCell)currentCell;
 		Cell[] neighbors = currentCell.getNeighbors(); //adjacent is always closest 4
 		boolean moved = false;
-
-		if(currentCell.getType().equals("fish")){
-
-			for(int i=0; i<neighbors.length; i++){
-				Cell checker = grid[neighbors[i].getX()][neighbors[i].getY()];
-				if(neighbors[i].getType().equals("empty") && checker.getType().equals("empty")){
-					if(((WatorCell)currentCell).getTime()>=fishBreed){ //if enough time has passed to breed...
-						checker.setType("fish"); //place fish
-						((WatorCell)checker).setTime(0); //reset time to breed
-						((WatorCell)currentCell).setTime(0); //reset time to breed
-					}
-					else if(!moved){
-						checker.setType("fish");
-						((WatorCell)checker).setTime(((WatorCell)currentCell).getTime());
-						currentCell.setType("empty");
-						((WatorCell)currentCell).setTime(0);
-						moved=true;
-					}											
-				}
-			}		
+		
+		ArrayList<Integer> randomize = new ArrayList<Integer>();
+		for(int z=0; z<neighbors.length; z++){
+			randomize.add(z);
 		}
+		Collections.shuffle(randomize);
+		
+		if(currentCell.getType().equals("fish") && !currCell.getFutureType().equals("shark")){
+			for(int i: randomize){;			
+				if(neighbors[i].getType().equals("neighbor")) continue;
 
-		else if(currentCell.getType().equals("shark")){
+				WatorCell checker = (WatorCell)grid[neighbors[i].getX()][neighbors[i].getY()];
+				if(neighbors[i].getType().equals("empty") && checker.getFutureType().equals("empty")){
+					if(currCell.getTime()>=fishBreed){
+						checker.setFutureType("fish", 0, 0);
+						currCell.setFutureType("fish", 0, 0);
+					}	
+					else{
+						checker.setFutureType("fish",currCell.getTime()+1,0);
+						currCell.setFutureType("empty", 0, 0);
+					}
+					break;
+				}											
+			}
+		}		
+
+
+		if(currentCell.getType().equals("shark")){
 			boolean eaten = false;
-			((WatorCell)currentCell).setSharkTime(((WatorCell)currentCell).getSharkTime()+1);
 
-			for(int j=0; j<neighbors.length; j++){ //check to eat fish
-				Cell checker = grid[neighbors[j].getX()][neighbors[j].getY()];
-				if(neighbors[j].getType().equals("fish") && !eaten && checker.getType().equals("fish")){
+			for(int i: randomize){
+				WatorCell checker = (WatorCell)grid[neighbors[i].getX()][neighbors[i].getY()];
+				boolean fishy = ((WatorCell)neighbors[i]).getType().equals("fish");
+
+				if(fishy && checker.getFutureType().equals("empty")){ //eat fish
 					eaten = true;
-					checker.setType("empty"); //eat fish
-					((WatorCell)checker).setTime(0);
-					((WatorCell)checker).setSharkTime(0);					
-					((WatorCell)currentCell).setSharkTime(0); //reset time to starve
+					checker.setFutureType("shark",currCell.getTime()+1,0);
+					currCell.setFutureType("empty",0,0);
+					breed(currCell,checker);
+					break;
 				}
 			}
-			if(((WatorCell)currentCell).getSharkTime()>=sharkStarve){ //shark dies
-				System.out.println("am i ever here");
-				currentCell.setType("empty");
-				((WatorCell)currentCell).setTime(0);
-				((WatorCell)currentCell).setSharkTime(0);
+
+			if(currCell.getSharkTime()>=sharkStarve){ //shark starves and dies
+				currCell.setFutureType("empty",0,0);
 			}	
 
-			else {
-				if(!eaten){ //move if haven't eaten
-					System.out.println("Starve time: " + ((WatorCell)currentCell).getSharkTime());
-					for(int k=0; k<neighbors.length; k++){
-						Cell checker = grid[neighbors[k].getX()][neighbors[k].getY()];
-						if(neighbors[k].getType().equals("empty") && !moved && checker.getType().equals("empty")){
-							moved = true;
-							checker.setType("shark");
-							((WatorCell)checker).setTime(((WatorCell)currentCell).getTime());
-							((WatorCell)checker).setSharkTime(((WatorCell)currentCell).getSharkTime());
-							currentCell.setType("empty");
-							((WatorCell)currentCell).setTime(0);
-							((WatorCell)currentCell).setSharkTime(0);
-
-						}
-					}
-				}
-
-				if(((WatorCell) currentCell).getTime()>=sharkBreed){ //if enough time has passed to breed...
-					System.out.println("Breed time: " + ((WatorCell)currentCell).getTime());
-
-					for(int i=0; i<neighbors.length; i++){
-						Cell checker = grid[neighbors[i].getX()][neighbors[i].getY()];
-						if(neighbors[i].getType().equals("empty") && checker.getType().equals("empty")){
-							checker.setType("shark"); //place shark
-							((WatorCell)checker).setTime(0);
-							((WatorCell)checker).setSharkTime(0);
-							((WatorCell) currentCell).setTime(0); //reset time to breed
-						}
+			else if(!eaten && !moved){ //move if haven't eaten
+				for(int k: randomize){
+					boolean empty = ((WatorCell)neighbors[k]).getType().equals("empty");
+					WatorCell checker = (WatorCell)grid[neighbors[k].getX()][neighbors[k].getY()];
+					if(empty && checker.getFutureType().equals("empty")){
+						moved = true;
+						checker.setFutureType("shark",currCell.getTime()+1, currCell.getSharkTime()+1);
+						currCell.setFutureType("empty", 0, 0);
+						System.out.println(checker.getTime());
+						breed(currCell, checker);
+						break;
 					}
 				}
 			}
 		}
 
+	}
 
-		((WatorCell)currentCell).setTime(((WatorCell)currentCell).getTime()+1);
+	private void breed(WatorCell current, WatorCell future){
+		if(future.getTime() >= sharkBreed){
+			current.setFutureType("shark",0,0);
+			future.setFutureType("shark",0,future.getSharkTime());
+		}
 
 	}
 

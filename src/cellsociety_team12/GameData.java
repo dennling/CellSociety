@@ -15,10 +15,7 @@ public class GameData {
 			"initialPositions","prob","initialPositions2", "initialPositions3", "fishBreed","sharkBreed","sharkStarve", "gameTitle","gameAuthor");
 
 	private HashMap<String, String[]> myData;
-	
-	
-	
-	
+
 	public GameData(HashMap<String, String[]> data) { //FIX THIS BY MAKING IT ABSTRACT
 		myData = data;
 	}

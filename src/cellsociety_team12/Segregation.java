@@ -1,5 +1,7 @@
 package cellsociety_team12;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import cells.Cell;
@@ -33,9 +35,21 @@ public class Segregation extends Game{
 		countNeighbors(neighbors);
 		calcProp(currentCell);
 		
+		ArrayList<Integer> randomize = new ArrayList<Integer>();
+		for(int z=0; z<grid.length; z++){
+			randomize.add(z);
+		}
+		Collections.shuffle(randomize);
+		
+		ArrayList<Integer> randomize2 = new ArrayList<Integer>();
+		for(int z=0; z<grid.length; z++){
+			randomize2.add(z);
+		}
+		Collections.shuffle(randomize2);
+		
 		if(prop<propThreshold){ //if cell is dissatisfied, move to empty space. pick first empty from top.
-			for(int i=0; i<grid.length; i++){
-				for(int j=0; j<grid.length; j++){
+			for(int i: randomize){
+				for(int j: randomize2){
 					if(grid[i][j].getType().equals("empty")) {
 						grid[i][j].setType(currentCell.getType());
 						currentCell.setType("empty");

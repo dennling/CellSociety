@@ -79,6 +79,10 @@ public abstract class Grid {
 	public Cell[][] getGrid(){
 		return myGrid;
 	}
+	
+	public Game getGame(){
+		return myGame;
+	}
 
 	/* Way to remove repeated double for loop
 	 

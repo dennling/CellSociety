@@ -59,26 +59,7 @@ public abstract class Cell{
 			}	
 		}
 	}
-	
-//	public void updatNeighbors4(Cell[][] grid){
-//		int[][] possibleNeighbors = new int[][]{{-1, 0}, {0, 1},
-//			{1, 0}, {0, -1}};
-//		int size = grid.length;
-//		for (int i = 0; i < myNeighbors.length; i++) {
-//			int currentX = myGridX + possibleNeighbors[i][0];
-//			int currentY = myGridY + possibleNeighbors[i][1];
-//			if (currentX >= 0 && currentX < size) {
-//				if (currentY >= 0 && currentY < size) {
-//					Cell currentNeighbor = myNeighbors[i];
-//					Cell currentGrid = grid[currentX][currentY];
-//					if (currentGrid != null) {
-//						currentNeighbor.setType(currentGrid.getType());
-//						currentNeighbor.setLocation(currentX, currentY);
-//					}
-//				}
-//			}	
-//		}
-//	}
+
 
 	/**
 	 * Used as a reference for updateNeighbors(Cell[][] grid). Allows for simplified code

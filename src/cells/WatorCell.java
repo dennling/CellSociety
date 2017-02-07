@@ -7,16 +7,19 @@ import javafx.scene.shape.Shape;
 public class WatorCell extends Cell{
 	private int breedTime;
 	private int timeSharkStarve;
+	private String state;
 
-	public WatorCell(int x, int y, String type, Shape shape, int timer, int timerShark2){
+	public WatorCell(int x, int y, String type, Shape shape, int timer, int timerShark2, String future){
 		super(x,y,type,shape);
 		breedTime = timer;
 		timeSharkStarve = timerShark2;
+		state = future;
+		
 	}
 
 	@Override
 	protected Cell specifyNeighborCell() {
-		return new WatorCell(0, 0, "neighbor", new Rectangle(), breedTime, timeSharkStarve);
+		return new WatorCell(0, 0, "neighbor", new Rectangle(), breedTime, timeSharkStarve, "neighbor");
 	}
 
 	@Override
@@ -47,6 +50,21 @@ public class WatorCell extends Cell{
 	public void setSharkTime(int in) {
 		timeSharkStarve = in;
 	}
+	
+	public String getFutureType() {
+		return state;
+	}
+	
+	public void setFutureType(String futureState) {
+		state = futureState;
+	}
+	
+	public void setFutureType(String futureState, int one, int two) {
+		state = futureState;
+		breedTime = one;
+		timeSharkStarve = two;
+	}
+	
 	
 	@Override
 	protected int[][] setPossibleNeighbors()  {
