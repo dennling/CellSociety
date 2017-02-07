@@ -13,7 +13,6 @@ public class Wator extends Game{
 		fishBreed = data.getFishBreed();
 		sharkBreed = data.getSharkBreed();
 		sharkStarve = data.getSharkStarve();
-		System.out.println(sharkStarve);
 	}
 
 	private Grid myGrid = getGrid();
@@ -88,7 +87,6 @@ public class Wator extends Game{
 						moved = true;
 						checker.setFutureType("shark",currCell.getTime()+1, currCell.getSharkTime()+1);
 						currCell.setFutureType("empty", 0, 0);
-						System.out.println(checker.getTime());
 						breed(currCell, checker);
 						break;
 					}

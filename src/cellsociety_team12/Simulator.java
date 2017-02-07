@@ -55,7 +55,6 @@ public class Simulator implements EventHandler<ActionEvent>{
 	
 	public void step(double elapsedTime){
 		myGame.updateGrid();
-		System.out.println(animation.getCycleDuration());
 		totalDuration += animation.getCycleDuration().toMillis();
 	}
 
