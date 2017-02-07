@@ -32,12 +32,14 @@ public class Simulator implements EventHandler<ActionEvent>{
 	private Button loadButton;
 	private Button playPauseButton;
 	private Button resetButton;
+	private double totalDuration;
 	
 	public Simulator(Game game, List<Button> buttonList, Stage stage){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCES);
 		myGame = game;
 		myStage = stage;
 		myButtonList = buttonList;
+		totalDuration = 0;
 		initializeButtons();
 		
 
@@ -53,16 +55,20 @@ public class Simulator implements EventHandler<ActionEvent>{
 	
 	public void step(double elapsedTime){
 		myGame.updateGrid();
+		System.out.println(animation.getCycleDuration());
+		totalDuration += animation.getCycleDuration().toMillis();
 	}
 
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getSource() == stepButton){
 			if (animation.getCycleCount() != STEP_CYCLE_COUNT){
+				animation.getCuePoints().put("step point", Duration.millis(totalDuration));
 				animation.stop();
 				animation.setCycleCount(STEP_CYCLE_COUNT);
+				playPauseButton.setText(myResources.getString("PlayButtonText"));
 			}
-			animation.play();
+			animation.playFrom("step point");
 		}
 		if (event.getSource() == speedButton){
 			animation.setRate(animation.getRate() * SPEED_UP_FACTOR);
@@ -75,6 +81,9 @@ public class Simulator implements EventHandler<ActionEvent>{
 			Setup newGame = new Setup(myStage);
 		}
 		if (event.getSource() == playPauseButton){
+			if (animation.getCycleCount() == STEP_CYCLE_COUNT){
+				animation.setCycleCount(Timeline.INDEFINITE);
+			}
 			if (animation.getCurrentRate() == 0){
 				animation.play();
 				playPauseButton.setText(myResources.getString("PauseButtonText"));
@@ -88,6 +97,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 			animation.stop();
 			animation.setCycleCount(Timeline.INDEFINITE);
 			animation.setRate(DEFAULT_RATE);
+			totalDuration = 0;
 			animation.play();
 		}
 		
@@ -117,6 +127,6 @@ public class Simulator implements EventHandler<ActionEvent>{
 			b.setOnAction(this);
 		}
 	}
-	
+
 }
 

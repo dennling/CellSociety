@@ -3,6 +3,8 @@ package cellsociety_team12;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -132,7 +134,7 @@ public class SceneBuilder{
 		buttonRow.setAlignment(Pos.CENTER);
 	}
 	
-	private Button makeButton(String text){
+	public Button makeButton(String text){
 		Button button = new Button(text);
 		buttonList.add(button);
 		button.setMinWidth(100);

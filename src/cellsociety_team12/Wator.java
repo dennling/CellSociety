@@ -1,5 +1,4 @@
 package cellsociety_team12;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -44,15 +43,21 @@ public class Wator extends Game{
 					if(currCell.getTime()>=fishBreed){
 						checker.setFutureType("fish", 0, 0);
 						currCell.setFutureType("fish", 0, 0);
+						moved = true;
 					}	
 					else{
 						checker.setFutureType("fish",currCell.getTime()+1,0);
 						currCell.setFutureType("empty", 0, 0);
+						moved=true;
 					}
 					break;
 				}											
 			}
-		}		
+			if(!moved && currCell.getFutureType().equals("empty")){
+				currCell.setFutureType("fish",currCell.getTime()+1,0);
+			}
+		}	
+		
 
 
 		if(currentCell.getType().equals("shark")){
@@ -89,8 +94,11 @@ public class Wator extends Game{
 					}
 				}
 			}
+			
+			if(!eaten && !moved && currCell.getFutureType().equals("empty")){
+				currCell.setFutureType("fish",currCell.getTime()+1,currCell.getSharkTime()+1);
+			}
 		}
-
 	}
 
 	private void breed(WatorCell current, WatorCell future){
@@ -98,7 +106,6 @@ public class Wator extends Game{
 			current.setFutureType("shark",0,0);
 			future.setFutureType("shark",0,future.getSharkTime());
 		}
-
 	}
 
 	@Override
@@ -120,6 +127,4 @@ public class Wator extends Game{
 		else if(type == 1) return "shark";
 		else return "empty";
 	}
-
-
 }

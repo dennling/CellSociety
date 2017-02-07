@@ -3,7 +3,7 @@
     <gametype>Wator</gametype>
     <dimension>12</dimension>
     <gameTitle>Wator</gameTitle>
-    <gameAuthor> Someone</gameAuthor>
+    <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
     <initialPositions>5 5</initialPositions>
         <initialPositions>3 3</initialPositions>
         <initialPositions>4 4</initialPositions>
@@ -21,6 +21,6 @@
    
     
     <fishBreed> 2 </fishBreed>
-    <sharkBreed> 5 </sharkBreed>
-    <sharkStarve> 15 </sharkStarve>
+    <sharkBreed> 10 </sharkBreed>
+    <sharkStarve> 5 </sharkStarve>
 </data>
