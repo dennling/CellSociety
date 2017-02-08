@@ -13,7 +13,6 @@ public abstract class Cell{
 	private String myType;
 	private Shape myShape;
 	private Cell[] myNeighbors;
-
 	
 	public Cell(int x, int y, String type, Shape shape) {
 		myGridX = x;
@@ -26,8 +25,8 @@ public abstract class Cell{
 		}
 	}
 	
-	private void initiateNeighbors() {
-		myNeighbors = new Cell[8];
+	protected void initiateNeighbors() {
+		myNeighbors = new Cell[setPossibleNeighbors().length];
 		for (int i = 0; i < myNeighbors.length; i++) {
 			myNeighbors[i] = specifyNeighborCell();
 		}
@@ -42,7 +41,7 @@ public abstract class Cell{
 	 * @param grid
 	 */
 	
-	public void updateNeighbors(Cell[][] grid) {
+	public void updateNeighbors8(Cell[][] grid) {
 		int[][] possibleNeighbors = setPossibleNeighbors();
 		int size = grid.length;
 		for (int i = 0; i < myNeighbors.length; i++) {
@@ -61,15 +60,12 @@ public abstract class Cell{
 		}
 	}
 
+
 	/**
 	 * Used as a reference for updateNeighbors(Cell[][] grid). Allows for simplified code
 	 * as the Cell's neighbors are updated. Checks all 8 possible neighbors
 	 */
-	private int[][] setPossibleNeighbors() {
-		int[][] possibleNeighbors = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1},
-				{1, 0}, {1, -1}, {0, -1}};
-		return possibleNeighbors;
-	}
+	protected abstract int[][] setPossibleNeighbors();
 	
 	protected abstract void setColor();
 	
@@ -93,6 +89,14 @@ public abstract class Cell{
 	public void setLocation(int x, int y){
 		myGridX = x;
 		myGridY = y;
+	}
+	
+	public int getX(){
+		return myGridX;
+	}
+	
+	public int getY(){
+		return myGridY;
 	}
 	
 	

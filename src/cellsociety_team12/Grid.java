@@ -39,7 +39,7 @@ public abstract class Grid {
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
 				Cell currentCell = myGrid[i][k];
-				currentCell.updateNeighbors(myGrid);
+				currentCell.updateNeighbors8(myGrid);
 			}
 		}
 	}
@@ -68,14 +68,22 @@ public abstract class Grid {
 		return (Cell[]) column.toArray();
 	}
 	
-	public int getRows(){
+	public int getNumberOfRows(){
 		return myGrid.length;
 	}
 	
-	public int getColumns(){
+	public int getNumberOfColumns(){
 		return myGrid[0].length;
 	}
 	
+	public Cell[][] getGrid(){
+		return myGrid;
+	}
+	
+	public Game getGame(){
+		return myGame;
+	}
+
 	/* Way to remove repeated double for loop
 	 
 	private void iterateGrid(String method) {
@@ -96,3 +104,4 @@ public abstract class Grid {
 	*/
 
 }
+
