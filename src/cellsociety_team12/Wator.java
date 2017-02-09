@@ -20,14 +20,17 @@ public class Wator extends Game{
 	private double fishBreed;
 	private double sharkStarve;
 	private double sharkBreed;
+	private ArrayList<Integer> randomize = new ArrayList<Integer>();
+	private boolean moved;
+	private boolean eaten;
 
 	@Override
 	protected void gameLogic(Cell currentCell) {
+		moved = false;
+		eaten = false;
 		WatorCell currCell = (WatorCell)currentCell;
 		Cell[] neighbors = currentCell.getNeighbors(); //adjacent is always closest 4
-		boolean moved = false;
 		
-		ArrayList<Integer> randomize = new ArrayList<Integer>();
 		for(int z=0; z<neighbors.length; z++){
 			randomize.add(z);
 		}
@@ -59,38 +62,14 @@ public class Wator extends Game{
 		
 
 
-		if(currentCell.getType().equals("shark")){
-			boolean eaten = false;
-
-			for(int i: randomize){
-				WatorCell checker = (WatorCell)grid[neighbors[i].getX()][neighbors[i].getY()];
-				boolean fishy = ((WatorCell)neighbors[i]).getType().equals("fish");
-
-				if(fishy && checker.getFutureType().equals("empty")){ //eat fish
-					eaten = true;
-					checker.setFutureType("shark",currCell.getTime()+1,0);
-					currCell.setFutureType("empty",0,0);
-					breed(currCell,checker);
-					break;
-				}
-			}
+		if(currentCell.getType().equals("shark")){			
+			loopNeighbors(neighbors, currCell, "fish",false,0);
 
 			if(currCell.getSharkTime()>=sharkStarve){ //shark starves and dies
 				currCell.setFutureType("empty",0,0);
 			}	
-
 			else if(!eaten && !moved){ //move if haven't eaten
-				for(int k: randomize){
-					boolean empty = ((WatorCell)neighbors[k]).getType().equals("empty");
-					WatorCell checker = (WatorCell)grid[neighbors[k].getX()][neighbors[k].getY()];
-					if(empty && checker.getFutureType().equals("empty")){
-						moved = true;
-						checker.setFutureType("shark",currCell.getTime()+1, currCell.getSharkTime()+1);
-						currCell.setFutureType("empty", 0, 0);
-						breed(currCell, checker);
-						break;
-					}
-				}
+				loopNeighbors(neighbors, currCell, "empty",true,currCell.getSharkTime()+1);
 			}
 			
 			if(!eaten && !moved && currCell.getFutureType().equals("empty")){
@@ -99,6 +78,22 @@ public class Wator extends Game{
 		}
 	}
 
+	private void loopNeighbors(Cell[] neighbors, WatorCell currCell, String type, boolean action, int starve){ //iteration for sharks
+		for(int i: randomize){
+			WatorCell checker = (WatorCell)grid[neighbors[i].getX()][neighbors[i].getY()];
+			boolean fishy = ((WatorCell)neighbors[i]).getType().equals(type);
+
+			if(fishy && checker.getFutureType().equals("empty")){
+				if(action) moved = true;
+				else eaten = true;
+				checker.setFutureType("shark",currCell.getTime()+1,starve);
+				currCell.setFutureType("empty",0,0);
+				breed(currCell,checker);
+				break;
+			}
+		}
+	}
+	
 	private void breed(WatorCell current, WatorCell future){
 		if(future.getTime() >= sharkBreed){
 			current.setFutureType("shark",0,0);
@@ -111,13 +106,6 @@ public class Wator extends Game{
 		return new WatorGrid(dimensions, this);
 	}
 
-	@Override
-	protected void setDefaultPositions(GameData data) {
-		Random numberGenerator = new Random();
-		int randomX = numberGenerator.nextInt(data.getDimensions());
-		int randomY = numberGenerator.nextInt(data.getDimensions());
-		getGrid().getCell(randomX, randomY).setType("fish");
-	}
 
 	@Override
 	protected String setInitialCellType(int type) {

@@ -6,7 +6,6 @@ import cells.Cell;
 
 public class Fire extends Game{
 
-
 	private Grid myGrid = getGrid();
 	private Cell[][] grid = myGrid.getGrid();
 	private double fireChance;
@@ -34,22 +33,11 @@ public class Fire extends Game{
 			currentCell.setType("empty");
 		}
 	}
-
-
-
+	
 	@Override
 	protected Grid createGrid(int dimensions) {
 		return new FireGrid(dimensions, this);
 	}
-
-	@Override
-	protected void setDefaultPositions(GameData data) {
-		Random numberGenerator = new Random();
-		int randomX = numberGenerator.nextInt(data.getDimensions());
-		int randomY = numberGenerator.nextInt(data.getDimensions());
-		getGrid().getCell(randomX, randomY).setType("fire");
-	}
-
 
 	@Override
 	protected String setInitialCellType(int type) {

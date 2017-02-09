@@ -84,17 +84,5 @@ public class Segregation extends Game{
 		else if(type == 1) return "two";
 		else return "empty";
 	}
-	
-	@Override
-	protected void setDefaultPositions(GameData data) {
-		for(int i =0; i < data.getDimensions()/2; i++) {
-			Random numberGenerator = new Random();
-			int randomX = numberGenerator.nextInt(data.getDimensions());
-			int randomY = numberGenerator.nextInt(data.getDimensions());
-			getGrid().getCell(randomX, randomY).setType("one");
-		}
-	}
-	
-	
 
 }

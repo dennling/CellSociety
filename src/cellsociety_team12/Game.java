@@ -1,5 +1,7 @@
 package cellsociety_team12;
 
+import java.util.Random;
+
 import cells.Cell;
 
 
@@ -27,7 +29,6 @@ public abstract class Game {
 			if(pos1.length > 0) setPositions(data, pos1, 0);
 			if(pos2.length > 0) setPositions(data, pos2, 1);
 			if(pos3.length > 0) setPositions(data, pos3, 2);
-
 		}
 	}
 	
@@ -45,7 +46,12 @@ public abstract class Game {
 
 	protected abstract String setInitialCellType(int type);
 
-	protected abstract void setDefaultPositions(GameData data);
+	private void setDefaultPositions(GameData data){
+		Random numberGenerator = new Random();
+		int randomX = numberGenerator.nextInt(data.getDimensions());
+		int randomY = numberGenerator.nextInt(data.getDimensions());
+		getGrid().getCell(randomX, randomY).setType(getType());
+	}
 	
 	public Grid getGrid() {
 		return myGrid;
@@ -59,6 +65,10 @@ public abstract class Game {
 		return gameName;
 	}
 	
-
-	
+	private String getType(){
+		if(gameName.equals("Fire")) return "fire";
+		else if(gameName.equals("Segregation")) return "one";
+		else if(gameName.equals("Wator")) return "fish";
+		else return "alive";
+	}	
 }
