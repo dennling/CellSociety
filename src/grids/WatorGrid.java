@@ -1,8 +1,9 @@
-package cellsociety_team12;
+package grids;
 
 import javafx.scene.shape.Rectangle;
 import cells.Cell;
 import cells.WatorCell;
+import games.Game;
 
 public class WatorGrid extends Grid {
 

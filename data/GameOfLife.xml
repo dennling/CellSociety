@@ -2,8 +2,8 @@
 <data type="GameData">
     <gametype>GameOfLife</gametype>
     <gameTitle>Game of Life</gameTitle>
-    <gameAuthor> John Horton Conway</gameAuthor>
-    <dimension>6</dimension>
+    <gameAuthor>John Horton Conway</gameAuthor>
+    <dimension>9</dimension>
     <initialPositions>2 2</initialPositions>
     <initialPositions>3 2</initialPositions>
     <initialPositions>4 2</initialPositions>

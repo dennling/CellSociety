@@ -1,9 +1,10 @@
-package cellsociety_team12;
+package grids;
 
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import cells.Cell;
 import cells.GameOfLifeCell;
+import games.Game;
 
 public class GameOfLifeGrid extends Grid {
 
