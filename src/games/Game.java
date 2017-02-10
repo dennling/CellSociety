@@ -1,6 +1,8 @@
-package cellsociety_team12;
+package games;
 
 import cells.Cell;
+import cellsociety_team12.GameData;
+import grids.Grid;
 
 
 public abstract class Game {
@@ -41,7 +43,7 @@ public abstract class Game {
 	
 	protected abstract Grid createGrid(int dimensions);
 	
-	protected abstract void gameLogic(Cell currentCell);
+	public abstract void gameLogic(Cell currentCell);
 
 	protected abstract String setInitialCellType(int type);
 
@@ -58,7 +60,5 @@ public abstract class Game {
 	public String getName(){
 		return gameName;
 	}
-	
-
 	
 }

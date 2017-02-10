@@ -1,6 +1,7 @@
-package cellsociety_team12;
+package grids;
 
 import cells.SegregationCell;
+import games.Game;
 import javafx.scene.shape.Rectangle;
 
 public class SegregationGrid extends Grid {
