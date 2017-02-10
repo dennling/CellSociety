@@ -1,10 +1,13 @@
-package cellsociety_team12;
+package games;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 import cells.Cell;
 import cells.WatorCell;
+import cellsociety_team12.GameData;
+import grids.Grid;
+import grids.WatorGrid;
 
 public class Wator extends Game{
 	public Wator(GameData data) {
@@ -22,7 +25,7 @@ public class Wator extends Game{
 	private double sharkBreed;
 
 	@Override
-	protected void gameLogic(Cell currentCell) {
+	public void gameLogic(Cell currentCell) {
 		WatorCell currCell = (WatorCell)currentCell;
 		Cell[] neighbors = currentCell.getNeighbors(); //adjacent is always closest 4
 		boolean moved = false;

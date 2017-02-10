@@ -1,18 +1,22 @@
-package cellsociety_team12;
+package grids;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-import javafx.scene.layout.GridPane;
 import cells.Cell;
+import games.Game;
 
 public abstract class Grid {
 
 	private Cell[][] myGrid;
 	private Game myGame;
+	private Map<String, Integer> cellPopulationMap;
 	
 	public Grid(int dimensions, Game game){
 		initializeGrid(dimensions);
 		myGame = game;
+		cellPopulationMap = new HashMap<String,Integer>();
 	}
 	
 	private void initializeGrid(int dimensions) {
@@ -40,6 +44,23 @@ public abstract class Grid {
 			for (int k = 0; k < myGrid.length; k++) {
 				Cell currentCell = myGrid[i][k];
 				currentCell.updateNeighbors8(myGrid);
+			}
+		}
+	}
+	
+	public void updateCellPopulationMap(){
+		cellPopulationMap.clear();
+		for (int i = 0; i < myGrid.length; i++) {
+			for (int k = 0; k < myGrid.length; k++) {
+				Cell currentCell = myGrid[i][k];
+				String cellType = currentCell.getType();
+				if (!cellPopulationMap.containsKey(cellType)){
+					cellPopulationMap.put(cellType, 1);
+				}
+				else{
+					int updatedPopulation = cellPopulationMap.get(cellType) + 1;
+					cellPopulationMap.put(cellType, updatedPopulation);
+				}
 			}
 		}
 	}
@@ -82,6 +103,10 @@ public abstract class Grid {
 	
 	public Game getGame(){
 		return myGame;
+	}
+	
+	public Map<String, Integer> getCellPopulationMap(){
+		return cellPopulationMap;
 	}
 
 	/* Way to remove repeated double for loop

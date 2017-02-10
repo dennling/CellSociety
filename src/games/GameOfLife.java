@@ -1,4 +1,4 @@
-package cellsociety_team12;
+package games;
 //AUTHOR: HENRY TAYLOR
 
 
@@ -7,6 +7,9 @@ import java.util.Random;
 
 import cells.Cell;
 import cells.GameOfLifeCell;
+import cellsociety_team12.GameData;
+import grids.GameOfLifeGrid;
+import grids.Grid;
 import javafx.scene.shape.Rectangle;
 
 public class GameOfLife extends Game{
@@ -16,7 +19,7 @@ public class GameOfLife extends Game{
 	}
 	
 	@Override
-	protected void gameLogic(Cell currentCell) {
+	public void gameLogic(Cell currentCell) {
 		Cell[] neighbors = currentCell.getNeighbors();
 		int liveCount = 0;
 		for (int i = 0; i < neighbors.length; i++) {

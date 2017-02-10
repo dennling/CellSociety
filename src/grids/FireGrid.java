@@ -1,7 +1,8 @@
-package cellsociety_team12;
+package grids;
 
 import javafx.scene.shape.Rectangle;
 import cells.FireCell;
+import games.Game;
 
 public class FireGrid extends Grid {
 

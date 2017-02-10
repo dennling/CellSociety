@@ -1,10 +1,13 @@
-package cellsociety_team12;
+package games;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 import cells.Cell;
+import cellsociety_team12.GameData;
+import grids.Grid;
+import grids.SegregationGrid;
 
 public class Segregation extends Game{
 
@@ -28,7 +31,7 @@ public class Segregation extends Game{
 	}
 	
 	@Override
-	protected void gameLogic(Cell currentCell) {
+	public void gameLogic(Cell currentCell) {
 		Cell[] neighbors = currentCell.getNeighbors();
 		initialize();
 

@@ -3,6 +3,8 @@ package cellsociety_team12;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import games.Game;
+import graphs.Graph;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -24,6 +26,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 	private ResourceBundle myResources;
 	private Timeline animation;
 	private Game myGame;
+	private Graph myGraph;
 	private Stage myStage;
 	private List<Button> myButtonList;
 	private Button stepButton;
@@ -34,9 +37,10 @@ public class Simulator implements EventHandler<ActionEvent>{
 	private Button resetButton;
 	private double totalDuration;
 	
-	public Simulator(Game game, List<Button> buttonList, Stage stage){
+	public Simulator(Game game, List<Button> buttonList, Stage stage, Graph graph){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCES);
 		myGame = game;
+		myGraph = graph;
 		myStage = stage;
 		myButtonList = buttonList;
 		totalDuration = 0;
@@ -55,7 +59,9 @@ public class Simulator implements EventHandler<ActionEvent>{
 	
 	public void step(double elapsedTime){
 		myGame.updateGrid();
+		myGame.getGrid().updateCellPopulationMap();
 		totalDuration += animation.getCycleDuration().toMillis();
+		myGraph.updateGraph(totalDuration, myGame.getGrid().getCellPopulationMap());
 	}
 
 	@Override
