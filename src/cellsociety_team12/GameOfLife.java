@@ -36,8 +36,8 @@ public class GameOfLife extends Game{
 	}
 	
 	@Override
-	protected Grid createGrid(int dimensions) {
-		return new GameOfLifeGrid(dimensions, this);
+	protected Grid createGrid(int dimensions, String cellShape) {
+		return new GameOfLifeGrid(dimensions, this, cellShape);
 	}
 	
 	@Override

@@ -3,6 +3,9 @@ package cellsociety_team12;
 import java.util.ArrayList;
 
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import cells.Cell;
 
 public abstract class Grid {
@@ -10,16 +13,16 @@ public abstract class Grid {
 	private Cell[][] myGrid;
 	private Game myGame;
 	
-	public Grid(int dimensions, Game game){
-		initializeGrid(dimensions);
+	public Grid(int dimensions, Game game, String cellShape){
+		initializeGrid(dimensions, cellShape);
 		myGame = game;
 	}
 	
-	private void initializeGrid(int dimensions) {
+	private void initializeGrid(int dimensions, String cellShape) {
 		myGrid = new Cell[dimensions][dimensions];
 		for (int i = 0; i < dimensions; i++) {
 			for (int k = 0; k < dimensions; k++) {
-				myGrid[i][k] = cellType(i, k);
+				myGrid[i][k] = cellType(i, k, cellShape(cellShape));
 			}
 		}
 		updateCellNeighbors();
@@ -44,7 +47,16 @@ public abstract class Grid {
 		}
 	}
 	
-	protected abstract Cell cellType(int x, int y);
+	protected abstract Cell cellType(int x, int y, Shape cellShape);
+
+	public Shape cellShape(String cellShape) {
+		switch (cellShape) {
+			case "rectangle": return new Rectangle();
+			default: return new Polygon();
+		}
+	}
+	
+	
 	
 	public Cell getCell(int x, int y) {
 		return myGrid[x][y];
