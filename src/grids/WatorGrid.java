@@ -1,19 +1,20 @@
 package grids;
 
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import cells.Cell;
 import cells.WatorCell;
 import games.Game;
 
 public class WatorGrid extends Grid {
 
-	public WatorGrid(int dimensions, Game game) {
-		super(dimensions, game);
+	public WatorGrid(int dimensions, Game game, String cellShape) {
+		super(dimensions, game, cellShape);
 	}
 
 	@Override
-	protected WatorCell cellType(int x, int y) {
-		return new WatorCell(x, y, "empty", new Rectangle(), 0, 0, "empty");
+	protected WatorCell cellType(int x, int y, Shape cellShape) {
+		return new WatorCell(x, y, "empty", cellShape, 0, 0, "empty");
 	}
 
 	@Override
