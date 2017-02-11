@@ -40,9 +40,7 @@ public abstract class Game {
 		}
 	}
 	
-	
 	protected abstract Grid createGrid(int dimensions, String cellShape);
-	protected abstract Grid createGrid(int dimensions);
 	public abstract void gameLogic(Cell currentCell);
 
 	protected abstract String setInitialCellType(int type);

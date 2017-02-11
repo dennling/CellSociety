@@ -78,7 +78,7 @@ public abstract class Grid {
 		}
 	}
 	
-	protected abstract Cell cellType(int x, int y);
+	//protected abstract Cell cellType(int x, int y);
 	
 	public Cell getCell(int x, int y) {
 		return myGrid[x][y];
