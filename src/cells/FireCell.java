@@ -12,7 +12,7 @@ public class FireCell extends Cell{
 
 	@Override
 	protected Cell specifyNeighborCell() {
-		return new FireCell(0, 0, "neighbor", new Rectangle());
+		return new FireCell(0, 0, "neighbor", getShape());
 	}
 
 	@Override
