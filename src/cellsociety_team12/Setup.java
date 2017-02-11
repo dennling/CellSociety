@@ -22,9 +22,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class Setup {
 	
-	private static final double SCREEN_HEIGHT = 400;
-	private static final double SCREEN_WIDTH = 600;
-	private static final Color DEFAULT_COLOR = Color.WHITE;
 	public static final String FILE_EXTENSION = "*.xml";
 	
 	private Scene myScene;
@@ -45,13 +42,15 @@ public class Setup {
 		getData();
 
 		initializeGameGraphAndStyle();
-		System.out.print(STYLESHEET);
+		
 		mySceneBuilder = new SceneBuilder(myData, myGame, myGraph, STYLESHEET);
 		myScene = mySceneBuilder.getScene();
+		
 		myStage.setScene(myScene);
 		myStage.setTitle(myData.getTitle());
 		myStage.show();
 		myStage.setResizable(false);
+		
 		mySimulator = new Simulator(myGame, mySceneBuilder.getButtons(), myStage, mySceneBuilder.getGraph());
 	}
 

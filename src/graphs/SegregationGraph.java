@@ -17,11 +17,11 @@ public class SegregationGraph extends Graph{
 	@Override
 	protected void initializeSeries() {
 		redData = new XYChart.Series<>();
-		redData.setName("Red");
+		redData.setName(myResources.getString("RedLegendText"));
 		blueData = new XYChart.Series<>();
-		blueData.setName("Blue");
+		blueData.setName(myResources.getString("BlueLegendText"));
 		emptyData = new XYChart.Series<>();
-		emptyData.setName("Empty");
+		emptyData.setName(myResources.getString("EmptyLegendText"));
 		populationGraph.getData().addAll(redData, blueData, emptyData);
 	}
 

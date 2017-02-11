@@ -8,10 +8,13 @@ import games.Game;
 import graphs.GameOfLifeGraph;
 import graphs.Graph;
 import grids.Grid;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -43,9 +46,12 @@ public class SceneBuilder{
 	private static final Insets DEFAULT_INSETS = new Insets(STANDARD_SPACING, STANDARD_SPACING, STANDARD_SPACING, STANDARD_SPACING);
 	private static final Background DEFAULT_BACKGROUND = new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY));
 	private static final double SCREEN_HEIGHT = 400;
+	private static final double GRAPH_HEIGHT = 200;
+	private static final double GRAPH_WIDTH = 200;
 	private static final double SCREEN_WIDTH = 600;
 	private static final Color DEFAULT_COLOR = Color.WHITE;
 	private static String STYLESHEET;
+	
 	private ResourceBundle myResources;
 	private VBox root;
 	private BorderPane simulationWindow;
@@ -53,6 +59,8 @@ public class SceneBuilder{
 	private String gameAuthor;
 	private double screenHeight;
 	private double screenWidth;
+	private double graphHeight;
+	private double graphWidth;
 	private double simulationHeight;
 	private double simulationWidth;
 	private Color background;
@@ -67,31 +75,45 @@ public class SceneBuilder{
 	private Button resetButton;
 	private List<Button> buttonList;
 	
-	
-	
 	public SceneBuilder(GameData myData, Game game, Graph graph, String styleSheet){
+		initializeInstanceVariables(myData, game, styleSheet, graph);
+		displayGrid(myGame.getGrid());
+		createUI();
+		createAndFillRoot();
+		myScene = new Scene(root, screenWidth, screenHeight + graphHeight , background);
+		myScene.getStylesheets().add(STYLESHEET);
+	}
+
+	private void createAndFillRoot() {
+		root = new VBox();
+		root.setAlignment(Pos.CENTER);
+		root.getChildren().addAll(myGraph.getGraph(), simulationWindow);
+	}
+
+	private void setGraphParameters() {
+		myGraph.getGraph().maxHeight(graphHeight);
+		myGraph.getGraph().maxWidth(graphWidth);
+	}
+
+	private void initializeInstanceVariables(GameData myData, Game game, String styleSheet, Graph graph) {
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCES);
-		screenHeight = SCREEN_HEIGHT; //move into SceneBuilder
+		screenHeight = SCREEN_HEIGHT;
 		screenWidth = SCREEN_WIDTH;
+		graphHeight = GRAPH_HEIGHT;
+		graphWidth = GRAPH_WIDTH;
 		background = DEFAULT_COLOR;
 		simulationHeight = screenHeight * SIMULATION_HEIGHT_FACTOR;
 		simulationWidth = screenWidth * SIMULATION_WIDTH_FACTOR;
+		simulationWindow = new BorderPane();
+		myGraph = graph;
+		setGraphParameters();
 		myGame = game;
 		gameTitle = myData.getTitle();
 		gameAuthor = myData.getAuthor();
 		STYLESHEET = styleSheet;
-		root = new VBox();
-		root.setAlignment(Pos.CENTER);
-		simulationWindow = new BorderPane();
-		myScene = new Scene(root, screenWidth, screenHeight + 200, background);
-		myScene.getStylesheets().add(STYLESHEET);
-		displayGrid(myGame.getGrid());
-		createUI();
-		myGraph = graph;
-		myGraph.getGraph().maxHeight(200);
-		myGraph.getGraph().maxWidth(500);
-		root.getChildren().addAll(myGraph.getGraph(), simulationWindow);
 	}
+	
+	
 	
 	private void displayGrid(Grid grid){
 		Pane cells = new Pane(); 
@@ -102,7 +124,7 @@ public class SceneBuilder{
 		sp.setHbarPolicy(ScrollBarPolicy.NEVER);
 		sp.setVbarPolicy(ScrollBarPolicy.NEVER);
 		simulationWindow.setCenter(sp);
-		setHexagons(grid, cells);
+		setRectangles(grid, cells);
 	}
 
 	private void setRectangles(Grid grid, Pane cells) {
@@ -116,6 +138,8 @@ public class SceneBuilder{
 				cells.getChildren().add(shape);
 			}
 		}
+		System.out.println(grid.getNumberOfColumns());
+		System.out.println(grid.getNumberOfRows());
 	}
 
 	private void setTriangles(Grid grid, Pane cells) {
@@ -148,7 +172,7 @@ public class SceneBuilder{
 	
 	private void setHexagons(Grid grid, Pane cells){
 		System.out.println(grid.getNumberOfRows());
-		double sideLength = calculateSideLength(simulationWidth, grid);
+		double sideLength = calculateHexagonSideLength(grid);
 		double spacer = sideLength/Math.sqrt(2);
 		double xStart = spacer;
 		double yStart = 0;
@@ -180,10 +204,10 @@ public class SceneBuilder{
 		}
 	}
 	
-	private double calculateSideLength(double width, Grid grid){
+	private double calculateHexagonSideLength(Grid grid){
 		int sideLengthNum = grid.getNumberOfRows();
 		int spacerNum = sideLengthNum + 1;
-		double sideWidth =  width/((spacerNum/Math.sqrt(2))+sideLengthNum);
+		double sideWidth =  simulationWidth/((spacerNum/Math.sqrt(2))+sideLengthNum);
 		return sideWidth;
 	}
 	
