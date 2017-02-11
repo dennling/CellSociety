@@ -41,10 +41,11 @@
     -fx-font-size: 10pt; 
 }
 
-.default-color0.chart-series-line { -fx-stroke:  #FFA500, white; }
-.default-color1.chart-series-line { -fx-stroke:  #008000, white; }
-.default-color2.chart-series-line { -fx-stroke:  #0000FF, white; }
+.default-color0.chart-series-line { -fx-stroke:  #0000FF, white; }
+.default-color1.chart-series-line { -fx-stroke:  #FFA500, white; }
+.default-color2.chart-series-line { -fx-stroke:  #008000, white; }
 
-.default-color0.chart-line-symbol { -fx-background-color: #FFA500, white; }
-.default-color1.chart-line-symbol { -fx-background-color: #008000, white; }
-.default-color2.chart-line-symbol { -fx-background-color: #0000FF, white; }
+.default-color0.chart-line-symbol { -fx-background-color: #0000FF, white; }
+.default-color1.chart-line-symbol { -fx-background-color: #FFA500, white; }
+.default-color2.chart-line-symbol { -fx-background-color: #008000, white; }
+

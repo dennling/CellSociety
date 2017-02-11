@@ -1,6 +1,7 @@
 package graphs;
 
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javafx.scene.chart.Chart;
 import javafx.scene.chart.LineChart;
@@ -9,9 +10,13 @@ import javafx.scene.chart.XYChart;
 
 public abstract class Graph {
 
+	    private static final String DEFAULT_RESOURCES = "resources/English";
+	    
 		public LineChart<Number, Number> populationGraph;
+		protected ResourceBundle myResources;
 		
 		public Graph(){
+			myResources = ResourceBundle.getBundle(DEFAULT_RESOURCES);
 			NumberAxis timeAxis = new NumberAxis();
 			timeAxis.setTickLabelsVisible(false);
 			timeAxis.setMinorTickVisible(false);
