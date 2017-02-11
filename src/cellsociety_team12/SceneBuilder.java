@@ -124,7 +124,7 @@ public class SceneBuilder{
 		sp.setHbarPolicy(ScrollBarPolicy.NEVER);
 		sp.setVbarPolicy(ScrollBarPolicy.NEVER);
 		simulationWindow.setCenter(sp);
-		setRectangles(grid, cells);
+		setTriangles(grid, cells);
 	}
 
 	private void setRectangles(Grid grid, Pane cells) {
@@ -162,7 +162,7 @@ public class SceneBuilder{
 				}
 				triangle.setStroke(Color.WHITE);
 				cells.getChildren().add(triangle);
-				if (xStart >= simulationWidth){
+				if (xStart + .01 >= simulationWidth){
 					xStart = 0;
 					yStart += sideLength;
 				}

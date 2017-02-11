@@ -3,7 +3,7 @@
     <gametype>GameOfLife</gametype>
     <gameTitle>Game of Life</gameTitle>
     <gameAuthor>John Horton Conway</gameAuthor>
-    <dimension>9</dimension>
+    <dimension>5</dimension>
     <initialPositions>2 2</initialPositions>
     <initialPositions>3 2</initialPositions>
     <initialPositions>4 2</initialPositions>
