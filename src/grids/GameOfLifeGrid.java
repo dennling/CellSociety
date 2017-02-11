@@ -1,20 +1,18 @@
 package grids;
 
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import cells.Cell;
 import cells.GameOfLifeCell;
 import games.Game;
 
 public class GameOfLifeGrid extends Grid {
 
-	public GameOfLifeGrid(int dimensions, Game game, String cellShape) {
-		super(dimensions, game, cellShape);
+	public GameOfLifeGrid(int dimensions, Game game) {
+		super(dimensions, game);
 	}
 
 	@Override
-	protected GameOfLifeCell cellType(int x, int y, Shape shape) {
-		return new GameOfLifeCell(x, y, "dead", shape);
+	protected GameOfLifeCell cellType(int x, int y) {
+		return new GameOfLifeCell(x, y, "dead", new Rectangle());
 	}
-
 }
