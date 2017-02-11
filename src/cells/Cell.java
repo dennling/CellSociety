@@ -25,7 +25,6 @@ public abstract class Cell{
 		}
 	}
 	
-	
 	protected void initiateNeighbors() {
 		myNeighbors = new Cell[setPossibleNeighbors().length];
 		for (int i = 0; i < myNeighbors.length; i++) {

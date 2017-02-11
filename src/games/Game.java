@@ -12,7 +12,7 @@ public abstract class Game {
 	
 	public Game(GameData data) {
 		gameName = data.getGameType();
-		myGrid = createGrid(data.getDimensions(), data.getCellShape());
+		myGrid = createGrid(data.getDimensions());
 		setInitialPositions(data);
 		myGrid.updateCellNeighbors();
 	}
@@ -40,10 +40,13 @@ public abstract class Game {
 		}
 	}
 	
-	protected abstract Grid createGrid(int dimensions, String cellShape);
+	
+	protected abstract Grid createGrid(int dimensions);
+	
 	public abstract void gameLogic(Cell currentCell);
 
 	protected abstract String setInitialCellType(int type);
+
 	protected abstract void setDefaultPositions(GameData data);
 	
 	public Grid getGrid() {

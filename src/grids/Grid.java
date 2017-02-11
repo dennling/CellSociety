@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import cells.Cell;
 import games.Game;
 
@@ -17,17 +13,17 @@ public abstract class Grid {
 	private Game myGame;
 	private Map<String, Integer> cellPopulationMap;
 	
-	public Grid(int dimensions, Game game, String cellShape){
-		initializeGrid(dimensions, cellShape);
+	public Grid(int dimensions, Game game){
+		initializeGrid(dimensions);
 		myGame = game;
 		cellPopulationMap = new HashMap<String,Integer>();
 	}
 	
-	private void initializeGrid(int dimensions, String cellShape) {
+	private void initializeGrid(int dimensions) {
 		myGrid = new Cell[dimensions][dimensions];
 		for (int i = 0; i < dimensions; i++) {
 			for (int k = 0; k < dimensions; k++) {
-				myGrid[i][k] = cellType(i, k, cellShape(cellShape));
+				myGrid[i][k] = cellType(i, k);
 			}
 		}
 		updateCellNeighbors();
@@ -52,15 +48,6 @@ public abstract class Grid {
 		}
 	}
 	
-	protected abstract Cell cellType(int x, int y, Shape cellShape);
-
-	public Shape cellShape(String cellShape) {
-		switch (cellShape) {
-			case "rectangle": return new Rectangle();
-			default: return new Polygon();
-		}
-	}
-	
 	public void updateCellPopulationMap(){
 		cellPopulationMap.clear();
 		for (int i = 0; i < myGrid.length; i++) {
@@ -78,7 +65,7 @@ public abstract class Grid {
 		}
 	}
 	
-	//protected abstract Cell cellType(int x, int y);
+	protected abstract Cell cellType(int x, int y);
 	
 	public Cell getCell(int x, int y) {
 		return myGrid[x][y];

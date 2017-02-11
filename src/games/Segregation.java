@@ -77,8 +77,8 @@ public class Segregation extends Game{
 	}
 
 	@Override
-	protected Grid createGrid(int dimensions, String cellShape) {
-		return new SegregationGrid(dimensions, this, cellShape);
+	protected Grid createGrid(int dimensions) {
+		return new SegregationGrid(dimensions, this);
 	}
 	
 	@Override
