@@ -13,7 +13,7 @@ public class FireGrid extends Grid {
 
 	@Override
 	protected FireCell cellType(int x, int y, String shape) {
-		return new FireCell(x, y, "tree", shape, getGame().getData().getGridType(), getGame().getData().getCellType());
+		return new FireCell(x, y, "tree", shape, getGame().getData().getGridType(), getGame().getData().getNeighborType());
 	}
 	
 }

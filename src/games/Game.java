@@ -20,32 +20,21 @@ public abstract class Game {
 	}
 	
 	private void setInitialPositions() {	
-		String[] pos1 = myData.getPositions1(); 
-
-		if (myData.getInitialPositions(myData.getPositions1()).length == 0) {
-				setDefaultPositions(myData);
-		} 
-		else {
-			String[] pos2 = myData.getPositions2(); 
-			String[] pos3 = myData.getPositions3(); 
-			if(pos1.length > 0) setPositions(myData, pos1, 0);
-			if(pos2.length > 0) setPositions(myData, pos2, 1);
-			if(pos3.length > 0) setPositions(myData, pos3, 2);
-
-		}
-	}
-	
-	private void setPositions(GameData data, String[] initialPositions, int type){
-		int[][] positions = data.getInitialPositions(initialPositions);
-		for (int[] each : positions) {
-			getGrid().getCell(each[0],each[1]).setType(setInitialCellType(type));
+		String[][] positions = myData.getInitialPositions();
+		if (positions.length == 0) {
+			setDefaultPositions(myData);
+		} else {
+			for (String[] each : positions) {
+				int x = Integer.parseInt(each[0]);
+				int y = Integer.parseInt(each[1]);
+				getGrid().getCell(x,y).setType(each[2]);
+			}
 		}
 	}
 	
 	protected abstract Grid createGrid(int dimensions, String cellShape);
 	public abstract void gameLogic(Cell currentCell);
 
-	protected abstract String setInitialCellType(int type);
 	protected abstract void setDefaultPositions(GameData data);
 	
 	public Grid getGrid() {

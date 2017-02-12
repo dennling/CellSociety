@@ -18,8 +18,8 @@ public abstract class Grid {
 	private Map<String, Integer> cellPopulationMap;
 	
 	public Grid(int dimensions, Game game, String cellShape){
-		initializeGrid(dimensions, cellShape);
 		myGame = game;
+		initializeGrid(dimensions, cellShape);
 		cellPopulationMap = new HashMap<String,Integer>();
 	}
 	

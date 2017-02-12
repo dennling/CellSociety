@@ -1,5 +1,6 @@
 package cells;
 
+import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -71,5 +72,13 @@ public class WatorCell extends Cell{
 		int[][] possibleNeighbors = new int[][]{{-1, 0}, {0, 1}, 
 			{1, 0}, {0, -1}};	
 	return possibleNeighbors;
+	}
+	
+	@Override
+	public void checkType(String type) {
+		if (!(type.equals("fish") || type.equals("shark") || type.equals("empty"))) {
+			throw new XMLException("This is not a valid cell type for the chosen game %s", type);
+		}
+		return;
 	}
 }

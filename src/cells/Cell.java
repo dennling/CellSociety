@@ -1,5 +1,6 @@
 package cells;
 
+import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
@@ -20,15 +21,16 @@ public abstract class Cell{
 		myGridX = x;
 		myGridY = y;
 		myType = type;
-		myShape = cellShape(shape);
+		myShapeString = shape;
+		myShape = cellShape();
 		if (!type.equals("neighbor")){
 			myNeighbors = new NeighborManager(gridType, cellMode, this);
 			setColor();
 		}
 	}
 	
-	public Shape cellShape(String cellShape) {
-		switch (cellShape) {
+	public Shape cellShape() {
+		switch (myShapeString) {
 			case "rectangle": return new Rectangle();
 			default: return new Polygon();
 		}
@@ -88,9 +90,12 @@ public abstract class Cell{
 	}
 	
 	public void setType(String type) {
+		checkType(type);
 		myType = type;
 		setColor(); 
 	}
+	
+	public abstract void checkType(String type);
 	
 	public void setLocation(int x, int y){
 		myGridX = x;

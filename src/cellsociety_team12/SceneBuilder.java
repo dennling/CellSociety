@@ -1,6 +1,7 @@
 package cellsociety_team12;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -103,6 +104,7 @@ public class SceneBuilder{
 		sp.setVbarPolicy(ScrollBarPolicy.NEVER);
 		simulationWindow.setCenter(sp);
 		setHexagons(grid, cells);
+		//setRectangles(grid, cells);
 	}
 
 	private void setRectangles(Grid grid, Pane cells) {
@@ -157,11 +159,11 @@ public class SceneBuilder{
 		for (int i=0; i<grid.getNumberOfRows(); i++){
 			for (int j=0; j<grid.getNumberOfColumns(); j++){
 				hexagonCount++;
-				Polygon hexagon;
-				double[] coordinates = {xStart, yStart,xStart - spacer, yStart + spacer, xStart, yStart + 2*spacer, xStart + sideLength, yStart + 2*spacer, xStart + sideLength + spacer, yStart + spacer, xStart+sideLength, yStart};
-				hexagon = new Polygon(coordinates);
-				hexagon.setFill(Color.PURPLE);
-				hexagon.setStroke(Color.WHITE);
+				Polygon hexagon = (Polygon) grid.getCell(i,j).getShape();
+				Double[] coordinates = {xStart, yStart,xStart - spacer, yStart + spacer, xStart, yStart + 2*spacer, xStart + sideLength, yStart + 2*spacer, xStart + sideLength + spacer, yStart + spacer, xStart+sideLength, yStart};
+				hexagon.getPoints().addAll(coordinates);// = Polygon(coordinates);
+				//hexagon.setFill(Color.PURPLE);
+				//hexagon.setStroke(Color.WHITE);
 				cells.getChildren().add(hexagon);
 				yStart += 2*spacer;
 				if (hexagonCount == grid.getNumberOfRows()){

@@ -1,15 +1,20 @@
 package cells;
 
+import java.util.Arrays;
+
 public class NeighborManager {
 
 	private Cell[] myNeighbors;
 	private Cell myCell;
 	private int[][] possibleNeighbors;
+	private String myGridMode;
 	
 	public NeighborManager(String gridMode, String cellMode, Cell cell) {
 		myCell = cell;
+		myGridMode = gridMode;
 		determineCellType(cellMode);
 		initiateNeighbors();
+		
 	}
 	
 	private void determineCellType(String cellMode) {
@@ -21,7 +26,7 @@ public class NeighborManager {
 			possibleNeighbors = setPossibleHexagonNeighbors();
 		}
 	}
-	
+		
 	private int[][] checkModes(String cellMode) {
 		int[][] possible;
 		switch (cellMode) {
@@ -36,10 +41,10 @@ public class NeighborManager {
 
 	private int[][] setPossibleHexagonNeighbors() {
 		int[][] possible;
-		if (myCell.getY()%2 == 0){
-			possible = new int[][]{{0, -1}, {-1, 0}, {0, 1}, {1, 1}, {1, 0}, {1, -1}}; 
+		if (myCell.getX()%2 == 0){
+			possible = new int[][]{{-1, -1}, {0, -1}, {1, -1}, {1, 0}, {0, 1}, {-1, 0}};
 		} else {
-			possible = new int[][]{{0, -1}, {-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 0}};
+			possible = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}};
 		}
 		return possible;
 	}
@@ -66,18 +71,27 @@ public class NeighborManager {
 		for (int i = 0; i < myNeighbors.length; i++) {
 			int currentX = myCell.getX() + possibleNeighbors[i][0];
 			int currentY = myCell.getY() + possibleNeighbors[i][1];
-			if (currentX >= 0 && currentX < size) {
-				if (currentY >= 0 && currentY < size) {
-					Cell currentNeighbor = myNeighbors[i];
-					Cell currentGrid = grid[currentX][currentY];
-					if (currentGrid != null) {
-						currentNeighbor.setType(currentGrid.getType());
-						currentNeighbor.setLocation(currentX, currentY);
-					}
+			if (currentX >= 0 && currentX < size && currentY >= 0 && currentY < size) {
+				Cell currentNeighbor = myNeighbors[i];
+				Cell currentGrid = grid[currentX][currentY];
+				if (currentGrid != null) {
+					currentNeighbor.setType(currentGrid.getType());
+					currentNeighbor.setLocation(currentX, currentY);
 				}
-			}	
+			} else if (myGridMode.equals("toroidal")) {
+				adjustToroidal();
+			}
 		}
 	}
+	
+	private int[][] adjustToroidal() {
+		int[][] possible = new int[possibleNeighbors.length][possibleNeighbors.length];
+		if (myCell.getX() == 0) {
+			
+		}
+		return possible;
+	}
+
 	
 	public Cell[] getNeighbors() {
 		return myNeighbors;

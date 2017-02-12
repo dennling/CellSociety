@@ -15,7 +15,7 @@ public class WatorGrid extends Grid {
 	@Override
 	protected WatorCell cellType(int x, int y, String cellShape) {
 		return new WatorCell(x, y, "empty", cellShape, getGame().getData().getGridType(),
-				getGame().getData().getCellType(), 0, 0, "empty");
+				getGame().getData().getNeighborType(), 0, 0, "empty");
 	}
 
 	@Override

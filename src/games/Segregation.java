@@ -80,13 +80,13 @@ public class Segregation extends Game{
 	protected Grid createGrid(int dimensions, String cellShape) {
 		return new SegregationGrid(dimensions, this, cellShape);
 	}
-	
+	/*
 	@Override
 	protected String setInitialCellType(int type) {
 		if(type == 0) return "one";
 		else if(type == 1) return "two";
 		else return "empty";
-	}
+	}*/
 	
 	@Override
 	protected void setDefaultPositions(GameData data) {

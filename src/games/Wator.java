@@ -122,10 +122,11 @@ public class Wator extends Game{
 		getGrid().getCell(randomX, randomY).setType("fish");
 	}
 
+	/*
 	@Override
 	protected String setInitialCellType(int type) {
 		if(type == 0) return "fish";
 		else if(type == 1) return "shark";
 		else return "empty";
-	}
+	}*/
 }
