@@ -17,11 +17,11 @@ public class FireGraph extends Graph{
 	@Override
 	protected void initializeSeries() {
 		treeData = new XYChart.Series<>();
-		treeData.setName("Tree");
+		treeData.setName(myResources.getString("TreeLegendText"));
 		fireData = new XYChart.Series<>();
-		fireData.setName("Fire");
+		fireData.setName(myResources.getString("FireLegendText"));
 		emptyData = new XYChart.Series<>();
-		emptyData.setName("Empty");
+		emptyData.setName(myResources.getString("EmptyLegendText"));
 		populationGraph.getData().addAll(treeData, fireData, emptyData);
 	}
 

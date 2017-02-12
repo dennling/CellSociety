@@ -16,9 +16,9 @@ public class GameOfLifeGraph extends Graph{
 	@Override
 	protected void initializeSeries() {
 		aliveData = new XYChart.Series<>();
-		aliveData.setName("Alive");
+		aliveData.setName(myResources.getString("AliveLegendText"));
 		deadData = new XYChart.Series<>();
-		deadData.setName("Dead");
+		deadData.setName(myResources.getString("DeadLegendText"));
 		populationGraph.getData().addAll(aliveData, deadData);
 	}
 

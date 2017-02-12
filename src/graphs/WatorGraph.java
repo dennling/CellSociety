@@ -17,12 +17,14 @@ public class WatorGraph extends Graph{
 	@Override
 	protected void initializeSeries() {
 		sharkData = new XYChart.Series<>();
-		sharkData.setName("Shark");
+		sharkData.setName(myResources.getString("SharkLegendText"));
 		fishData = new XYChart.Series<>();
-		fishData.setName("Fish");
+		fishData.setName(myResources.getString("FishLegendText"));
 		emptyData = new XYChart.Series<>();
-		emptyData.setName("Empty");
-		populationGraph.getData().addAll(fishData, sharkData, emptyData);
+		emptyData.setName(myResources.getString("EmptyLegendText"));
+		populationGraph.getData().add(emptyData);
+		populationGraph.getData().add(sharkData);
+		populationGraph.getData().add(fishData);
 	}
 
 	@Override

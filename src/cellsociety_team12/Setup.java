@@ -22,9 +22,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class Setup {
 	
-	private static final double SCREEN_HEIGHT = 400;
-	private static final double SCREEN_WIDTH = 600;
-	private static final Color DEFAULT_COLOR = Color.WHITE;
 	public static final String FILE_EXTENSION = "*.xml";
 	
 	private Scene myScene;
@@ -45,40 +42,16 @@ public class Setup {
 		getData();
 
 		initializeGameGraphAndStyle();
-		System.out.print(STYLESHEET);
-		mySceneBuilder = new SceneBuilder(myData, myGame, myGraph, STYLESHEET);
+		initializeSceneBuilder();
+		
 		myScene = mySceneBuilder.getScene();
+		
 		myStage.setScene(myScene);
 		myStage.setTitle(myData.getTitle());
 		myStage.show();
 		myStage.setResizable(false);
+		
 		mySimulator = new Simulator(myGame, mySceneBuilder.getButtons(), myStage, mySceneBuilder.getGraph());
-	}
-
-	private void initializeGameGraphAndStyle() {
-		switch (myData.getGameType()){
-
-			case "GameOfLife": 
-				myGame = new GameOfLife(myData);
-				myGraph = new GameOfLifeGraph();
-				STYLESHEET = "resources/gameOfLife.css";
-				break;
-			case "Segregation": 
-				myGame = new Segregation(myData);
-				myGraph = new SegregationGraph();
-				STYLESHEET = "resources/Segregation.css";
-				break;
-			case "Fire": 
-				myGame = new Fire(myData);
-				myGraph = new FireGraph();
-				STYLESHEET = "resources/Fire.css";
-				break;
-			case "Wator":
-				myGame = new Wator(myData);
-				myGraph = new WatorGraph();
-				STYLESHEET = "resources/Wator.css";
-				break;
-		}
 	}
 	
 	public Scene getScene(){
@@ -108,6 +81,45 @@ public class Setup {
 		chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 		chooser.getExtensionFilters().setAll(new ExtensionFilter("Text Files", extension));
 		return chooser;		
+	}
+	
+	private void initializeGameGraphAndStyle() {
+		switch (myData.getGameType()){
+			case "GameOfLife": 
+				myGame = new GameOfLife(myData);
+				myGraph = new GameOfLifeGraph();
+				STYLESHEET = "resources/gameOfLife.css";
+				break;
+			case "Segregation": 
+				myGame = new Segregation(myData);
+				myGraph = new SegregationGraph();
+				STYLESHEET = "resources/Segregation.css";
+				break;
+			case "Fire": 
+				myGame = new Fire(myData);
+				myGraph = new FireGraph();
+				STYLESHEET = "resources/Fire.css";
+				break;
+			case "Wator":
+				myGame = new Wator(myData);
+				myGraph = new WatorGraph();
+				STYLESHEET = "resources/Wator.css";
+				break;
+		}
+	}
+	
+	private void initializeSceneBuilder() {
+		switch(myData.getCellShape()){
+		case "Rectangle":
+			mySceneBuilder = new RectangleDisplay(myData, myGame, myGraph, STYLESHEET);
+			break;
+		case "Triangle":
+			mySceneBuilder = new TriangleDisplay(myData, myGame, myGraph, STYLESHEET);
+			break;
+		case "Hexagon":
+			mySceneBuilder = new HexagonDisplay(myData, myGame, myGraph, STYLESHEET);
+			break;
+		}
 	}
 	
 }
