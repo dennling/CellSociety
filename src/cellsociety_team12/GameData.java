@@ -22,7 +22,6 @@ public class GameData {
 		myData = (HashMap<String, String[]>) data;
 	}
 	
-	
 	public String getGameType() {
 		return myData.get(DATA_FIELDS.get(0))[0];
 	}
