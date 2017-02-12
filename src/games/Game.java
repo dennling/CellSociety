@@ -34,7 +34,6 @@ public abstract class Game {
 	
 	protected abstract Grid createGrid(int dimensions, String cellShape);
 	public abstract void gameLogic(Cell currentCell);
-
 	protected abstract void setDefaultPositions(GameData data);
 	
 	public Grid getGrid() {

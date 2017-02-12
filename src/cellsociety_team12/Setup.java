@@ -110,13 +110,13 @@ public class Setup {
 	
 	private void initializeSceneBuilder() {
 		switch(myData.getCellShape()){
-		case "Rectangle":
+		case "rectangle":
 			mySceneBuilder = new RectangleDisplay(myData, myGame, myGraph, STYLESHEET);
 			break;
-		case "Triangle":
+		case "triangle":
 			mySceneBuilder = new TriangleDisplay(myData, myGame, myGraph, STYLESHEET);
 			break;
-		case "Hexagon":
+		case "hexagon":
 			mySceneBuilder = new HexagonDisplay(myData, myGame, myGraph, STYLESHEET);
 			break;
 		}
