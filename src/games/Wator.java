@@ -110,8 +110,8 @@ public class Wator extends Game{
 	}
 
 	@Override
-	protected Grid createGrid(int dimensions) {
-		return new WatorGrid(dimensions, this);
+	protected Grid createGrid(int dimensions, String cellShape) {
+		return new WatorGrid(dimensions, this, cellShape);
 	}
 
 	@Override

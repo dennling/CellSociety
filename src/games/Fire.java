@@ -41,8 +41,8 @@ public class Fire extends Game{
 
 
 	@Override
-	protected Grid createGrid(int dimensions) {
-		return new FireGrid(dimensions, this);
+	protected Grid createGrid(int dimensions, String cellShape) {
+		return new FireGrid(dimensions, this, cellShape);
 	}
 
 	@Override
