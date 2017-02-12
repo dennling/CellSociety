@@ -3,6 +3,8 @@ package cellsociety_team12;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import games.Game;
+import graphs.Graph;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -24,6 +26,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 	private ResourceBundle myResources;
 	private Timeline animation;
 	private Game myGame;
+	private Graph myGraph;
 	private Stage myStage;
 	private List<Button> myButtonList;
 	private Button stepButton;
@@ -34,14 +37,14 @@ public class Simulator implements EventHandler<ActionEvent>{
 	private Button resetButton;
 	private double totalDuration;
 	
-	public Simulator(Game game, List<Button> buttonList, Stage stage){
+	public Simulator(Game game, List<Button> buttonList, Stage stage, Graph graph){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCES);
 		myGame = game;
+		myGraph = graph;
 		myStage = stage;
 		myButtonList = buttonList;
 		totalDuration = 0;
 		initializeButtons();
-		
 
 		KeyFrame frame = new KeyFrame(Duration.millis(1000 / frames_per_second),
                 e -> {this.step(1.0 / frames_per_second);});
@@ -55,51 +58,82 @@ public class Simulator implements EventHandler<ActionEvent>{
 	
 	public void step(double elapsedTime){
 		myGame.updateGrid();
+		myGame.getGrid().updateCellPopulationMap();
 		totalDuration += animation.getCycleDuration().toMillis();
+		myGraph.updateGraph(totalDuration, myGame.getGrid().getCellPopulationMap());
 	}
 
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getSource() == stepButton){
-			if (animation.getCycleCount() != STEP_CYCLE_COUNT){
-				animation.getCuePoints().put("step point", Duration.millis(totalDuration));
-				animation.stop();
-				animation.setCycleCount(STEP_CYCLE_COUNT);
-				playPauseButton.setText(myResources.getString("PlayButtonText"));
-			}
-			animation.playFrom("step point");
+			stepThrough();
 		}
 		if (event.getSource() == speedButton){
-			animation.setRate(animation.getRate() * SPEED_UP_FACTOR);
+			speedUp();
 		}
 		if (event.getSource() == slowButton){
-			animation.setRate(animation.getRate() * SLOW_DOWN_FACTOR);
+			slowDown();
 		}
 		if (event.getSource() == loadButton){
-			animation.stop();
-			Setup newGame = new Setup(myStage);
+			loadFile();
 		}
 		if (event.getSource() == playPauseButton){
-			if (animation.getCycleCount() == STEP_CYCLE_COUNT){
-				animation.setCycleCount(Timeline.INDEFINITE);
-			}
-			if (animation.getCurrentRate() == 0){
-				animation.play();
-				playPauseButton.setText(myResources.getString("PauseButtonText"));
-			}
-			else{
-				animation.pause();
-				playPauseButton.setText(myResources.getString("PlayButtonText"));
-			}
+			playOrPause();
 		}
 		if (event.getSource() == resetButton){
-			animation.stop();
-			animation.setCycleCount(Timeline.INDEFINITE);
-			animation.setRate(DEFAULT_RATE);
-			totalDuration = 0;
-			animation.play();
+			reset();
 		}
-		
+	}
+
+
+	private void speedUp() {
+		animation.setRate(animation.getRate() * SPEED_UP_FACTOR);
+	}
+
+
+	private void slowDown() {
+		animation.setRate(animation.getRate() * SLOW_DOWN_FACTOR);
+	}
+
+
+	private void loadFile() {
+		animation.stop();
+		Setup newGame = new Setup(myStage);
+	}
+
+
+	private void reset() {
+		animation.stop();
+		animation.setCycleCount(Timeline.INDEFINITE);
+		animation.setRate(DEFAULT_RATE);
+		totalDuration = 0;
+		animation.play();
+	}
+
+
+	private void playOrPause() {
+		if (animation.getCycleCount() == STEP_CYCLE_COUNT){
+			animation.setCycleCount(Timeline.INDEFINITE);
+		}
+		if (animation.getCurrentRate() == 0){
+			animation.play();
+			playPauseButton.setText(myResources.getString("PauseButtonText"));
+		}
+		else{
+			animation.pause();
+			playPauseButton.setText(myResources.getString("PlayButtonText"));
+		}
+	}
+
+
+	public void stepThrough() {
+		if (animation.getCycleCount() != STEP_CYCLE_COUNT){
+			animation.getCuePoints().put("step point", Duration.millis(totalDuration));
+			animation.stop();
+			animation.setCycleCount(STEP_CYCLE_COUNT);
+			playPauseButton.setText(myResources.getString("PlayButtonText"));
+		}
+		animation.playFrom("step point");
 	}
 	
 	private void initializeButtons(){

@@ -1,8 +1,9 @@
-package cellsociety_team12;
+package games;
 
 import java.util.Random;
-
 import cells.Cell;
+import cellsociety_team12.GameData;
+import grids.Grid;
 
 
 public abstract class Game {
@@ -12,7 +13,7 @@ public abstract class Game {
 	
 	public Game(GameData data) {
 		gameName = data.getGameType();
-		myGrid = createGrid(data.getDimensions());
+		myGrid = createGrid(data.getDimensions(), data.getCellShape());
 		setInitialPositions(data);
 		myGrid.updateCellNeighbors();
 	}
@@ -39,19 +40,12 @@ public abstract class Game {
 		}
 	}
 	
-	
-	protected abstract Grid createGrid(int dimensions);
-	
-	protected abstract void gameLogic(Cell currentCell);
+	protected abstract Grid createGrid(int dimensions, String cellShape);
+	public abstract void gameLogic(Cell currentCell);
 
 	protected abstract String setInitialCellType(int type);
 
-	private void setDefaultPositions(GameData data){
-		Random numberGenerator = new Random();
-		int randomX = numberGenerator.nextInt(data.getDimensions());
-		int randomY = numberGenerator.nextInt(data.getDimensions());
-		getGrid().getCell(randomX, randomY).setType(getType());
-	}
+	protected abstract void setDefaultPositions(GameData data);
 	
 	public Grid getGrid() {
 		return myGrid;
@@ -65,10 +59,4 @@ public abstract class Game {
 		return gameName;
 	}
 	
-	private String getType(){
-		if(gameName.equals("Fire")) return "fire";
-		else if(gameName.equals("Segregation")) return "one";
-		else if(gameName.equals("Wator")) return "fish";
-		else return "alive";
-	}	
 }

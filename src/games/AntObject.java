@@ -1,4 +1,4 @@
-package cellsociety_team12;
+package games;
 
 import cells.AntsCell;
 

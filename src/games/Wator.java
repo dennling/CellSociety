@@ -1,10 +1,13 @@
-package cellsociety_team12;
+package games;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 import cells.Cell;
 import cells.WatorCell;
+import cellsociety_team12.GameData;
+import grids.Grid;
+import grids.WatorGrid;
 
 public class Wator extends Game{
 	public Wator(GameData data) {
@@ -28,9 +31,8 @@ public class Wator extends Game{
 	private boolean eaten;
 
 	@Override
-	protected void gameLogic(Cell currentCell) {
-		moved = false;
-		eaten = false;
+
+	public void gameLogic(Cell currentCell) {
 		WatorCell currCell = (WatorCell)currentCell;
 		Cell[] neighbors = currentCell.getNeighbors(); //adjacent is always closest 4
 
@@ -102,8 +104,8 @@ public class Wator extends Game{
 	}
 
 	@Override
-	protected Grid createGrid(int dimensions) {
-		return new WatorGrid(dimensions, this);
+	protected Grid createGrid(int dimensions, String cellShape) {
+		return new WatorGrid(dimensions, this, cellShape);
 	}
 
 	@Override
@@ -111,5 +113,11 @@ public class Wator extends Game{
 		if(type == 0) return "fish";
 		else if(type == 1) return "shark";
 		else return "empty";
+	}
+
+	@Override
+	protected void setDefaultPositions(GameData data) {
+		// TODO Auto-generated method stub
+		
 	}
 }

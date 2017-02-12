@@ -1,0 +1,13 @@
+Discussion 2/10/17
+ 
+Advait Reddy (aar25)
+
+I am doing this lab alone because I was not in class due to the UNC game and therefore do not have a partner.
+
+In searching for duplicated code, I found two particular areas within code I had written that I chose to refactor. The first part was noticed by CodePro AnalytiX in where I check for events in the Simulator class. I chose this section because I thought that not only did I have duplicated code, the way I was handling events was relatively sloppy. The second part I noticed was within the new Graph classes I created - basically I wanted my classes to check for different Strings and create different variable names but the rest of the code within these classes was largely the same. I figured I could make accommodations to my superclass to fix this.
+
+When trying to make these changes, I ran into a few problems. For one, when trying to eliminate duplicated code in the Simulator class, CodePro AnalytiX suggested removing me writing ‘event.getSource()’ so many times. I thought about using a switch to get around this but switches cannot handle objects. Therefore, I made the decision to keep the code here as it was since all that was really repeated was ‘event.getSource()’ five times and the decision makes sense since it was my handle method. 
+
+Next, with my Graph classes, although I had a lot of repeated code, I was not sure how to refactor this. The main reason I had to have different subclasses is because I had different strings I had to account for when searching through the maps and different strings to set each Series title to. My alternative solution was to just initialize three Series with general names in the superclass and just pass in an array of strings to differentiate between the different subclasses. However, I believe this approach severely limits future flexibility so I decided against it.
+
+After spending an hour and a half trying to reduce these instances of duplicated code, I realized that the benefits in eliminating them were small. I considered the alternative designs above but they just did not work out. Moreover, according to the programs run on my code, I had negligible duplicated code to begin with. I still wanted to do some refactoring for the lab so I ended up adjusting some of my GUI text to be in a properties file, extracted methods to enhance code readability in the Simulator and SceneBuilder classes, and took out some of my magic values.

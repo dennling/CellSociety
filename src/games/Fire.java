@@ -1,8 +1,11 @@
-package cellsociety_team12;
+package games;
 
 import java.util.Random;
 
 import cells.Cell;
+import cellsociety_team12.GameData;
+import grids.FireGrid;
+import grids.Grid;
 
 public class Fire extends Game{
 
@@ -16,7 +19,7 @@ public class Fire extends Game{
 	}
 
 	@Override
-	protected void gameLogic(Cell currentCell) {
+	public void gameLogic(Cell currentCell) {
 		Cell[] neighbors = currentCell.getNeighbors();//neighbors does not include diagonals
 
 		if(currentCell.getType().equals("tree")){
@@ -35,14 +38,20 @@ public class Fire extends Game{
 	}
 	
 	@Override
-	protected Grid createGrid(int dimensions) {
-		return new FireGrid(dimensions, this);
+	protected Grid createGrid(int dimensions, String cellShape) {
+		return new FireGrid(dimensions, this, cellShape);
 	}
 
 	@Override
 	protected String setInitialCellType(int type) {
 		if(type == 0) return "fire";
 		else return "tree";
+	}
+
+	@Override
+	protected void setDefaultPositions(GameData data) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

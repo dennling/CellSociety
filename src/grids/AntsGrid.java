@@ -1,10 +1,11 @@
-package cellsociety_team12;
+package grids;
 import java.util.ArrayList;
 
 import cells.AntsCell;
 import cells.Cell;
 import cells.WatorCell;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class AntsGrid extends Grid{
 
@@ -13,8 +14,10 @@ public class AntsGrid extends Grid{
 	}
 
 	@Override
-	protected Cell cellType(int x, int y) {
-		return new AntsCell(x, y, "ground", new Rectangle(), new ArrayList<Boolean>(), new ArrayList<Boolean>(), new int[4]);
+	protected Cell cellType(int x, int y, Shape cellShape) {
+		return new AntsCell(x, y, "ground", cellShape, new ArrayList<Boolean>(), new ArrayList<Boolean>(), new int[4]);
 	}
-	
+
+
+
 }

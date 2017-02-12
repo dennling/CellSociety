@@ -1,8 +1,11 @@
-package cellsociety_team12;
+package games;
 
 import java.util.ArrayList;
 import cells.AntsCell;
 import cells.Cell;
+import cellsociety_team12.GameData;
+import grids.AntsGrid;
+import grids.Grid;
 
 public class Ants extends Game{
 
@@ -17,7 +20,7 @@ public class Ants extends Game{
 	}
 
 	@Override
-	protected Grid createGrid(int dimensions) {
+	protected Grid createGrid(int dimensions, String cellShape) {
 		return new AntsGrid(dimensions, this);
 	}
 
@@ -39,5 +42,12 @@ public class Ants extends Game{
 	private void antForage(AntObject ant, AntsCell curr){ //check if has food, return to nest or look for food
 		if(ant.hasFood()) ant.returnNest(curr);
 		else ant.findFood(curr);
+	}
+
+
+	@Override
+	protected void setDefaultPositions(GameData data) {
+		// TODO Auto-generated method stub
+		
 	}	
 }
