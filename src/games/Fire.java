@@ -53,11 +53,11 @@ public class Fire extends Game{
 		getGrid().getCell(randomX, randomY).setType("fire");
 	}
 
-
+	/*
 	@Override
 	protected String setInitialCellType(int type) {
 		if(type == 0) return "fire";
 		else return "tree";
-	}
+	}*/
 
 }

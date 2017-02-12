@@ -1,18 +1,19 @@
 package cells;
 
+import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class FireCell extends Cell{
 
-	public FireCell(int x, int y, String type, Shape shape) {
-		super(x, y, type, shape);
+	public FireCell(int x, int y, String type, String shape, String gridType, String cellType) {
+		super(x, y, type, shape, gridType, cellType);
 	}
 
 	@Override
-	protected Cell specifyNeighborCell() {
-		return new FireCell(0, 0, "neighbor", getShape());
+	public Cell specifyNeighborCell() {
+		return new FireCell(0, 0, "neighbor", getShapeString(), "", "");
 	}
 
 	@Override
@@ -31,10 +32,18 @@ public class FireCell extends Cell{
 	}
 
 	@Override
-	protected int[][] setPossibleNeighbors()  {
+	public int[][] setPossibleNeighbors()  {
 		int[][] possibleNeighbors = new int[][]{{-1, 0}, {0, 1}, 
 			{1, 0}, {0, -1}};	
 	return possibleNeighbors;
+	}
+	
+	@Override
+	public void checkType(String type) {
+		if (!(type.equals("fire") || type.equals("tree"))) {
+			throw new XMLException("This is not a valid cell type for the chosen game %s", type);
+		}
+		return;
 	}
 
 

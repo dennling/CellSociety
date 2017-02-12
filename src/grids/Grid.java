@@ -18,8 +18,8 @@ public abstract class Grid {
 	private Map<String, Integer> cellPopulationMap;
 	
 	public Grid(int dimensions, Game game, String cellShape){
-		initializeGrid(dimensions, cellShape);
 		myGame = game;
+		initializeGrid(dimensions, cellShape);
 		cellPopulationMap = new HashMap<String,Integer>();
 	}
 	
@@ -27,7 +27,7 @@ public abstract class Grid {
 		myGrid = new Cell[dimensions][dimensions];
 		for (int i = 0; i < dimensions; i++) {
 			for (int k = 0; k < dimensions; k++) {
-				myGrid[i][k] = cellType(i, k, cellShape(cellShape));
+				myGrid[i][k] = cellType(i, k, cellShape);
 			}
 		}
 		updateCellNeighbors();
@@ -47,19 +47,12 @@ public abstract class Grid {
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
 				Cell currentCell = myGrid[i][k];
-				currentCell.updateNeighbors8(myGrid);
+				currentCell.updateNeighbors(myGrid);
 			}
 		}
 	}
 	
-	protected abstract Cell cellType(int x, int y, Shape cellShape);
-
-	public Shape cellShape(String cellShape) {
-		switch (cellShape) {
-			case "rectangle": return new Rectangle();
-			default: return new Polygon();
-		}
-	}
+	protected abstract Cell cellType(int x, int y, String cellShape);
 	
 	public void updateCellPopulationMap(){
 		cellPopulationMap.clear();
@@ -77,8 +70,6 @@ public abstract class Grid {
 			}
 		}
 	}
-	
-	//protected abstract Cell cellType(int x, int y);
 	
 	public Cell getCell(int x, int y) {
 		return myGrid[x][y];
