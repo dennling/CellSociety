@@ -10,41 +10,32 @@ public abstract class Game {
 	
 	private Grid myGrid;
 	private String gameName;
+	private GameData myData;
 	
 	public Game(GameData data) {
-		gameName = data.getGameType();
-		myGrid = createGrid(data.getDimensions(), data.getCellShape());
-		setInitialPositions(data);
+		myData = data;
+		gameName = myData.getGameType();
+		myGrid = createGrid(myData.getDimensions(), myData.getCellShape());
+		setInitialPositions();
 		myGrid.updateCellNeighbors();
 	}
 	
-	private void setInitialPositions(GameData data) {	
-		String[] pos1 = data.getPositions1(); 
 
-		if (data.getInitialPositions(data.getPositions1()).length == 0) {
-				setDefaultPositions(data);
-		} 
-		else {
-			String[] pos2 = data.getPositions2(); 
-			String[] pos3 = data.getPositions3(); 
-			if(pos1.length > 0) setPositions(data, pos1, 0);
-			if(pos2.length > 0) setPositions(data, pos2, 1);
-			if(pos3.length > 0) setPositions(data, pos3, 2);
-		}
-	}
-	
-	private void setPositions(GameData data, String[] initialPositions, int type){
-		int[][] positions = data.getInitialPositions(initialPositions);
-		for (int[] each : positions) {
-			getGrid().getCell(each[0],each[1]).setType(setInitialCellType(type));
+	private void setInitialPositions() {	
+		String[][] positions = myData.getInitialPositions();
+		if (positions.length == 0) {
+			setDefaultPositions(myData);
+		} else {
+			for (String[] each : positions) {
+				int x = Integer.parseInt(each[0]);
+				int y = Integer.parseInt(each[1]);
+				getGrid().getCell(x,y).setType(each[2]);
+			}
 		}
 	}
 	
 	protected abstract Grid createGrid(int dimensions, String cellShape);
 	public abstract void gameLogic(Cell currentCell);
-
-	protected abstract String setInitialCellType(int type);
-
 	protected abstract void setDefaultPositions(GameData data);
 	
 	public Grid getGrid() {
@@ -57,6 +48,10 @@ public abstract class Game {
 
 	public String getName(){
 		return gameName;
+	}
+	
+	public GameData getData() {
+		return myData;
 	}
 	
 }

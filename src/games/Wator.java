@@ -109,15 +109,19 @@ public class Wator extends Game{
 	}
 
 	@Override
+	protected void setDefaultPositions(GameData data) {
+		Random numberGenerator = new Random();
+		int randomX = numberGenerator.nextInt(data.getDimensions());
+		int randomY = numberGenerator.nextInt(data.getDimensions());
+		getGrid().getCell(randomX, randomY).setType("fish");
+	}
+
+	/*
+	@Override
+>>>>>>> master
 	protected String setInitialCellType(int type) {
 		if(type == 0) return "fish";
 		else if(type == 1) return "shark";
 		else return "empty";
-	}
-
-	@Override
-	protected void setDefaultPositions(GameData data) {
-		// TODO Auto-generated method stub
-		
-	}
+	}*/
 }

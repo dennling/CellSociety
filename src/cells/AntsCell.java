@@ -1,6 +1,8 @@
 package cells;
 
 import java.util.ArrayList;
+
+import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -11,23 +13,23 @@ public class AntsCell extends Cell{
 	private ArrayList<Boolean> future;
 	private int[] phero; //0 = home pheromes, 1 = food pheromes for CURRENT, 2 = home, 3 = food for FUTURE
 	
-	public AntsCell(int x, int y, String type, Shape shape, ArrayList<Boolean> currWorkers, ArrayList<Boolean> futureWorkers, int[] pheromes) {
-		super(x, y, type, shape);
+	public AntsCell(int x, int y, String type, String shape, String gridType, String cellType, ArrayList<Boolean> currWorkers, ArrayList<Boolean> futureWorkers, int[] pheromes) {
+		super(x, y, type, shape, gridType, cellType);
 		current = currWorkers;
 		future = futureWorkers;
 		phero = pheromes;
 	}
 
 	@Override
-	protected Cell specifyNeighborCell() {
-		return new AntsCell(0, 0, "neighbor", new Rectangle(), current, future, phero);
+	public Cell specifyNeighborCell() {
+		return new AntsCell(0, 0, "neighbor", getShapeString(), "","",current, future, phero);
 	}
 
 	@Override
-	protected int[][] setPossibleNeighbors()  {
+	public int[][] setPossibleNeighbors()  {
 		int[][] possibleNeighbors = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1},
 			{1, 0}, {1, -1}, {0, -1}};	
-	return possibleNeighbors;
+			return possibleNeighbors;
 	}
 
 	@Override
@@ -48,6 +50,14 @@ public class AntsCell extends Cell{
 	
 	public void setPheromes(int pos, int num){
 		phero[pos] = num;
+	}
+
+	@Override
+	public void checkType(String type) {
+		if (!(type.equals("nest") || type.equals("food") || type.equals("ground"))) {
+			throw new XMLException("This is not a valid cell type for the chosen game %s", type);
+		}
+		return;
 	}
 	
 	

@@ -44,11 +44,6 @@ public class GameOfLife extends Game{
 	}
 	
 	@Override
-	protected String setInitialCellType(int type) {
-		return "alive";
-	}
-	
-	@Override
 	protected void setDefaultPositions(GameData data) {
 		for(int i =0; i < (data.getDimensions()*data.getDimensions())/2; i++) {
 			Random numberGenerator = new Random();

@@ -21,23 +21,23 @@ public class Ants extends Game{
 
 	@Override
 	protected Grid createGrid(int dimensions, String cellShape) {
-		return new AntsGrid(dimensions, this);
+		return new AntsGrid(dimensions, this, cellShape);
 	}
 
 	@Override
-	protected void gameLogic(Cell currentCell) {
+	public void gameLogic(Cell currentCell) {
 		AntsCell curr = (AntsCell)currentCell;
 		for(AntObject ant: currAnts){
 			antForage(ant, curr);
 		}
 	}
 
-	@Override
-	protected String setInitialCellType(int type) {
-		if(type==0) return "nest";
-		else if(type ==1) return "food";
-		else return "ground";
-	}
+//	@Override
+//	protected String setInitialCellType(int type) {
+//		if(type==0) return "nest";
+//		else if(type ==1) return "food";
+//		else return "ground";
+//	}
 	
 	private void antForage(AntObject ant, AntsCell curr){ //check if has food, return to nest or look for food
 		if(ant.hasFood()) ant.returnNest(curr);

@@ -1,18 +1,19 @@
 package cells;
 
+import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class SegregationCell extends Cell{
 
-	public SegregationCell(int x, int y, String type, Shape shape) {
-		super(x, y, type, shape);
+	public SegregationCell(int x, int y, String type, String shape, String gridType, String cellType) {
+		super(x, y, type, shape, gridType, cellType);
 	}
 
 	@Override
-	protected Cell specifyNeighborCell() {
-		return new SegregationCell(0, 0, "neighbor", new Rectangle());
+	public Cell specifyNeighborCell() {
+		return new SegregationCell(0, 0, "neighbor", getShapeString(), "", "");
 	}
 
 	@Override
@@ -30,10 +31,18 @@ public class SegregationCell extends Cell{
 	}
 
 	@Override
-	protected int[][] setPossibleNeighbors()  {
+	public int[][] setPossibleNeighbors()  {
 		int[][] possibleNeighbors = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1},
 			{1, 0}, {1, -1}, {0, -1}};	
 	return possibleNeighbors;
+	}
+	
+	@Override
+	public void checkType(String type) {
+		if (!(type.equals("one") || type.equals("two") || type.equals("empty"))) {
+			throw new XMLException("This is not a valid cell type for the chosen game %s", type);
+		}
+		return;
 	}
 
 
