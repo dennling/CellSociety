@@ -13,14 +13,17 @@ public class Wator extends Game{
 		fishBreed = data.getFishBreed();
 		sharkBreed = data.getSharkBreed();
 		sharkStarve = data.getSharkStarve();
+		randomize = new ArrayList<Integer>();
+		myGrid = getGrid();
+		grid = myGrid.getGrid();
 	}
 
-	private Grid myGrid = getGrid();
-	private Cell[][] grid = myGrid.getGrid();
+	private Grid myGrid;
+	private Cell[][] grid;
 	private double fishBreed;
 	private double sharkStarve;
 	private double sharkBreed;
-	private ArrayList<Integer> randomize = new ArrayList<Integer>();
+	private ArrayList<Integer> randomize;
 	private boolean moved;
 	private boolean eaten;
 
