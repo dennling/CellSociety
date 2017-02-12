@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 import org.w3c.dom.Element;
 
 public class GameData {
@@ -13,7 +16,8 @@ public class GameData {
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
 			"initialPositions","prob","initialPositions2", "initialPositions3", "fishBreed",
-			"sharkBreed","sharkStarve", "gameTitle","gameAuthor", "cellShape");
+			"sharkBreed","sharkStarve", "gameTitle","gameAuthor", "cellShape", "gridType",
+			"cellType");
 
 	private HashMap<String, String[]> myData; 
 	
@@ -84,7 +88,25 @@ public class GameData {
 	}
 	
 	public String getCellShape() {
-		return myData.get(DATA_FIELDS.get(11))[0];
+		try {
+			return myData.get(DATA_FIELDS.get(11))[0];
+		} catch (RuntimeException e) {
+			throw new XMLException("NO CELL SHAPE", e);
+		}
+	}
+	
+	public String getGridType() {
+		if (myData.get(DATA_FIELDS.get(12)).length == 0) {
+			return "";
+		}
+
+		return myData.get(DATA_FIELDS.get(12))[0];
+	}
+	public String getCellType() {
+		if (myData.get(DATA_FIELDS.get(13)).length == 0) {
+			return "";
+		}
+		return myData.get(DATA_FIELDS.get(13))[0];
 	}
 	
 }

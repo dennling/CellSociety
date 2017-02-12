@@ -12,8 +12,8 @@ public class FireGrid extends Grid {
 	}
 
 	@Override
-	protected FireCell cellType(int x, int y, Shape shape) {
-		return new FireCell(x, y, "tree", shape);
+	protected FireCell cellType(int x, int y, String shape) {
+		return new FireCell(x, y, "tree", shape, getGame().getData().getGridType(), getGame().getData().getCellType());
 	}
 	
 }

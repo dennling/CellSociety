@@ -9,8 +9,8 @@ public class WatorCell extends Cell{
 	private int timeSharkStarve;
 	private String state;
 
-	public WatorCell(int x, int y, String type, Shape shape, int timer, int timerShark2, String future){
-		super(x,y,type,shape);
+	public WatorCell(int x, int y, String type, String shape, String gridType, String cellType, int timer, int timerShark2, String future){
+		super(x,y,type,shape, gridType, cellType);
 		breedTime = timer;
 		timeSharkStarve = timerShark2;
 		state = future;
@@ -18,8 +18,8 @@ public class WatorCell extends Cell{
 	}
 
 	@Override
-	protected Cell specifyNeighborCell() {
-		return new WatorCell(0, 0, "neighbor", new Rectangle(), breedTime, timeSharkStarve, "neighbor");
+	public Cell specifyNeighborCell() {
+		return new WatorCell(0, 0, "neighbor", getShapeString(), "", "", breedTime, timeSharkStarve, "neighbor");
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class WatorCell extends Cell{
 	
 	
 	@Override
-	protected int[][] setPossibleNeighbors()  {
+	public int[][] setPossibleNeighbors()  {
 		int[][] possibleNeighbors = new int[][]{{-1, 0}, {0, 1}, 
 			{1, 0}, {0, -1}};	
 	return possibleNeighbors;

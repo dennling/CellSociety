@@ -13,8 +13,8 @@ public class GameOfLifeGrid extends Grid {
 	}
 
 	@Override
-	protected GameOfLifeCell cellType(int x, int y, Shape shape) {
-		return new GameOfLifeCell(x, y, "dead", shape);
+	protected GameOfLifeCell cellType(int x, int y, String shape) {
+		return new GameOfLifeCell(x, y, "dead", shape, getGame().getData().getGridType(),getGame().getData().getCellType());
 	}
 
 }

@@ -7,13 +7,13 @@ import javafx.scene.shape.Shape;
 
 public class GameOfLifeCell extends Cell{
 
-	public GameOfLifeCell(int x, int y, String type, Shape shape) {
-		super(x, y, type, shape);
+	public GameOfLifeCell(int x, int y, String type, String shape, String gridType, String cellType) {
+		super(x, y, type, shape, gridType, cellType);
 	}
 
 	@Override
-	protected Cell specifyNeighborCell() {
-		return new GameOfLifeCell(0, 0, "neighbor", new Rectangle());
+	public Cell specifyNeighborCell() {
+		return new GameOfLifeCell(0, 0, "neighbor", getShapeString(), "", "");
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class GameOfLifeCell extends Cell{
 	}
 
 	@Override
-	protected int[][] setPossibleNeighbors()  {
+	public int[][] setPossibleNeighbors()  {
 		int[][] possibleNeighbors = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1},
 			{1, 0}, {1, -1}, {0, -1}};	
 	return possibleNeighbors;

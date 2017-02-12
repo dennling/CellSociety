@@ -12,8 +12,8 @@ public class SegregationGrid extends Grid {
 	}
 
 	@Override
-	protected SegregationCell cellType(int x, int y, Shape shape) {
-		return new SegregationCell(x, y, "empty", shape);
+	protected SegregationCell cellType(int x, int y, String shape) {
+		return new SegregationCell(x, y, "empty", shape, getGame().getData().getGridType(), getGame().getData().getCellType());
 	}
 	
 }

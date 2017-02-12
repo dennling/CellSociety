@@ -2,6 +2,7 @@ package cells;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.util.Pair;
@@ -12,28 +13,28 @@ public abstract class Cell{
 	private int myGridY;
 	private String myType;
 	private Shape myShape;
-	private Cell[] myNeighbors;
+	private String myShapeString;
+	private NeighborManager myNeighbors;
 	
-	public Cell(int x, int y, String type, Shape shape) {
+	public Cell(int x, int y, String type, String shape, String gridType, String cellMode) {
 		myGridX = x;
 		myGridY = y;
 		myType = type;
-		myShape = shape;
+		myShape = cellShape(shape);
 		if (!type.equals("neighbor")){
-			initiateNeighbors();
+			myNeighbors = new NeighborManager(gridType, cellMode, this);
 			setColor();
 		}
 	}
 	
-	
-	protected void initiateNeighbors() {
-		myNeighbors = new Cell[setPossibleNeighbors().length];
-		for (int i = 0; i < myNeighbors.length; i++) {
-			myNeighbors[i] = specifyNeighborCell();
+	public Shape cellShape(String cellShape) {
+		switch (cellShape) {
+			case "rectangle": return new Rectangle();
+			default: return new Polygon();
 		}
 	}
 	
-	protected abstract Cell specifyNeighborCell();
+	public abstract Cell specifyNeighborCell();
 
 	
 	/**
@@ -41,8 +42,8 @@ public abstract class Cell{
 	 * Must create new cells and assign the same properties as neighboring cells
 	 * @param grid
 	 */
-	
-	public void updateNeighbors8(Cell[][] grid) {
+	/*
+	public void updateNeighbors(Cell[][] grid) {
 		int[][] possibleNeighbors = setPossibleNeighbors();
 		int size = grid.length;
 		for (int i = 0; i < myNeighbors.length; i++) {
@@ -59,6 +60,10 @@ public abstract class Cell{
 				}
 			}	
 		}
+	}*/
+	
+	public void updateNeighbors(Cell[][] grid) {
+		myNeighbors.updateNeighbors(grid);
 	}
 
 
@@ -66,7 +71,7 @@ public abstract class Cell{
 	 * Used as a reference for updateNeighbors(Cell[][] grid). Allows for simplified code
 	 * as the Cell's neighbors are updated. Checks all 8 possible neighbors
 	 */
-	protected abstract int[][] setPossibleNeighbors();
+	public abstract int[][] setPossibleNeighbors();
 	
 	protected abstract void setColor();
 	
@@ -75,7 +80,7 @@ public abstract class Cell{
 	}
 	
 	public Cell[] getNeighbors() {
-		return myNeighbors;
+		return myNeighbors.getNeighbors();
 	}
 	
 	public Shape getShape() {
@@ -98,6 +103,10 @@ public abstract class Cell{
 	
 	public int getY(){
 		return myGridY;
+	}
+	
+	public String getShapeString() {
+		return myShapeString;
 	}
 	
 	
