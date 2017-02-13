@@ -2,8 +2,11 @@ package cells;
 
 import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
+
+/**
+ * Cell for the Fire Game
+ *
+ */
 
 public class FireCell extends Cell{
 
@@ -31,6 +34,9 @@ public class FireCell extends Cell{
 		
 	}
 
+	/**
+	 * According to the rules of fire, can only move in 4 directions
+	 */
 	@Override
 	public int[][] setPossibleNeighbors()  {
 		int[][] possibleNeighbors = new int[][]{{-1, 0}, {0, 1}, 

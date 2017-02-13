@@ -2,8 +2,10 @@ package cells;
 
 import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
+
+/**
+ * Cell for Segregation
+ */
 
 public class SegregationCell extends Cell{
 

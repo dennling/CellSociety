@@ -3,9 +3,11 @@ package cells;
 
 import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
+/**
+ * Cell for GameOfLife
+ *
+ */
 public class GameOfLifeCell extends Cell{
 
 	public GameOfLifeCell(int x, int y, String type, String shape, String gridType, String cellType) {

@@ -130,7 +130,7 @@ public class Setup {
 			case "Ants":
 				myGame = new Ants(myData);
 				myGraph = new AntGraph();
-				STYLESHEET = "resources/Wator.css";
+				STYLESHEET = "resources/Ant.css";
 				break;
 			default: 
 				throw new XMLException("Not a valid Game Type", myData.getGameType());
