@@ -32,7 +32,7 @@ public class TriangleDisplay extends SceneBuilder{
 					triangle.getPoints().addAll(makeDownwardTriangle(xStart, yStart, halfBaseLength, height));
 					xStart += 2*halfBaseLength;
 				}
-				triangle.setStroke(Color.WHITE);
+				triangle.setStroke(Color.BLACK);
 				cells.getChildren().add(triangle);
 			}
 			if ((i+2) % 2 == 0){

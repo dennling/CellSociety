@@ -5,7 +5,7 @@
     <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
     <dimension>10</dimension>
    <cellShape>rectangle</cellShape>
-   <gridType>finite</gridType>
+   <gridType>toroidal</gridType>
     <initialPositions>5 5 fire</initialPositions>
     
     <prob>0.7</prob>

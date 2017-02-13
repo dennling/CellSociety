@@ -7,6 +7,9 @@ import games.AntObject;
 import games.Ants;
 import games.Game;
 
+/*
+ * Grid class for ant simulation.
+ */
 public class AntsGrid extends Grid{
 
 	private Cell[][] myGrid; 
@@ -23,44 +26,57 @@ public class AntsGrid extends Grid{
 		return new AntsCell(x, y, "ground", cellShape, getGame().getData().getGridType(), getGame().getData().getNeighborType(), new ArrayList<AntObject>(), new ArrayList<AntObject>(), new int[4]);
 	}
 
+	/*
+	 * First run through updates grid based on current states. Second run through changes future into current states.
+	 */
 	@Override
 	public void updateGrid(){
 		updateMe(false);
 		updateMe(true);
 		updateCellNeighbors();
 	}
-	private void updateMe(boolean done){
+	
+	/*
+	 * Helper method to update grid and to update future into current states.
+	 */
+	private void updateMe(boolean first){
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
 				Cell currentCell = myGrid[i][k];
-				if(!done) myGame.gameLogic(currentCell);
+				AntsCell curr = (AntsCell)currentCell;
+				if(!first) myGame.gameLogic(currentCell);
 				else{
-					AntsCell curr = (AntsCell)currentCell;
 					ArrayList<AntObject> currTemp = curr.getAnts(true);
+					ArrayList<AntObject> currFuture = curr.getAnts(false);
+					coloring(curr, currFuture);
 					currTemp = new ArrayList<>(curr.getAnts(false));
 					curr.setAnts(currTemp);
-					ArrayList<AntObject> currFuture = curr.getAnts(false);
-
-					//System.out.println("curr size: "+ currTemp.size()+ " future size: "+ currFuture.size());
-					double color = currFuture.size();
 					currFuture.clear();
-					//System.out.println(x);
-
 					curr.setPheromes(0, curr.getPheromes()[2] - myGame.getDecAmt());
 					curr.setPheromes(1, curr.getPheromes()[3] - myGame.getDecAmt());
 					curr.setPheromes(2, 0);
-					curr.setPheromes(3, 0);
-					if(curr.getType().equals("ground")){
-						if((255-color*40)>=0 && (255-color*40)<=255) {
-							curr.updateColor(255 - color*40);
-						}
-						else{
-							curr.updateColor(255);
-						}
-					}
+					curr.setPheromes(3, 0);		
 				}
 			}
 		}
+	}
+	
+	/*
+	 * Update coloring of cells based on ant population
+	 */
+	private void coloring(AntsCell curr, ArrayList<AntObject> currFuture){
+		double color = currFuture.size();
+		if(curr.getType().equals("ground")){
+			if((255-color*25)>=0 && (255-color*25)<=255) {
+				curr.updateColor(255 - color*25);
+			}
+			else if((255 - color*25)<=0){
+				curr.updateColor(0);
+			}
+			else{
+				curr.updateColor(255);
+			}
+		}	
 	}
 
 	@Override

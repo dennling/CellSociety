@@ -5,11 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-
-import org.w3c.dom.Element;
-
 public class GameData {
 
 	public static final String DATA_TYPE = "GameData";
