@@ -81,4 +81,17 @@ public class WatorCell extends Cell{
 		}
 		return;
 	}
+
+	@Override
+	public void switchType() {
+		if (this.getType().equals("fish")){
+			this.setType("shark");
+		}
+		else if (this.getType().equals("empty")){
+			this.setType("fish");
+		}
+		else {
+			this.setType("empty");
+		}
+	}
 }

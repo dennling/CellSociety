@@ -4,22 +4,22 @@
     <dimension>12</dimension>
     <gameTitle>Wator</gameTitle>
     <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
-    <initialPositions>5 5</initialPositions>
-        <initialPositions>3 3</initialPositions>
-        <initialPositions>4 4</initialPositions>
-        <initialPositions>2 2</initialPositions>
-        <initialPositions>1 1</initialPositions>
-        <initialPositions>10 10</initialPositions>
-        <initialPositions>2 4</initialPositions>
-        <initialPositions>3 1</initialPositions>
-        <initialPositions>2 5</initialPositions>
+    <initialPositions>5 5 fish</initialPositions>
+        <initialPositions>3 3 fish</initialPositions>
+        <initialPositions>4 4 fish</initialPositions>
+        <initialPositions>2 2 shark</initialPositions>
+        <initialPositions>1 1 shark</initialPositions>
+        <initialPositions>10 10 fish</initialPositions>
+        <initialPositions>2 4 fish</initialPositions>
+        <initialPositions>3 1 fish</initialPositions>
+        <initialPositions>2 5 fish</initialPositions>
         
-            <initialPositions2>6 6</initialPositions2>
-            <initialPositions2>1 2</initialPositions2>
-            <initialPositions2>4 5</initialPositions2>
+            <initialPositions2>6 6 shark</initialPositions2>
+            <initialPositions2>1 2 fish</initialPositions2>
+            <initialPositions2>4 5 fish</initialPositions2>
          
    
-    
+    <cellShape>rectangle</cellShape>
     <fishBreed> 2 </fishBreed>
     <sharkBreed> 10 </sharkBreed>
     <sharkStarve> 5 </sharkStarve>

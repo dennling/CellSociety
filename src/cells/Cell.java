@@ -97,6 +97,8 @@ public abstract class Cell{
 	
 	public abstract void checkType(String type);
 	
+	public abstract void switchType();
+	
 	public void setLocation(int x, int y){
 		myGridX = x;
 		myGridY = y;

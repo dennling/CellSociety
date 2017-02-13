@@ -46,5 +46,18 @@ public class FireCell extends Cell{
 		return;
 	}
 
+	@Override
+	public void switchType() {
+		if (this.getType().equals("tree")){
+			this.setType("fire");
+		}
+		else if (this.getType().equals("empty")){
+			this.setType("tree");
+		}
+		else {
+			this.setType("empty");
+		}
+	}
+
 
 }
