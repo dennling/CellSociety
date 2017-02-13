@@ -23,8 +23,6 @@ public class FireGrid extends Grid {
 	protected String resetType() {
 		return "tree";
 	}
-	
-	
 	/**
 	 * If user clicks on Fire, changes the state for the neighbors
 	 */
@@ -41,6 +39,4 @@ public class FireGrid extends Grid {
 			}
 		}
 	}
-	
-	
 }

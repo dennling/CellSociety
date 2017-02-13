@@ -7,6 +7,15 @@ import graphs.Graph;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
+/** 
+ * The RectangleDisplay class extends the SceneBuilder superclass, building the entire
+ * GUI only filling the grid with properly spaced rectangles. For more detailed documentation 
+ * see the SceneBuilder superclass.
+ *
+ * @author advaitreddy
+ *
+ */
+
 public class RectangleDisplay extends SceneBuilder{
 	
 	public RectangleDisplay(GameData myData, Game game, Graph graph, String styleSheet){
@@ -14,6 +23,9 @@ public class RectangleDisplay extends SceneBuilder{
 	}
 
 	@Override
+	/**
+	 * Evenly places rectangles throughout the grid.
+	 */
 	protected void setGrid(Pane cells) {
 		for (int i=0; i<myGrid.getNumberOfRows(); i++){
 			for (int j=0; j<myGrid.getNumberOfColumns(); j++){

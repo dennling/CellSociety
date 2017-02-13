@@ -76,11 +76,7 @@ public class GameData {
 	}
 	
 	public int numberAnts(){
-		try {
-			return Integer.parseInt(myData.get(DATA_FIELDS.get(12))[0]);
-		} catch (NullPointerException e) {
-			throw new XMLException("Initial number of ants does not exist", e);
-		}
+		return Integer.parseInt(myData.get(DATA_FIELDS.get(12))[0]);
 	}
 	
 	public int decAmount(){
@@ -89,6 +85,7 @@ public class GameData {
 		} catch (NullPointerException e) {
 			throw new XMLException("Initial decrement amount does not exist", e);
 		}
+
 	}
 	
 	public double getProb(){

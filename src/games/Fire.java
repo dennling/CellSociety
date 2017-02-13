@@ -48,5 +48,4 @@ public class Fire extends Game{
 	protected void setDefaultPositions(GameData data) {
 		randomCellGenerator("fire", data);
 	}
-
 }
