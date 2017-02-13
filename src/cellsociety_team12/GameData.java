@@ -9,7 +9,6 @@ import java.util.Map;
  * Holds all the data parsed from the XMLParser
  *
  */
-
 public class GameData {
 
 	public static final String DATA_TYPE = "GameData";
@@ -90,7 +89,7 @@ public class GameData {
 	
 	public double getProb(){
 		try {
-			return Integer.parseInt(myData.get(DATA_FIELDS.get(3))[0]);
+			return Double.parseDouble(myData.get(DATA_FIELDS.get(3))[0]);
 		} catch (NullPointerException e) {
 			throw new XMLException("No Probability Input", e);
 		}
@@ -98,21 +97,21 @@ public class GameData {
 	
 	public double getFishBreed(){
 		try {
-			return Integer.parseInt(myData.get(DATA_FIELDS.get(4))[0]);
+			return Double.parseDouble(myData.get(DATA_FIELDS.get(4))[0]);
 		} catch (NullPointerException e) {
 			throw new XMLException("No Fishbreed Input", e);
 		}
 	}
 	public double getSharkBreed(){
 		try {
-			return Integer.parseInt(myData.get(DATA_FIELDS.get(5))[0]);
+			return Double.parseDouble(myData.get(DATA_FIELDS.get(5))[0]);
 		} catch (NullPointerException e) {
 			throw new XMLException("No Shark Breek Input", e);
 		}
 	}
 	public double getSharkStarve(){
 		try {
-			return Integer.parseInt(myData.get(DATA_FIELDS.get(6))[0]);
+			return Double.parseDouble(myData.get(DATA_FIELDS.get(6))[0]);
 		} catch (NullPointerException e) {
 			throw new XMLException("No Shark Starve Input", e);
 		}

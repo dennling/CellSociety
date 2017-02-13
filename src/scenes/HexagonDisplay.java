@@ -6,7 +6,6 @@ import games.Game;
 import graphs.Graph;
 import grids.Grid;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 /** 
@@ -44,6 +43,7 @@ public class HexagonDisplay extends SceneBuilder{
 				hexagon = (Polygon) currentCell.getShape();
 				hexagon.getPoints().addAll(coordinates);
 				hexagon.setOnMouseClicked(event -> myGrid.setNeighborOnSwitch(currentCell));
+				cells.getChildren().add(hexagon);
 				yStart += 2*spacer;
 			}
 			if (startedAtZero){

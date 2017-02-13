@@ -10,16 +10,15 @@ public class AntsCell extends Cell{
 
 	private ArrayList<AntObject> current; //bools keep track of if ant has food
 	private ArrayList<AntObject> future;
-	private int[] phero; //0 = home pheromes, 1 = food pheromes for CURRENT, 2 = home, 3 = food for FUTURE
+	private int[] phero; //positions: 0 = home pheromes, 1 = food pheromes for CURRENT, 2 = home, 3 = food for FUTURE
 	
-	public AntsCell(int x, int y, String type, String shape, String gridType, String cellType, ArrayList<AntObject> currWorkers, ArrayList<AntObject> futureWorkers, int[] pheromes) {
+	public AntsCell(int x, int y, String type, String shape, String gridType, String cellType, ArrayList<AntObject> currWorkers, ArrayList<AntObject> futureWorkers, int[] pheromes){
 		super(x, y, type, shape, gridType, cellType);
 		current = currWorkers;
 		future = futureWorkers;
 		phero = new int[4];
 	}
 	
-
 	@Override
 	public Cell specifyNeighborCell() {
 		return new AntsCell(0, 0, "neighbor", getShapeString(), "","",current, future, phero);
@@ -71,7 +70,7 @@ public class AntsCell extends Cell{
 	
 	public void updateColor(double RGB){
 		int color = (int) Math.floor(RGB);
-		getShape().setFill(Color.rgb(255,color,255));
+		getShape().setFill(Color.rgb(color,255,255));
 	}
 
 	@Override

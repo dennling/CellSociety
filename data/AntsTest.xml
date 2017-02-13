@@ -5,8 +5,9 @@
     <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
     <dimension>10</dimension>
     <initialPositions>0 0 nest</initialPositions>
-    <initialPositions>9 8 food</initialPositions>    
-   <cellShape>rectangle</cellShape>
+    <initialPositions>9 8 food</initialPositions> 
+   	<initialPositions>1 8 ground</initialPositions>       
+   <cellShape>triangle</cellShape>
    <gridType>finite</gridType>
     <numAnts>100</numAnts>
     <decPh>10</decPh>

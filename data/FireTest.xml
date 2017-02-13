@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data type="GameData">
-    <gametype>Fire</gametype>
-    <gameTitle>Fire</gameTitle>
-    <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
-    <dimension>10</dimension>
-   <cellShape>rectangle</cellShape>
-   <gridType>finite</gridType>
-    <initialPositions>5 5 fire</initialPositions>
-    
-    <prob>0.7</prob>
+	<gametype>Fire</gametype>
+	<gameTitle>Fire</gameTitle>
+	<gameAuthor>Dennis, Henry, and Advait</gameAuthor>
+	<dimension>10</dimension>
+	<cellShape>hexagon</cellShape>
+	<initialPositions>5 5 fire</initialPositions>
+	<prob>0.7</prob>
+    <gridType>toroidal</gridType>
 </data>

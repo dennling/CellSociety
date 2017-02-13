@@ -68,6 +68,10 @@ public class Simulator implements EventHandler<ActionEvent>{
 		animation.play();
 	}
 
+	/**
+	 * Game logic loop - updates grid, graph, and total simulation duration
+	 * @param elapsedTime
+	 */
 	public void step(double elapsedTime){
 		myGame.updateGrid();
 		myGame.getGrid().updateCellPopulationMap();
@@ -76,6 +80,9 @@ public class Simulator implements EventHandler<ActionEvent>{
 	}
 
 	@Override
+	/**
+	 * Handles button events
+	 */
 	public void handle(ActionEvent event) {
 		if (event.getSource() == stepButton){
 			stepThrough();
@@ -110,7 +117,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 
 	private void loadFile() {
 		animation.stop();
-		Setup newGame = new Setup(myStage);
+		new Setup(myStage);
 	}
 
 
@@ -150,6 +157,10 @@ public class Simulator implements EventHandler<ActionEvent>{
 		animation.playFrom("step point");
 	}
 	
+	/**
+	 * Initializes buttons from list so that their events can be handled
+	 * in this class
+	 */
 	private void initializeButtons(){
 		for (Button b : myButtonList){
 			String buttonText = b.getText();

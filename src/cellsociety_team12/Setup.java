@@ -15,7 +15,6 @@ import graphs.Graph;
 import graphs.SegregationGraph;
 import graphs.WatorGraph;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -44,14 +43,13 @@ import scenes.TriangleDisplay;
 
 public class Setup {
 	
-	public static final String FILE_EXTENSION = "*.xml";
+	private static final String FILE_EXTENSION = "*.xml";
 	
 	private Scene myScene;
 	private Stage myStage;
 	private SceneBuilder mySceneBuilder;
 	private Game myGame;
 	private Graph myGraph;
-	private Simulator mySimulator;
 	private GameData myData;
 	private FileChooser myChooser;
 	private static String STYLESHEET;
@@ -73,7 +71,7 @@ public class Setup {
 		myStage.show();
 		myStage.setResizable(false);
 		
-		mySimulator = new Simulator(myGame, mySceneBuilder, myStage);
+		new Simulator(myGame, mySceneBuilder, myStage);
 	}
 	
 	public Scene getScene(){
@@ -84,6 +82,9 @@ public class Setup {
 		return myStage;
 	}
 	
+	/**
+	 * Gets data from the pop-up file chooser
+	 */
 	private void getData() {
 		File dataFile = myChooser.showOpenDialog(myStage);
 		if (dataFile != null) {
@@ -97,6 +98,11 @@ public class Setup {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param extension
+	 * @return The pop-up file chooser
+	 */
 	public FileChooser makeChooser(String extension) {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Open Data File");
@@ -105,6 +111,9 @@ public class Setup {
 		return chooser;		
 	}
 	
+	/**
+	 * Initializes Game, Graph, and STYLESHEET based off the game type
+	 */
 	private void initializeGameGraphAndStyle() {
 		switch (myData.getGameType()){
 			case "GameOfLife": 
@@ -137,6 +146,9 @@ public class Setup {
 		}
 	}
 	
+	/**
+	 * Initializes the SceneBuilder based off the cell shape
+	 */
 	private void initializeSceneBuilder() {
 		switch(myData.getCellShape()){
 		case "rectangle":

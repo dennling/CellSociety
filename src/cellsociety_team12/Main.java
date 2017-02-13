@@ -16,7 +16,7 @@ public class Main extends Application {
 
 	public void start(Stage s) throws Exception {
 		
-		Setup startGame = new Setup(s);
+		new Setup(s);
 	}
 
 	public static void main(String[] args) {
