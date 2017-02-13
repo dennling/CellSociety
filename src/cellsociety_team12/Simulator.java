@@ -68,7 +68,6 @@ public class Simulator implements EventHandler<ActionEvent>{
 		animation.play();
 	}
 
-	
 	public void step(double elapsedTime){
 		myGame.updateGrid();
 		myGame.getGrid().updateCellPopulationMap();

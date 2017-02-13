@@ -5,7 +5,6 @@ import cellsociety_team12.GameData;
 import games.Game;
 import graphs.Graph;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 /** 
@@ -52,7 +51,7 @@ public class TriangleDisplay extends SceneBuilder{
 					triangle.getPoints().addAll(makeDownwardTriangle(xStart, yStart, halfBaseLength, height));
 					xStart += 2*halfBaseLength;
 				}
-				triangle.setOnMouseClicked(event -> currentCell.switchType());
+				triangle.setOnMouseClicked(event -> myGrid.setNeighborOnSwitch(currentCell));
 				cells.getChildren().add(triangle);
 			}
 			if ((i+2) % 2 == 0){
