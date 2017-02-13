@@ -29,6 +29,9 @@ Graphs, Reset Button, Triangle and Hexagon Grids, Edge and Corner Neighbor Arran
 Toroidal Bounding, Advanced Error Checking, Initial Configurations Can Be Randomized
 or Read in From File, and Cell States can Change with Mouse Click
 
-Any Known Bugs or Crashes in Program Functionality: None
+Any Known Bugs or Crashes in Program Functionality: 
+After reset button is pressed, simulation is automatically played and "Play" button doesn't update.
 
-Impression of the Assignment: It was a good learning experience.
+Impression of the Assignment: It was a good learning experience with working in teams. This included learning version control with Git,
+scheduling meetings times, and splitting up work to be efficient and effective. We also learned how to manage inheritance with
+superclasses and subclasses. Overall a hefty project, but a good learning experience.
