@@ -18,8 +18,9 @@ public class AntsCell extends Cell{
 		super(x, y, type, shape, gridType, cellType);
 		current = currWorkers;
 		future = futureWorkers;
-		phero = pheromes;
+		phero = new int[4];
 	}
+	
 
 	@Override
 	public Cell specifyNeighborCell() {
@@ -35,8 +36,14 @@ public class AntsCell extends Cell{
 
 	@Override
 	protected void setColor() {
-		//count number in arraylist, put dots based on #
-		//shade based on pheromes
+		if (getType().equals("nest")) {
+			getShape().setFill(Color.GREEN);
+		} else if (getType().equals("food")) {
+			getShape().setFill(Color.RED);
+		}
+		else{
+			getShape().setFill(Color.WHITE);
+		}
 		getShape().setStroke(Color.BLACK);		
 	}
 	
@@ -45,6 +52,9 @@ public class AntsCell extends Cell{
 		else return future;
 	}
 	
+	public void setAnts(ArrayList<AntObject> newAnts){
+		current = newAnts;
+	}
 	public int[] getPheromes(){
 		return phero;
 	}
@@ -61,5 +71,8 @@ public class AntsCell extends Cell{
 		return;
 	}
 	
+	public void updateColor(double RGB){
+		getShape().setFill(Color.rgb(0,0,(int) Math.floor(RGB)));
+	}
 	
 }

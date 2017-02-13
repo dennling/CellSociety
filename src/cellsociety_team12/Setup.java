@@ -2,6 +2,7 @@ package cellsociety_team12;
 
 import java.io.File;
 
+import games.Ants;
 import games.Fire;
 import games.Game;
 import games.GameOfLife;
@@ -105,18 +106,23 @@ public class Setup {
 				myGraph = new WatorGraph();
 				STYLESHEET = "resources/Wator.css";
 				break;
+			case "Ants":
+				myGame = new Ants(myData);
+				myGraph = new WatorGraph();
+				STYLESHEET = "resources/Wator.css";
+				break;
 		}
 	}
 	
 	private void initializeSceneBuilder() {
 		switch(myData.getCellShape()){
-		case "Rectangle":
+		case "rectangle":
 			mySceneBuilder = new RectangleDisplay(myData, myGame, myGraph, STYLESHEET);
 			break;
-		case "Triangle":
+		case "triangle":
 			mySceneBuilder = new TriangleDisplay(myData, myGame, myGraph, STYLESHEET);
 			break;
-		case "Hexagon":
+		case "hexagon":
 			mySceneBuilder = new HexagonDisplay(myData, myGame, myGraph, STYLESHEET);
 			break;
 		}

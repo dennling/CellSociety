@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data type="GameData">
+    <gametype>Ants</gametype>
+    <gameTitle>Ant Forage</gameTitle>
+    <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
+    <dimension>20</dimension>
+    <initialPositions>4 4 nest</initialPositions>
+    <initialPositions>19 19 food</initialPositions>    
+   <cellShape>rectangle</cellShape>
+   <gridType>finite</gridType>
+    <numAnts>100</numAnts>
+    <decPh>10</decPh>
+</data>
