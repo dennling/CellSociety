@@ -1,5 +1,6 @@
 package scenes;
 
+import cells.Cell;
 import cellsociety_team12.GameData;
 import games.Game;
 import graphs.Graph;
@@ -33,6 +34,8 @@ public class TriangleDisplay extends SceneBuilder{
 					xStart += 2*halfBaseLength;
 				}
 				triangle.setStroke(Color.WHITE);
+				Cell currentCell = myGrid.getCell(i,j);
+				triangle.setOnMouseClicked(event -> myGrid.setNeighborOnSwitch(currentCell));
 				cells.getChildren().add(triangle);
 			}
 			if ((i+2) % 2 == 0){

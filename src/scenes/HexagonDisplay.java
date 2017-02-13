@@ -1,5 +1,6 @@
 package scenes;
 
+import cells.Cell;
 import cellsociety_team12.GameData;
 import games.Game;
 import graphs.Graph;
@@ -27,6 +28,8 @@ public class HexagonDisplay extends SceneBuilder{
 				Double[] coordinates = {xStart, yStart,xStart - spacer, yStart + spacer, xStart, yStart + 2*spacer, xStart + sideLength, yStart + 2*spacer, xStart + sideLength + spacer, yStart + spacer, xStart+sideLength, yStart};
 				hexagon = (Polygon) myGrid.getCell(i, j).getShape();
 				hexagon.getPoints().addAll(coordinates);
+				Cell currentCell = myGrid.getCell(i,j);
+				hexagon.setOnMouseClicked(event -> myGrid.setNeighborOnSwitch(currentCell));
 				cells.getChildren().add(hexagon);
 				yStart += 2*spacer;
 			}
