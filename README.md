@@ -1,6 +1,9 @@
 People Who Worked on Project: Henry Taylor, Advait Reddy, Dennis Ling
+
 Date Started: January 27th, 2017
+
 Date Ended: February 13th, 2017
+
 Estimated Hours Worked Total: 120
 
 Each Persons Role: During the first sprint, Henry worked on the Game and Cell
