@@ -2,11 +2,13 @@ package cellsociety_team12;
 
 import java.io.File;
 
+import games.Ants;
 import games.Fire;
 import games.Game;
 import games.GameOfLife;
 import games.Segregation;
 import games.Wator;
+import graphs.AntGraph;
 import graphs.FireGraph;
 import graphs.GameOfLifeGraph;
 import graphs.Graph;
@@ -123,6 +125,11 @@ public class Setup {
 			case "Wator":
 				myGame = new Wator(myData);
 				myGraph = new WatorGraph();
+				STYLESHEET = "resources/Wator.css";
+				break;
+			case "Ants":
+				myGame = new Ants(myData);
+				myGraph = new AntGraph();
 				STYLESHEET = "resources/Wator.css";
 				break;
 			default: 

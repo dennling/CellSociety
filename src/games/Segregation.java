@@ -86,6 +86,9 @@ public class Segregation extends Game{
 		if(type == 0) return "one";
 		else if(type == 1) return "two";
 		else return "empty";
+<<<<<<< HEAD
+	}
+=======
 	}*/
 	
 	@Override
