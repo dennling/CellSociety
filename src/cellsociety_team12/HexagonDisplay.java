@@ -23,10 +23,9 @@ public class HexagonDisplay extends SceneBuilder{
 		for (int i=0; i<myGrid.getNumberOfRows(); i++){
 			for (int j=0; j<myGrid.getNumberOfColumns(); j++){
 				Polygon hexagon;
-				double[] coordinates = {xStart, yStart,xStart - spacer, yStart + spacer, xStart, yStart + 2*spacer, xStart + sideLength, yStart + 2*spacer, xStart + sideLength + spacer, yStart + spacer, xStart+sideLength, yStart};
-				hexagon = new Polygon(coordinates);
-				hexagon.setFill(Color.PURPLE);
-				hexagon.setStroke(Color.WHITE);
+				Double[] coordinates = {xStart, yStart,xStart - spacer, yStart + spacer, xStart, yStart + 2*spacer, xStart + sideLength, yStart + 2*spacer, xStart + sideLength + spacer, yStart + spacer, xStart+sideLength, yStart};
+				hexagon = (Polygon) myGrid.getCell(i, j).getShape();
+				hexagon.getPoints().addAll(coordinates);
 				cells.getChildren().add(hexagon);
 				yStart += 2*spacer;
 			}

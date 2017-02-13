@@ -48,15 +48,15 @@ public class NeighborManager {
 		}
 		return possible;
 	}
-	
-	/**
-	 * ADJUST DEPENDING ON WHICH WAY WE START THE TRIANGLES
-	 * @return
-	 */
+
 	private int[][] setPossibleTriangleNeighbors() {
-		int[][] possible1 = new int[][]{{0, -1}, {-1, 0}, {0, 1}};
-		int[][] possible2 = new int[][]{{0, -1}, {1, 0}, {0, 1}};
-		return possible1;
+		int[][] possible1 = new int[][]{{-1, 0}, {0, 1}, {1, 0}};
+		int[][] possible2 = new int[][]{{-1, 0}, {0, -1}, {1, 0}};
+		if (myCell.getX()%2 == myCell.getY()%2) {
+			return possible1;
+		} else {
+			return possible2;
+		}
 	}
 	
 	private void initiateNeighbors() {
@@ -72,24 +72,35 @@ public class NeighborManager {
 			int currentX = myCell.getX() + possibleNeighbors[i][0];
 			int currentY = myCell.getY() + possibleNeighbors[i][1];
 			if (currentX >= 0 && currentX < size && currentY >= 0 && currentY < size) {
-				Cell currentNeighbor = myNeighbors[i];
-				Cell currentGrid = grid[currentX][currentY];
-				if (currentGrid != null) {
-					currentNeighbor.setType(currentGrid.getType());
-					currentNeighbor.setLocation(currentX, currentY);
-				}
+				updateNeighborCell(i, currentX, currentY, grid);
 			} else if (myGridMode.equals("toroidal")) {
-				adjustToroidal();
+				adjustToroidal(i, currentX, currentY, grid);
 			}
 		}
 	}
 	
-	private int[][] adjustToroidal() {
-		int[][] possible = new int[possibleNeighbors.length][possibleNeighbors.length];
-		if (myCell.getX() == 0) {
-			
+	private void updateNeighborCell(int index, int currentX, int currentY, Cell[][] grid ) {
+		Cell currentNeighbor = myNeighbors[index];
+		Cell currentGrid = grid[currentX][currentY];
+		if (currentGrid != null) {
+			currentNeighbor.setType(currentGrid.getType());
+			currentNeighbor.setLocation(currentX, currentY);
 		}
-		return possible;
+	}
+	
+	private void adjustToroidal(int index, int x, int y, Cell[][] grid) {
+		int size = grid.length;
+		if (x < 0) {
+			x = size-1;
+		} else if (x >= size){
+			x = 0;
+		}
+		if (y < 0) {
+			y = size -1;
+		} else if (y >= size){
+			y = 0;
+		}
+		updateNeighborCell(index, x, y, grid);
 	}
 
 	
