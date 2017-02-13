@@ -19,6 +19,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import scenes.HexagonDisplay;
+import scenes.RectangleDisplay;
+import scenes.SceneBuilder;
+import scenes.TriangleDisplay;
 
 public class Setup {
 	
@@ -110,13 +114,13 @@ public class Setup {
 	
 	private void initializeSceneBuilder() {
 		switch(myData.getCellShape()){
-		case "Rectangle":
+		case "rectangle":
 			mySceneBuilder = new RectangleDisplay(myData, myGame, myGraph, STYLESHEET);
 			break;
-		case "Triangle":
+		case "triangle":
 			mySceneBuilder = new TriangleDisplay(myData, myGame, myGraph, STYLESHEET);
 			break;
-		case "Hexagon":
+		case "hexagon":
 			mySceneBuilder = new HexagonDisplay(myData, myGame, myGraph, STYLESHEET);
 			break;
 		}

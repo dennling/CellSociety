@@ -40,10 +40,23 @@ public class FireCell extends Cell{
 	
 	@Override
 	public void checkType(String type) {
-		if (!(type.equals("fire") || type.equals("tree"))) {
+		if (!(type.equals("fire") || type.equals("tree") || type.equals("empty"))) {
 			throw new XMLException("This is not a valid cell type for the chosen game %s", type);
 		}
 		return;
+	}
+
+	@Override
+	public void switchType() {
+		if (this.getType().equals("tree")){
+			this.setType("fire");
+		}
+		else if (this.getType().equals("empty")){
+			this.setType("tree");
+		}
+		else {
+			this.setType("empty");
+		}
 	}
 
 

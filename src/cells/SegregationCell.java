@@ -45,5 +45,16 @@ public class SegregationCell extends Cell{
 		return;
 	}
 
-
+	@Override
+	public void switchType() {
+		if (this.getType().equals("one")){
+			this.setType("two");
+		}
+		else if (this.getType().equals("two")){
+			this.setType("empty");
+		}
+		else {
+			this.setType("one");
+		}
+	}
 }
