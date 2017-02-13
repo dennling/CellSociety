@@ -4,6 +4,14 @@ import java.util.Map;
 
 import javafx.scene.chart.XYChart;
 
+/** 
+ * Creates a Graph object specifically for the Segregation simulation. 
+ * See the Graph superclass for more detailed documentation.
+ *
+ * @author advaitreddy
+ *
+ */
+
 public class SegregationGraph extends Graph{
 	
 	private XYChart.Series redData;
@@ -38,6 +46,12 @@ public class SegregationGraph extends Graph{
 				emptyData.getData().add(new XYChart.Data(time, cellPopulationMap.get(cellType)));
 			}
 		}
+	}
+	
+	public void clear(){
+		redData.getData().clear();
+		blueData.getData().clear();
+		emptyData.getData().clear();
 	}
 
 }

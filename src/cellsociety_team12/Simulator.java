@@ -12,7 +12,20 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import scenes.SceneBuilder;
 
+/** 
+ * The Simulator class is responsible for maintaining the game loop. It creates both
+ * the Timeline and the KeyFrame for the current game and handles all events related
+ * to the buttons.
+ * 
+ * This class should be called whenever a user wants to start simulating a game.
+ *
+ * The Simulator depends on the current Game, SceneBuilder, and Stage.
+ * 
+ * @author advaitreddy
+ *
+ */
 
 public class Simulator implements EventHandler<ActionEvent>{
 	
@@ -37,12 +50,12 @@ public class Simulator implements EventHandler<ActionEvent>{
 	private Button resetButton;
 	private double totalDuration;
 	
-	public Simulator(Game game, List<Button> buttonList, Stage stage, Graph graph){
+	public Simulator(Game game, SceneBuilder mySceneBuilder, Stage stage){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCES);
 		myGame = game;
-		myGraph = graph;
+		myGraph = mySceneBuilder.getGraph();
 		myStage = stage;
-		myButtonList = buttonList;
+		myButtonList = mySceneBuilder.getButtons();
 		totalDuration = 0;
 		initializeButtons();
 
@@ -106,6 +119,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 		animation.stop();
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.setRate(DEFAULT_RATE);
+		myGraph.clear();
 		totalDuration = 0;
 		animation.play();
 	}
