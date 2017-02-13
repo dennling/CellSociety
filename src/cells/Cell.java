@@ -1,12 +1,15 @@
 package cells;
 
-import cellsociety_team12.XMLException;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.util.Pair;
+
+/**
+ * Superclass for cells, this class is responsible for maintaining everything pertaining to Cell.
+ * Created another class for Neighbors, Neighbor manager, to actually manage the cell's current 
+ * neighbors. Cell also contains the current shape of the cell that will be displayed on the UI.
+ *
+ */
 
 public abstract class Cell{
 	
@@ -17,6 +20,15 @@ public abstract class Cell{
 	private String myShapeString;
 	private NeighborManager myNeighbors;
 	
+	/**
+	 * 
+	 * @param x - x location in grid
+	 * @param y - y location in grid
+	 * @param type - type of cell (i.e. alive, dead, fire, shark, etc.)
+	 * @param shape - Shape of cell in String form
+	 * @param gridType - finite vs toroidal
+	 * @param cellMode - corners, edges, normal
+	 */
 	public Cell(int x, int y, String type, String shape, String gridType, String cellMode) {
 		myGridX = x;
 		myGridY = y;
@@ -29,6 +41,10 @@ public abstract class Cell{
 		}
 	}
 	
+
+	/**
+	 * Sets the initial shape of a cell based off of settings in the xml file
+	 */
 	public Shape cellShape() {
 		switch (myShapeString) {
 			case "rectangle": return new Rectangle();
@@ -36,34 +52,14 @@ public abstract class Cell{
 		}
 	}
 	
+	/**
+	 * Initializes the neighbor cells to the correct type of cell according to what game it is
+	 */
 	public abstract Cell specifyNeighborCell();
-
 	
 	/**
-	 * Because all cells have to update according to what they're previous state is, 
-	 * Must create new cells and assign the same properties as neighboring cells
-	 * @param grid
+	 * Loops through the cell's neighbors and updates the cell's neighbors based on current state in grid
 	 */
-	/*
-	public void updateNeighbors(Cell[][] grid) {
-		int[][] possibleNeighbors = setPossibleNeighbors();
-		int size = grid.length;
-		for (int i = 0; i < myNeighbors.length; i++) {
-			int currentX = myGridX + possibleNeighbors[i][0];
-			int currentY = myGridY + possibleNeighbors[i][1];
-			if (currentX >= 0 && currentX < size) {
-				if (currentY >= 0 && currentY < size) {
-					Cell currentNeighbor = myNeighbors[i];
-					Cell currentGrid = grid[currentX][currentY];
-					if (currentGrid != null) {
-						currentNeighbor.setType(currentGrid.getType());
-						currentNeighbor.setLocation(currentX, currentY);
-					}
-				}
-			}	
-		}
-	}*/
-	
 	public void updateNeighbors(Cell[][] grid) {
 		myNeighbors.updateNeighbors(grid);
 	}
@@ -71,19 +67,29 @@ public abstract class Cell{
 
 	/**
 	 * Used as a reference for updateNeighbors(Cell[][] grid). Allows for simplified code
-	 * as the Cell's neighbors are updated. Checks all 8 possible neighbors
+	 * as the Cell's neighbors are updated. Checks all possible neighbors. Although NeighborManager 
+	 * handles cells now, some particular cells, such as fire, require a certain set of neighbors, unless
+	 * a certain cell neighbor mode ("corners" or "edges") is specified
 	 */
 	public abstract int[][] setPossibleNeighbors();
 	
+	/**
+	 * Allows each cell to specify their own color
+	 */
 	protected abstract void setColor();
 	
+	/**
+	 * Type refers to states of cells "alive" or "fire", etc.
+	 */
 	public String getType() {
 		return myType;
 	}
 	
+	
 	public Cell[] getNeighbors() {
 		return myNeighbors.getNeighbors();
 	}
+	
 	
 	public Shape getShape() {
 		return myShape;
@@ -97,6 +103,9 @@ public abstract class Cell{
 	
 	public abstract void checkType(String type);
 	
+	/**
+	 * Utilized by the UI to check and change the type of each cell on click
+	 */
 	public abstract void switchType();
 	
 	public void setLocation(int x, int y){
