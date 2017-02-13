@@ -121,6 +121,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 		animation.setRate(DEFAULT_RATE);
 		myGraph.clear();
 		totalDuration = 0;
+		myGame.getGrid().resetGrid();
 		animation.play();
 	}
 

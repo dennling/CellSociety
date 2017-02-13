@@ -1,6 +1,6 @@
 package cellsociety_team12;
 
-
+import cellsociety_team12.Setup;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

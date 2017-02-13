@@ -15,7 +15,6 @@ public class WatorCell extends Cell{
 		breedTime = timer;
 		timeSharkStarve = timerShark2;
 		state = future;
-		
 	}
 
 	@Override
@@ -34,7 +33,6 @@ public class WatorCell extends Cell{
 			getShape().setFill(Color.BLUE);
 		}
 		getShape().setStroke(Color.BLACK);
-
 	}
 	
 	public int getTime() {

@@ -16,7 +16,7 @@ public class GameData {
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
 			"initialPositions","prob", "fishBreed", "sharkBreed","sharkStarve", "gameTitle",
-			"gameAuthor", "cellShape", "gridType", "neighborType");
+			"gameAuthor", "cellShape", "gridType", "neighborType","numAnts","decPh");
 
 	private HashMap<String, String[]> myData; 
 	
@@ -62,6 +62,14 @@ public class GameData {
 		if (k > getDimensions() || k < 0) {
 			throw new XMLException("Initial starting point is out of bounds %s", k);
 		}
+	}
+	
+	public int numberAnts(){
+		return Integer.parseInt(myData.get(DATA_FIELDS.get(12))[0]);
+	}
+	
+	public int decAmount(){
+		return Integer.parseInt(myData.get(DATA_FIELDS.get(13))[0]);
 	}
 	
 	public double getProb(){

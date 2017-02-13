@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data type="GameData">
-    <gametype>Fire</gametype>
-    <gameTitle>Fire</gameTitle>
+    <gametype>Ants</gametype>
+    <gameTitle>Ant Forage</gameTitle>
     <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
     <dimension>10</dimension>
+    <initialPositions>0 0 nest</initialPositions>
+    <initialPositions>9 8 food</initialPositions>    
    <cellShape>rectangle</cellShape>
    <gridType>finite</gridType>
-    <initialPositions>5 5 fire</initialPositions>
-    
-    <prob>0.7</prob>
+    <numAnts>100</numAnts>
+    <decPh>10</decPh>
 </data>

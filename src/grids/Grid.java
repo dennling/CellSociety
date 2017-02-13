@@ -71,6 +71,18 @@ public abstract class Grid {
 		}
 	}
 	
+	public void resetGrid() {
+		for (int i = 0; i < myGrid.length; i++) {
+			for (int k = 0; k < myGrid.length; k++) {
+				myGrid[i][k].setType(resetType());;
+			}
+		}
+		myGame.setInitialPositions();
+		updateCellNeighbors();
+	}
+	
+	protected abstract String resetType();
+	
 	public Cell getCell(int x, int y) {
 		return myGrid[x][y];
 	}
