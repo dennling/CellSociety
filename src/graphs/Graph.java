@@ -3,7 +3,6 @@ package graphs;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import javafx.scene.chart.Chart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
