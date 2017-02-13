@@ -4,6 +4,14 @@ import java.util.Map;
 
 import javafx.scene.chart.XYChart;
 
+/** 
+ * Creates a Graph object specifically for the Game of Life simulation. See
+ * the Graph superclass for more detailed documentation.
+ *
+ * @author advaitreddy
+ *
+ */
+
 public class GameOfLifeGraph extends Graph{
 
 	XYChart.Series aliveData;
@@ -32,6 +40,11 @@ public class GameOfLifeGraph extends Graph{
 				deadData.getData().add(new XYChart.Data(time, cellPopulationMap.get(cellType)));
 			}
 		}
+	}
+	
+	public void clear(){
+		aliveData.getData().clear();
+		deadData.getData().clear();
 	}
 
 }

@@ -4,6 +4,14 @@ import java.util.Map;
 
 import javafx.scene.chart.XYChart;
 
+/** 
+ * Creates a Graph object specifically for the Fire simulation. See
+ * the Graph superclass for more detailed documentation.
+ *
+ * @author advaitreddy
+ *
+ */
+
 public class FireGraph extends Graph{
 
 	private XYChart.Series treeData;
@@ -38,6 +46,12 @@ public class FireGraph extends Graph{
 				emptyData.getData().add(new XYChart.Data(time, cellPopulationMap.get(cellType)));
 			}
 		}
+	}
+	
+	public void clear(){
+		treeData.getData().clear();
+		fireData.getData().clear();
+		emptyData.getData().clear();
 	}
 
 }

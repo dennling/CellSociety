@@ -97,7 +97,7 @@ public abstract class Grid {
 		myGame.setInitialPositions();
 		updateCellNeighbors();
 	}
-	
+
 	/**
 	 * Allows classes to set all cells to original starting type on reset
 	 */

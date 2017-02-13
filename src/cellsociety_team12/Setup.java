@@ -8,6 +8,7 @@ import games.Game;
 import games.GameOfLife;
 import games.Segregation;
 import games.Wator;
+import graphs.AntGraph;
 import graphs.FireGraph;
 import graphs.GameOfLifeGraph;
 import graphs.Graph;
@@ -24,6 +25,22 @@ import scenes.HexagonDisplay;
 import scenes.RectangleDisplay;
 import scenes.SceneBuilder;
 import scenes.TriangleDisplay;
+
+/** 
+ * The Setup class prompts the user for an input file and uses the data to select the
+ * proper Game, Graph, and SceneBuilder subclass. It is responsible for initializing all
+ * major program components.Therefore, creating an instance of this class is enough to 
+ * start and run the cell automation simulation.
+ * 
+ * This class should be called whenever the user wants to setup a new program - it will
+ * create a new GUI, Game, and Scene.
+ * 
+ * The Setup class solely takes a default stage as an input and therefore has no major
+ * dependencies.
+ *
+ * @author advaitreddy
+ *
+ */
 
 public class Setup {
 	
@@ -56,7 +73,7 @@ public class Setup {
 		myStage.show();
 		myStage.setResizable(false);
 		
-		mySimulator = new Simulator(myGame, mySceneBuilder.getButtons(), myStage, mySceneBuilder.getGraph());
+		mySimulator = new Simulator(myGame, mySceneBuilder, myStage);
 	}
 	
 	public Scene getScene(){
@@ -112,8 +129,8 @@ public class Setup {
 				break;
 			case "Ants":
 				myGame = new Ants(myData);
-				myGraph = new WatorGraph();
-				STYLESHEET = "resources/Wator.css";
+				myGraph = new AntGraph();
+				STYLESHEET = "resources/Ant.css";
 				break;
 			default: 
 				throw new XMLException("Not a valid Game Type", myData.getGameType());

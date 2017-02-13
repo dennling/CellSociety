@@ -4,6 +4,14 @@ import java.util.Map;
 
 import javafx.scene.chart.XYChart;
 
+/** 
+ * Creates a Graph object specifically for the Wator simulation. 
+ * See the Graph superclass for more detailed documentation.
+ *
+ * @author advaitreddy
+ *
+ */
+
 public class WatorGraph extends Graph{
 	
 	private XYChart.Series fishData;
@@ -21,7 +29,7 @@ public class WatorGraph extends Graph{
 		fishData = new XYChart.Series<>();
 		fishData.setName(myResources.getString("FishLegendText"));
 		emptyData = new XYChart.Series<>();
-		emptyData.setName(myResources.getString("EmptyLegendText"));
+		emptyData.setName(myResources.getString("WaterLegendText"));
 		populationGraph.getData().add(emptyData);
 		populationGraph.getData().add(sharkData);
 		populationGraph.getData().add(fishData);
@@ -40,5 +48,11 @@ public class WatorGraph extends Graph{
 				emptyData.getData().add(new XYChart.Data(time, cellPopulationMap.get(cellType)));
 			}
 		}
+	}
+	
+	public void clear(){
+		fishData.getData().clear();
+		sharkData.getData().clear();
+		emptyData.getData().clear();
 	}
 }
