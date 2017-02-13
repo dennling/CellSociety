@@ -23,7 +23,7 @@ public class RectangleDisplay extends SceneBuilder{
 				shape.setHeight(simulationHeight/(myGrid.getNumberOfColumns()));
 				shape.setX(i*shape.getWidth());
 				shape.setY(j*shape.getHeight());
-				shape.setOnMouseClicked(event -> currentCell.switchType());
+				shape.setOnMouseClicked(event -> myGrid.setNeighborOnSwitch(currentCell));
 				cells.getChildren().add(shape);
 			}
 		}

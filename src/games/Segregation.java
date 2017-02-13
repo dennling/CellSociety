@@ -2,13 +2,16 @@ package games;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 import cells.Cell;
 import cellsociety_team12.GameData;
 import grids.Grid;
 import grids.SegregationGrid;
 
+/**
+ * Game Class for Segregation
+ *
+ */
 public class Segregation extends Game{
 
 
@@ -80,18 +83,12 @@ public class Segregation extends Game{
 	protected Grid createGrid(int dimensions, String cellShape) {
 		return new SegregationGrid(dimensions, this, cellShape);
 	}
-	/*
-	@Override
-	protected String setInitialCellType(int type) {
-		if(type == 0) return "one";
-		else if(type == 1) return "two";
-		else return "empty";
-	}*/
-	
+
 	@Override
 	protected void setDefaultPositions(GameData data) {
-		for(int i =0; i < data.getDimensions()/2; i++) {
+		for(int i =0; i < (data.getDimensions()*data.getDimensions())/4; i++) {
 			randomCellGenerator("one", data);
+			randomCellGenerator("two", data);
 		}
 	}
 	

@@ -2,14 +2,24 @@ package cells;
 
 import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
+
+/**
+ * Cell for Wator Game
+ * State: future of the cell -- used to check for correct eating habits, etc.
+ *
+ */
 
 public class WatorCell extends Cell{
 	private int breedTime;
 	private int timeSharkStarve;
 	private String state;
 
+	/**
+	 * 
+	 * @param timer - how long the cell needs to last in order to breed
+	 * @param timerShark2 - starving time
+	 * @param future -Future state of the cell under the next update
+	 */
 	public WatorCell(int x, int y, String type, String shape, String gridType, String cellType, int timer, int timerShark2, String future){
 		super(x,y,type,shape, gridType, cellType);
 		breedTime = timer;
@@ -37,6 +47,7 @@ public class WatorCell extends Cell{
 
 	}
 	
+	
 	public int getTime() {
 		return breedTime;
 	}
@@ -56,14 +67,25 @@ public class WatorCell extends Cell{
 		return state;
 	}
 	
+	/**
+	 * Set future state without editing the breed and starve times of the cell
+	 * @param futureState
+	 */
+	
 	public void setFutureType(String futureState) {
 		state = futureState;
 	}
 	
-	public void setFutureType(String futureState, int one, int two) {
+	/**
+	 * Sets the future state of the cell according to game logic
+	 * @param futureState 
+	 * @param breed - breedTime 
+	 * @param starveTime - starveTime
+	 */
+	public void setFutureType(String futureState, int breed, int starveTime) {
 		state = futureState;
-		breedTime = one;
-		timeSharkStarve = two;
+		breedTime = breed;
+		timeSharkStarve = starveTime;
 	}
 	
 	

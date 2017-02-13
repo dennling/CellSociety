@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-
-import org.w3c.dom.Element;
+/**
+ * Holds all the data parsed from the XMLParser
+ *
+ */
 
 public class GameData {
 
@@ -16,7 +16,7 @@ public class GameData {
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
 			"initialPositions","prob", "fishBreed", "sharkBreed","sharkStarve", "gameTitle",
-			"gameAuthor", "cellShape", "gridType", "neighborType");
+			"gameAuthor", "cellShape", "gridType", "neighborType", "manualSize");
 
 	private HashMap<String, String[]> myData; 
 	
@@ -46,6 +46,9 @@ public class GameData {
 		return checkInt;
 	}
 	
+	/**
+	 * Initial Positions have the structure : "x y type"
+	 */
 	public String[][] getInitialPositions() {
 		String[] stringPositions = myData.get(DATA_FIELDS.get(2));
 		String[][] positions = new String[stringPositions.length][2];
@@ -78,6 +81,9 @@ public class GameData {
 		return Double.parseDouble(myData.get(DATA_FIELDS.get(6))[0]);
 	}
 	
+	/**
+	 * Essential for all XML files to have
+	 */
 	public String getCellShape() {
 		try {
 			return myData.get(DATA_FIELDS.get(9))[0];
@@ -86,7 +92,7 @@ public class GameData {
 		}
 	}
 	
-	/*
+	/**
 	 * Grid type is toroidal or finite
 	 */
 	public String getGridType() {
@@ -97,7 +103,7 @@ public class GameData {
 		return myData.get(DATA_FIELDS.get(10))[0];
 	}
 	
-	/*
+	/**
 	 * NeighborType is corners, edges, or normal
 	 */
 	public String getNeighborType() {
@@ -105,6 +111,16 @@ public class GameData {
 			return "";
 		}
 		return myData.get(DATA_FIELDS.get(11))[0];
+	}
+	
+	/**
+	 * If manual size exists, returns the size all shapes should be. If not, returns -1
+	 */
+	public int getManualSize() {
+		if (myData.get(DATA_FIELDS.get(12)).length == 0) {
+			return -1;
+		}
+		return Integer.parseInt(myData.get(DATA_FIELDS.get(12))[0]);
 	}
 	
 }

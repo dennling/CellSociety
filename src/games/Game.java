@@ -8,6 +8,11 @@ import cellsociety_team12.GameData;
 import cellsociety_team12.XMLException;
 import grids.Grid;
 
+/**
+ * Superclass for game. Primary role of game classes is to specify game logic and set initial 
+ * configuration settings. 
+ *
+ */
 
 public abstract class Game {
 	
@@ -23,13 +28,16 @@ public abstract class Game {
 		myGrid.updateCellNeighbors();
 	}
 	
+	/**
+	 * Creates initial positions of significant cells based on XML input, if non exist, create default
+	 * cells
+	 */
 	public void setInitialPositions() {	
 		String[][] positions = myData.getInitialPositions();
 		if (positions.length == 0) {
 			setDefaultPositions(myData);
 		} else {
 			for (String[] each : positions) {
-				//could also simply continue and skip this initial state
 				if (each.length != 3) {
 					throw new XMLException("Initial State not Given for Cell %s", Arrays.toString(each));
 				}
@@ -43,11 +51,22 @@ public abstract class Game {
 		}
 	}
 	
+	
 	protected abstract Grid createGrid(int dimensions, String cellShape);
 	
+	/**
+	 * Determines how the cells react to their neighbors according to the rules of the game
+	 */
 	public abstract void gameLogic(Cell currentCell);
+	
+	/**
+	 * if no initial parameters in XML, randomizes
+	 */
 	protected abstract void setDefaultPositions(GameData data);
 	
+	/**
+	 * Generates a random placement on the grid 
+	 */
 	protected void randomCellGenerator(String type, GameData data) {
 		Random numberGenerator = new Random();
 		int randomX = numberGenerator.nextInt(data.getDimensions());

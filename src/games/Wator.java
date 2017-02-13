@@ -1,7 +1,6 @@
 package games;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 import cells.Cell;
 import cells.WatorCell;
@@ -9,6 +8,10 @@ import cellsociety_team12.GameData;
 import grids.Grid;
 import grids.WatorGrid;
 
+/**
+ * Game Class for Wa-tor predator prey
+ *
+ */
 public class Wator extends Game{
 	public Wator(GameData data) {
 		super(data);
@@ -116,14 +119,13 @@ public class Wator extends Game{
 
 	@Override
 	protected void setDefaultPositions(GameData data) {
-		randomCellGenerator("fish", data);
+		for (int i = 0; i < (data.getDimensions()*data.getDimensions())/4; i++) {
+			randomCellGenerator("fish", data);
+		}
+		for (int i = 0; i < (data.getDimensions()*data.getDimensions())/8; i++) {
+			randomCellGenerator("shark", data);
+		}
+		
 	}
 
-	/*
-	@Override
-	protected String setInitialCellType(int type) {
-		if(type == 0) return "fish";
-		else if(type == 1) return "shark";
-		else return "empty";
-	}*/
 }

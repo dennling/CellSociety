@@ -1,17 +1,14 @@
 package games;
-//AUTHOR: HENRY TAYLOR
-
-
-import java.util.Arrays;
-import java.util.Random;
 
 import cells.Cell;
-import cells.GameOfLifeCell;
 import cellsociety_team12.GameData;
 import grids.GameOfLifeGrid;
 import grids.Grid;
-import javafx.scene.shape.Rectangle;
 
+/**
+ * Game Class for GameOfLife
+ * 
+ */
 public class GameOfLife extends Game{
 
 	public GameOfLife(GameData data) {
@@ -45,7 +42,7 @@ public class GameOfLife extends Game{
 	
 	@Override
 	protected void setDefaultPositions(GameData data) {
-		for(int i =0; i < (data.getDimensions()*data.getDimensions())/2; i++) {
+		for(int i=0; i < (data.getDimensions()*data.getDimensions())/2; i++) {
 			randomCellGenerator("alive", data);
 		}
 	}
