@@ -109,6 +109,8 @@ public class Setup {
 				myGraph = new WatorGraph();
 				STYLESHEET = "resources/Wator.css";
 				break;
+			default: 
+				throw new XMLException("Not a valid Game Type", myData.getGameType());
 		}
 	}
 	

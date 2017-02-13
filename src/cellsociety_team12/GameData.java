@@ -27,6 +27,7 @@ public class GameData {
 	
 	public String getGameType() {
 		return myData.get(DATA_FIELDS.get(0))[0];
+		
 	}
 	
 	public String getTitle() {
@@ -38,7 +39,11 @@ public class GameData {
 	}
 	
 	public int getDimensions() {
-		return Integer.parseInt(myData.get(DATA_FIELDS.get(1))[0]);
+		int checkInt = Integer.parseInt(myData.get(DATA_FIELDS.get(1))[0]);
+		if (checkInt <= 0) {
+			throw new XMLException("WRONG DIMENSION SIZE", checkInt);
+		}
+		return checkInt;
 	}
 	
 	public String[][] getInitialPositions() {

@@ -24,11 +24,12 @@ public class TriangleDisplay extends SceneBuilder{
 				boolean onEvenRowAndColumn = (i+2) % 2 == 0 && (j+2) % 2 == 0;
 				boolean onOddRowAndColumn = (i+2) % 2 != 0 && (j+2) % 2 != 0;
 				Polygon triangle;
+				triangle = (Polygon) myGrid.getCell(i,j).getShape();
 				if (onEvenRowAndColumn || onOddRowAndColumn){
-					triangle = makeUpwardTriangle(xStart, yStart, halfBaseLength, height);
+					triangle.getPoints().addAll(makeUpwardTriangle(xStart, yStart, halfBaseLength, height));
 				}
 				else{
-					triangle = makeDownwardTriangle(xStart, yStart, halfBaseLength, height);
+					triangle.getPoints().addAll(makeDownwardTriangle(xStart, yStart, halfBaseLength, height));
 					xStart += 2*halfBaseLength;
 				}
 				triangle.setStroke(Color.WHITE);
@@ -43,13 +44,13 @@ public class TriangleDisplay extends SceneBuilder{
 			yStart += height;
 		}
 	}
-	
-	private Polygon makeUpwardTriangle(double xStart, double yStart, double halfBaseLength, double height){
-		return new Polygon(xStart, yStart, xStart + halfBaseLength, yStart + height, xStart - halfBaseLength, yStart + height);
+
+	private Double[] makeUpwardTriangle(double xStart, double yStart, double halfBaseLength, double height){
+		return new Double[]{xStart, yStart, xStart + halfBaseLength, yStart + height, xStart - halfBaseLength, yStart + height};
 	}
 	
-	private Polygon makeDownwardTriangle(double xStart, double yStart, double halfBaseLength, double height){
-		return new Polygon(xStart, yStart, xStart + 2*halfBaseLength, yStart, xStart + halfBaseLength, yStart + height);
+	private Double[] makeDownwardTriangle(double xStart, double yStart, double halfBaseLength, double height){
+		return new Double[]{xStart, yStart, xStart + 2*halfBaseLength, yStart, xStart + halfBaseLength, yStart + height};
 	}
 
 }
