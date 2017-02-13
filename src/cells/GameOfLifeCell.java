@@ -42,6 +42,17 @@ public class GameOfLifeCell extends Cell{
 		return;
 	}
 
+	@Override
+	public void switchType() {
+		if (this.getType().equals("alive")){
+			this.setType("dead");
+		}
+		else{
+			this.setType("alive");
+		}
+		
+	}
+
 
 	
 	

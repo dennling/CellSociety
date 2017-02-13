@@ -1,10 +1,11 @@
-package cellsociety_team12;
+package scenes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import cellsociety_team12.GameData;
 import games.Game;
 import graphs.Graph;
 import grids.Grid;

@@ -1,5 +1,6 @@
-package cellsociety_team12;
+package scenes;
 
+import cellsociety_team12.GameData;
 import games.Game;
 import graphs.Graph;
 import javafx.scene.layout.Pane;

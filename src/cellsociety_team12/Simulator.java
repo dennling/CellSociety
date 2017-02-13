@@ -107,6 +107,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.setRate(DEFAULT_RATE);
 		totalDuration = 0;
+		myGame.getGrid().resetGrid();
 		animation.play();
 	}
 
