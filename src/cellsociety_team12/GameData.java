@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-
-import org.w3c.dom.Element;
+/**
+ * Holds all the data parsed from the XMLParser
+ *
+ */
 
 public class GameData {
 
@@ -16,7 +16,7 @@ public class GameData {
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
 			"initialPositions","prob", "fishBreed", "sharkBreed","sharkStarve", "gameTitle",
-			"gameAuthor", "cellShape", "gridType", "neighborType","numAnts","decPh");
+			"gameAuthor", "cellShape", "gridType", "neighborType","numAnts","decPh", "manualSize");
 
 	private HashMap<String, String[]> myData; 
 	
@@ -31,11 +31,19 @@ public class GameData {
 	}
 	
 	public String getTitle() {
-		return myData.get(DATA_FIELDS.get(7))[0];
+		try {
+			return myData.get(DATA_FIELDS.get(7))[0];
+		} catch (NullPointerException e) {
+			throw new XMLException("No Title Input", e);
+		}
 	}
 	
 	public String getAuthor() {
-		return myData.get(DATA_FIELDS.get(8))[0];
+		try {
+			return myData.get(DATA_FIELDS.get(8))[0];
+		} catch (NullPointerException e) {
+			throw new XMLException("No Author Input", e);
+		}
 	}
 	
 	public int getDimensions() {
@@ -46,6 +54,9 @@ public class GameData {
 		return checkInt;
 	}
 	
+	/**
+	 * Initial Positions have the structure : "x y type"
+	 */
 	public String[][] getInitialPositions() {
 		String[] stringPositions = myData.get(DATA_FIELDS.get(2));
 		String[][] positions = new String[stringPositions.length][2];
@@ -65,27 +76,54 @@ public class GameData {
 	}
 	
 	public int numberAnts(){
-		return Integer.parseInt(myData.get(DATA_FIELDS.get(12))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(12))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("Initial number of ants does not exist", e);
+		}
 	}
 	
 	public int decAmount(){
-		return Integer.parseInt(myData.get(DATA_FIELDS.get(13))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(13))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("Initial decrement amount does not exist", e);
+		}
 	}
 	
 	public double getProb(){
-		return Double.parseDouble(myData.get(DATA_FIELDS.get(3))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(3))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("No Probability Input", e);
+		}
 	}
 	
 	public double getFishBreed(){
-		return Double.parseDouble(myData.get(DATA_FIELDS.get(4))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(4))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("No Fishbreed Input", e);
+		}
 	}
 	public double getSharkBreed(){
-		return Double.parseDouble(myData.get(DATA_FIELDS.get(5))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(5))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("No Shark Breek Input", e);
+		}
 	}
 	public double getSharkStarve(){
-		return Double.parseDouble(myData.get(DATA_FIELDS.get(6))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(6))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("No Shark Starve Input", e);
+		}
 	}
 	
+	/**
+	 * Essential for all XML files to have
+	 */
 	public String getCellShape() {
 		try {
 			return myData.get(DATA_FIELDS.get(9))[0];
@@ -94,7 +132,7 @@ public class GameData {
 		}
 	}
 	
-	/*
+	/**
 	 * Grid type is toroidal or finite
 	 */
 	public String getGridType() {
@@ -105,7 +143,7 @@ public class GameData {
 		return myData.get(DATA_FIELDS.get(10))[0];
 	}
 	
-	/*
+	/**
 	 * NeighborType is corners, edges, or normal
 	 */
 	public String getNeighborType() {
@@ -113,6 +151,16 @@ public class GameData {
 			return "";
 		}
 		return myData.get(DATA_FIELDS.get(11))[0];
+	}
+	
+	/**
+	 * If manual size exists, returns the size all shapes should be. If not, returns -1
+	 */
+	public int getManualSize() {
+		if (myData.get(DATA_FIELDS.get(14)).length == 0) {
+			return -1;
+		}
+		return Integer.parseInt(myData.get(DATA_FIELDS.get(14))[0]);
 	}
 	
 }

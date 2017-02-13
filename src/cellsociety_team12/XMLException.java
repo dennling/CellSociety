@@ -8,7 +8,8 @@ public class XMLException extends RuntimeException{
 	
 	
 	/**
-	 * 
+	 * If there is an Exception, throw an Alert box, so user must update XML file to run 
+	 * program
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -16,7 +17,7 @@ public class XMLException extends RuntimeException{
 	public XMLException(String errorInformation, Throwable e) {
 		this(e);
 		Alert a = new Alert(AlertType.ERROR);
-        a.setContentText(String.format("ERROR reading file %s", errorInformation));
+        a.setContentText(String.format("ERROR reading file: %s", errorInformation));
         a.showAndWait();
 
 	}

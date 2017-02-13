@@ -2,9 +2,11 @@ package grids;
 
 import cells.SegregationCell;
 import games.Game;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
+/**
+ * Grid Class for Segregation
+ *
+ */
 public class SegregationGrid extends Grid {
 
 	public SegregationGrid(int dimensions, Game game, String cellShape) {

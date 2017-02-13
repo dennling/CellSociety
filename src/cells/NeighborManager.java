@@ -1,7 +1,10 @@
 package cells;
 
-import java.util.Arrays;
-
+/**
+ * Class that controls the Neighbors of each Cell. PossibleNeighbors is a 2x2 grid that controls
+ * where the cell looks in the grid for it's neighbors
+ *
+ */
 public class NeighborManager {
 
 	private Cell[] myNeighbors;
@@ -9,6 +12,12 @@ public class NeighborManager {
 	private int[][] possibleNeighbors;
 	private String myGridMode;
 	
+	/**
+	 * 
+	 * @param gridMode - finite vs. toroidal
+	 * @param cellMode - corners, edges, normal
+	 * @param cell - the owner of this neighbor
+	 */
 	public NeighborManager(String gridMode, String cellMode, Cell cell) {
 		myCell = cell;
 		myGridMode = gridMode;
@@ -16,7 +25,12 @@ public class NeighborManager {
 		initiateNeighbors();
 		
 	}
-	
+	/**
+	 * Creates possibleNeighbors based on the original starting shape.
+	 * Corners and Edges only apply to rectangles (hexagon and triangles don't have true corners
+	 * or edges). 
+	 * @param cellMode - corners or edges
+	 */
 	private void determineCellType(String cellMode) {
 		if (myCell.getShapeString().equals("rectangle")) {
 			possibleNeighbors = checkModes(cellMode);
@@ -27,6 +41,10 @@ public class NeighborManager {
 		}
 	}
 		
+	/**
+	 * checks to see if there is a special mode selected. If not, calls the cell's normal neighbors
+	 * @param cellMode
+	 */
 	private int[][] checkModes(String cellMode) {
 		int[][] possible;
 		switch (cellMode) {
@@ -49,6 +67,9 @@ public class NeighborManager {
 		return possible;
 	}
 
+	/**
+	 * Triangle cells only have 3 neighbors
+	 */
 	private int[][] setPossibleTriangleNeighbors() {
 		int[][] possible1 = new int[][]{{-1, 0}, {0, 1}, {1, 0}};
 		int[][] possible2 = new int[][]{{-1, 0}, {0, -1}, {1, 0}};
@@ -59,6 +80,7 @@ public class NeighborManager {
 		}
 	}
 	
+	
 	private void initiateNeighbors() {
 		myNeighbors = new Cell[possibleNeighbors.length];
 		for (int i = 0; i < myNeighbors.length; i++) {
@@ -66,6 +88,12 @@ public class NeighborManager {
 		}
 	}
 	
+
+	/**
+	 * Because all cells have to update according to what they're previous state is, 
+	 * Must create new cells and assign the same properties as neighboring cells
+	 * @param grid
+	 */
 	public void updateNeighbors(Cell[][] grid) {
 		int size = grid.length;
 		for (int i = 0; i < myNeighbors.length; i++) {
@@ -79,6 +107,13 @@ public class NeighborManager {
 		}
 	}
 	
+	/**
+	 * The actual code to update a specific cell in the neighbor array -- decreases dupiclate code
+	 * @param index - index in neighbor array
+	 * @param currentX - currentX of neighbor cell in grid
+	 * @param currentY - currentY of neighbor cell in grid
+	 * @param grid
+	 */
 	private void updateNeighborCell(int index, int currentX, int currentY, Cell[][] grid ) {
 		Cell currentNeighbor = myNeighbors[index];
 		Cell currentGrid = grid[currentX][currentY];
@@ -88,6 +123,9 @@ public class NeighborManager {
 		}
 	}
 	
+	/**
+	 * if out of bounds, wrap around 
+	 */
 	private void adjustToroidal(int index, int x, int y, Cell[][] grid) {
 		int size = grid.length;
 		if (x < 0) {
@@ -107,4 +145,5 @@ public class NeighborManager {
 	public Cell[] getNeighbors() {
 		return myNeighbors;
 	}
+
 }

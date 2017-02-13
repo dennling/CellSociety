@@ -1,11 +1,11 @@
 package grids;
 
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
-import cells.Cell;
 import cells.GameOfLifeCell;
 import games.Game;
 
+/**
+ * Grid class for Game Of Life
+ */
 public class GameOfLifeGrid extends Grid {
 
 	public GameOfLifeGrid(int dimensions, Game game, String cellShape) {
