@@ -35,6 +35,8 @@ public class Wator extends Game{
 	@Override
 
 	public void gameLogic(Cell currentCell) {
+		moved = false;
+		eaten = false;
 		WatorCell currCell = (WatorCell)currentCell;
 		Cell[] neighbors = currentCell.getNeighbors(); //adjacent is always closest 4
 
