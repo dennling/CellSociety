@@ -43,7 +43,7 @@ public class HexagonDisplay extends SceneBuilder{
 				Double[] coordinates = {xStart, yStart,xStart - spacer, yStart + spacer, xStart, yStart + 2*spacer, xStart + sideLength, yStart + 2*spacer, xStart + sideLength + spacer, yStart + spacer, xStart+sideLength, yStart};
 				hexagon = (Polygon) currentCell.getShape();
 				hexagon.getPoints().addAll(coordinates);
-				hexagon.setOnMouseClicked(event -> currentCell.switchType());
+				hexagon.setOnMouseClicked(event -> myGrid.setNeighborOnSwitch(currentCell));
 				yStart += 2*spacer;
 			}
 			if (startedAtZero){
