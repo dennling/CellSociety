@@ -43,7 +43,7 @@ import scenes.TriangleDisplay;
 
 public class Setup {
 	
-	public static final String FILE_EXTENSION = "*.xml";
+	private static final String FILE_EXTENSION = "*.xml";
 	
 	private Scene myScene;
 	private Stage myStage;
@@ -82,6 +82,9 @@ public class Setup {
 		return myStage;
 	}
 	
+	/**
+	 * Gets data from the pop-up file chooser
+	 */
 	private void getData() {
 		File dataFile = myChooser.showOpenDialog(myStage);
 		if (dataFile != null) {
@@ -95,6 +98,11 @@ public class Setup {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param extension
+	 * @return The pop-up file chooser
+	 */
 	public FileChooser makeChooser(String extension) {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Open Data File");
@@ -103,6 +111,9 @@ public class Setup {
 		return chooser;		
 	}
 	
+	/**
+	 * Initializes Game, Graph, and STYLESHEET based off the game type
+	 */
 	private void initializeGameGraphAndStyle() {
 		switch (myData.getGameType()){
 			case "GameOfLife": 
@@ -135,6 +146,9 @@ public class Setup {
 		}
 	}
 	
+	/**
+	 * Initializes the SceneBuilder based off the cell shape
+	 */
 	private void initializeSceneBuilder() {
 		switch(myData.getCellShape()){
 		case "rectangle":

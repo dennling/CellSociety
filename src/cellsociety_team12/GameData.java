@@ -9,7 +9,6 @@ import java.util.Map;
  * Holds all the data parsed from the XMLParser
  *
  */
-
 public class GameData {
 
 	public static final String DATA_TYPE = "GameData";

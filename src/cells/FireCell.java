@@ -30,8 +30,6 @@ public class FireCell extends Cell{
 			getShape().setFill(Color.YELLOW);
 		}
 		getShape().setStroke(Color.BLACK);
-
-		
 	}
 
 	/**
@@ -55,7 +53,7 @@ public class FireCell extends Cell{
 	@Override
 	public void switchType() {
 		if (this.getType().equals("tree")){
-			this.setType("fire");
+			this.setType("fire");	
 		}
 		else if (this.getType().equals("empty")){
 			this.setType("tree");
