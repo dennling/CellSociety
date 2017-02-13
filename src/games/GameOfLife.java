@@ -46,5 +46,4 @@ public class GameOfLife extends Game{
 			randomCellGenerator("alive", data);
 		}
 	}
-
 }

@@ -16,7 +16,7 @@ public class GameData {
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
 			"initialPositions","prob", "fishBreed", "sharkBreed","sharkStarve", "gameTitle",
-			"gameAuthor", "cellShape", "gridType", "neighborType", "manualSize");
+			"gameAuthor", "cellShape", "gridType", "neighborType","numAnts","decPh", "manualSize");
 
 	private HashMap<String, String[]> myData; 
 	
@@ -31,11 +31,19 @@ public class GameData {
 	}
 	
 	public String getTitle() {
-		return myData.get(DATA_FIELDS.get(7))[0];
+		try {
+			return myData.get(DATA_FIELDS.get(7))[0];
+		} catch (NullPointerException e) {
+			throw new XMLException("No Title Input", e);
+		}
 	}
 	
 	public String getAuthor() {
-		return myData.get(DATA_FIELDS.get(8))[0];
+		try {
+			return myData.get(DATA_FIELDS.get(8))[0];
+		} catch (NullPointerException e) {
+			throw new XMLException("No Author Input", e);
+		}
 	}
 	
 	public int getDimensions() {
@@ -67,18 +75,50 @@ public class GameData {
 		}
 	}
 	
+	public int numberAnts(){
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(12))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("Initial number of ants does not exist", e);
+		}
+	}
+	
+	public int decAmount(){
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(13))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("Initial decrement amount does not exist", e);
+		}
+	}
+	
 	public double getProb(){
-		return Double.parseDouble(myData.get(DATA_FIELDS.get(3))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(3))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("No Probability Input", e);
+		}
 	}
 	
 	public double getFishBreed(){
-		return Double.parseDouble(myData.get(DATA_FIELDS.get(4))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(4))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("No Fishbreed Input", e);
+		}
 	}
 	public double getSharkBreed(){
-		return Double.parseDouble(myData.get(DATA_FIELDS.get(5))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(5))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("No Shark Breek Input", e);
+		}
 	}
 	public double getSharkStarve(){
-		return Double.parseDouble(myData.get(DATA_FIELDS.get(6))[0]);
+		try {
+			return Integer.parseInt(myData.get(DATA_FIELDS.get(6))[0]);
+		} catch (NullPointerException e) {
+			throw new XMLException("No Shark Starve Input", e);
+		}
 	}
 	
 	/**
@@ -117,10 +157,10 @@ public class GameData {
 	 * If manual size exists, returns the size all shapes should be. If not, returns -1
 	 */
 	public int getManualSize() {
-		if (myData.get(DATA_FIELDS.get(12)).length == 0) {
+		if (myData.get(DATA_FIELDS.get(14)).length == 0) {
 			return -1;
 		}
-		return Integer.parseInt(myData.get(DATA_FIELDS.get(12))[0]);
+		return Integer.parseInt(myData.get(DATA_FIELDS.get(14))[0]);
 	}
 	
 }

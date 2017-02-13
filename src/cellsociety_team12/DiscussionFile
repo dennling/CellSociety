@@ -1,0 +1,15 @@
+Discussion File 2-9-17
+Dennis Ling dl186
+Yilin Gao yg95
+
+Today we talked about duplicated code and analyzed several classes from both of our projects that contained lines of duplicated code.
+First, we went over the XML parser classes that Yilin coded and realized that she could create two classes to perform similar tasks.
+This would cut down on 6-8 lines of duplicated code in her XML classes.
+We then went over several of her "Page" classes that were slightly trickier to optimize. 
+We decided that again we could split one or two duplications into different methods, but also we could re-hash the entire class and  add different functionality to reduce redundancy.
+We then went over my (Dennis') code for the game logic. We decided that a major change I could make was the compression of gameLogic in Wator.
+I ended up creating a looping method for our checks that cut my gameLogic class lines.
+We then realized I could create a method in my super class to eliminate 4x duplicated code for setting up my default cell types. 
+I just used if statements in my superclass in order to handle the cases for each simulation.
+
+All in all it was a cool lab where we were able to talk about different types of implementations and realize how to optimize our code.

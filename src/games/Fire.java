@@ -11,7 +11,6 @@ import grids.Grid;
  */
 public class Fire extends Game{
 
-
 	private Grid myGrid = getGrid();
 	private Cell[][] grid = myGrid.getGrid();
 	private double fireChance;
@@ -39,9 +38,7 @@ public class Fire extends Game{
 			currentCell.setType("empty");
 		}
 	}
-
-
-
+	
 	@Override
 	protected Grid createGrid(int dimensions, String cellShape) {
 		return new FireGrid(dimensions, this, cellShape);

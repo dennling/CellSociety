@@ -2,6 +2,7 @@ package cellsociety_team12;
 
 import java.io.File;
 
+import games.Ants;
 import games.Fire;
 import games.Game;
 import games.GameOfLife;
@@ -106,6 +107,11 @@ public class Setup {
 				break;
 			case "Wator":
 				myGame = new Wator(myData);
+				myGraph = new WatorGraph();
+				STYLESHEET = "resources/Wator.css";
+				break;
+			case "Ants":
+				myGame = new Ants(myData);
 				myGraph = new WatorGraph();
 				STYLESHEET = "resources/Wator.css";
 				break;

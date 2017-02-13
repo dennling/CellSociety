@@ -83,7 +83,7 @@ public class Segregation extends Game{
 	protected Grid createGrid(int dimensions, String cellShape) {
 		return new SegregationGrid(dimensions, this, cellShape);
 	}
-
+	
 	@Override
 	protected void setDefaultPositions(GameData data) {
 		for(int i =0; i < (data.getDimensions()*data.getDimensions())/4; i++) {
