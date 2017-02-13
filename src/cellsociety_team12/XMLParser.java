@@ -14,7 +14,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-
+/**
+ * Used to Parse XML file to GameData
+ *
+ */
 public class XMLParser {
 	
 	private static final String ROOT_ATTRIBUTE = "type";

@@ -1,10 +1,12 @@
 package grids;
 
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
-import cells.Cell;
 import cells.WatorCell;
 import games.Game;
+
+/**
+ * Grid Class for Wator Grid
+ *
+ */
 
 public class WatorGrid extends Grid {
 
@@ -26,6 +28,10 @@ public class WatorGrid extends Grid {
 		updateCellNeighbors();
 	}
 
+	/**
+	 * Must update sharks first, then fish, then the rest of the cells
+	 * 
+	 */
 	private void updateSpecific(String type){
 		for (int i = 0; i < getGrid().length; i++) {
 			for (int k = 0; k < getGrid().length; k++) {

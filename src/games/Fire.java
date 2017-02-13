@@ -1,16 +1,16 @@
 package games;
 
-import java.util.Random;
-
 import cells.Cell;
 import cellsociety_team12.GameData;
 import grids.FireGrid;
 import grids.Grid;
 
+/**
+ * Class for the Fire Game
+ *
+ */
 public class Fire extends Game{
 
-	private Grid myGrid = getGrid();
-	private Cell[][] grid = myGrid.getGrid();
 	private double fireChance;
 
 	public Fire(GameData data) {
@@ -20,14 +20,14 @@ public class Fire extends Game{
 
 	@Override
 	public void gameLogic(Cell currentCell) {
-		Cell[] neighbors = currentCell.getNeighbors();//neighbors does not include diagonals
+		Cell[] neighbors = currentCell.getNeighbors();
 
 		if(currentCell.getType().equals("tree")){
 			for(int i=0; i<neighbors.length; i++){ 
 				if(neighbors[i].getType().equals("fire")){
 					double roll = Math.random(); 
 					if(roll<=fireChance){
-						currentCell.setType("fire"); //set neighbor to be on fire
+						currentCell.setType("fire"); 
 					}
 				}
 			}
@@ -46,13 +46,4 @@ public class Fire extends Game{
 	protected void setDefaultPositions(GameData data) {
 		randomCellGenerator("fire", data);
 	}
-
-	/*
-	@Override
-	protected String setInitialCellType(int type) {
-		if(type == 0) return "fire";
-		else return "tree";
-	}*/
-
-
 }

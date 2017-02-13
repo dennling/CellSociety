@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import cells.Cell;
 import games.Game;
 
+/**
+ * Superclass for Grids. Controls everything from initialization to updating neighbor and cells. 
+ * Also controls cellPopulationMap that is used to update the graph
+ * 
+ */
 public abstract class Grid {
 
 	private Cell[][] myGrid;
@@ -23,6 +24,7 @@ public abstract class Grid {
 		cellPopulationMap = new HashMap<String,Integer>();
 	}
 	
+	
 	private void initializeGrid(int dimensions, String cellShape) {
 		myGrid = new Cell[dimensions][dimensions];
 		for (int i = 0; i < dimensions; i++) {
@@ -33,6 +35,9 @@ public abstract class Grid {
 		updateCellNeighbors();
 	}
 	
+	/**
+	 * Update Grid each step in the simulation
+	 */
 	public void updateGrid() {
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
@@ -43,6 +48,10 @@ public abstract class Grid {
 		updateCellNeighbors();
 	}
 	
+	/**
+	 * update the neighbors for each cell
+	 */
+	
 	public void updateCellNeighbors() {
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
@@ -52,7 +61,12 @@ public abstract class Grid {
 		}
 	}
 	
+	/**
+	 * Abstract Class allows each game type grid to create cells based off of what they need
+	 * 
+	 */
 	protected abstract Cell cellType(int x, int y, String cellShape);
+	
 	
 	public void updateCellPopulationMap(){
 		cellPopulationMap.clear();
@@ -71,6 +85,9 @@ public abstract class Grid {
 		}
 	}
 	
+	/**
+	 * When user presses reset, resets the the game to the intial state
+	 */
 	public void resetGrid() {
 		for (int i = 0; i < myGrid.length; i++) {
 			for (int k = 0; k < myGrid.length; k++) {
@@ -80,7 +97,10 @@ public abstract class Grid {
 		myGame.setInitialPositions();
 		updateCellNeighbors();
 	}
-	
+
+	/**
+	 * Allows classes to set all cells to original starting type on reset
+	 */
 	protected abstract String resetType();
 	
 	public Cell getCell(int x, int y) {
@@ -125,24 +145,23 @@ public abstract class Grid {
 		return cellPopulationMap;
 	}
 
-	/* Way to remove repeated double for loop
-	 
-	private void iterateGrid(String method) {
-		for (int i = 0; i < myGrid.length; i++) {
-			for (int k = 0; k < myGrid.length; k++) {
-				if (method.equals("updateGrid")) {
-					Cell currentCell = myGrid[i][k];
-					gameLogic(currentCell);
-				} else if (method.equals("updateNeighbors")) {
-					Cell currentCell = myGrid[i][k];
-					currentCell.updateNeighbors(myGrid);
-				} else {
-					myGrid[i][k] = setCellType(i, k);
+	/**
+	 * When user presses a cell to change state, goes through grid, then grid calls Cell to 
+	 * change the state -- in Fire, allows us to reset the neighbors
+	 */
+	public void setNeighborOnSwitch(Cell currentCell) {
+		currentCell.switchType();
+		Cell[] neighbors = currentCell.getNeighbors();
+		for (Cell each: neighbors) {
+			Cell currNeighbor = getCell(each.getX(), each.getY());
+			for (Cell eachNeighbor: currNeighbor.getNeighbors()) {
+				if (eachNeighbor.getX() == currentCell.getX() && eachNeighbor.getY() == currentCell.getY()) {
+					eachNeighbor.setType(currentCell.getType());
 				}
 			}
 		}
 	}
-	*/
+	
 
 }
 

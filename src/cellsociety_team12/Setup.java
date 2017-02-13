@@ -8,13 +8,13 @@ import games.Game;
 import games.GameOfLife;
 import games.Segregation;
 import games.Wator;
+import graphs.AntGraph;
 import graphs.FireGraph;
 import graphs.GameOfLifeGraph;
 import graphs.Graph;
 import graphs.SegregationGraph;
 import graphs.WatorGraph;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -25,16 +25,31 @@ import scenes.RectangleDisplay;
 import scenes.SceneBuilder;
 import scenes.TriangleDisplay;
 
+/** 
+ * The Setup class prompts the user for an input file and uses the data to select the
+ * proper Game, Graph, and SceneBuilder subclass. It is responsible for initializing all
+ * major program components.Therefore, creating an instance of this class is enough to 
+ * start and run the cell automation simulation.
+ * 
+ * This class should be called whenever the user wants to setup a new program - it will
+ * create a new GUI, Game, and Scene.
+ * 
+ * The Setup class solely takes a default stage as an input and therefore has no major
+ * dependencies.
+ *
+ * @author advaitreddy
+ *
+ */
+
 public class Setup {
 	
-	public static final String FILE_EXTENSION = "*.xml";
+	private static final String FILE_EXTENSION = "*.xml";
 	
 	private Scene myScene;
 	private Stage myStage;
 	private SceneBuilder mySceneBuilder;
 	private Game myGame;
 	private Graph myGraph;
-	private Simulator mySimulator;
 	private GameData myData;
 	private FileChooser myChooser;
 	private static String STYLESHEET;
@@ -56,7 +71,7 @@ public class Setup {
 		myStage.show();
 		myStage.setResizable(false);
 		
-		mySimulator = new Simulator(myGame, mySceneBuilder.getButtons(), myStage, mySceneBuilder.getGraph());
+		new Simulator(myGame, mySceneBuilder, myStage);
 	}
 	
 	public Scene getScene(){
@@ -67,6 +82,9 @@ public class Setup {
 		return myStage;
 	}
 	
+	/**
+	 * Gets data from the pop-up file chooser
+	 */
 	private void getData() {
 		File dataFile = myChooser.showOpenDialog(myStage);
 		if (dataFile != null) {
@@ -80,6 +98,11 @@ public class Setup {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param extension
+	 * @return The pop-up file chooser
+	 */
 	public FileChooser makeChooser(String extension) {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Open Data File");
@@ -88,6 +111,9 @@ public class Setup {
 		return chooser;		
 	}
 	
+	/**
+	 * Initializes Game, Graph, and STYLESHEET based off the game type
+	 */
 	private void initializeGameGraphAndStyle() {
 		switch (myData.getGameType()){
 			case "GameOfLife": 
@@ -112,14 +138,17 @@ public class Setup {
 				break;
 			case "Ants":
 				myGame = new Ants(myData);
-				myGraph = new WatorGraph();
-				STYLESHEET = "resources/Wator.css";
+				myGraph = new AntGraph();
+				STYLESHEET = "resources/Ant.css";
 				break;
 			default: 
 				throw new XMLException("Not a valid Game Type", myData.getGameType());
 		}
 	}
 	
+	/**
+	 * Initializes the SceneBuilder based off the cell shape
+	 */
 	private void initializeSceneBuilder() {
 		switch(myData.getCellShape()){
 		case "rectangle":

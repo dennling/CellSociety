@@ -1,10 +1,12 @@
 package grids;
 
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import cells.FireCell;
 import games.Game;
 
+/**
+ * Grid Class for Fire
+ *
+ */
 public class FireGrid extends Grid {
 
 	public FireGrid(int dimensions, Game game, String cellShape) {

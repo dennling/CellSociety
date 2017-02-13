@@ -12,7 +12,20 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import scenes.SceneBuilder;
 
+/** 
+ * The Simulator class is responsible for maintaining the game loop. It creates both
+ * the Timeline and the KeyFrame for the current game and handles all events related
+ * to the buttons.
+ * 
+ * This class should be called whenever a user wants to start simulating a game.
+ *
+ * The Simulator depends on the current Game, SceneBuilder, and Stage.
+ * 
+ * @author advaitreddy
+ *
+ */
 
 public class Simulator implements EventHandler<ActionEvent>{
 	
@@ -37,12 +50,12 @@ public class Simulator implements EventHandler<ActionEvent>{
 	private Button resetButton;
 	private double totalDuration;
 	
-	public Simulator(Game game, List<Button> buttonList, Stage stage, Graph graph){
+	public Simulator(Game game, SceneBuilder mySceneBuilder, Stage stage){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCES);
 		myGame = game;
-		myGraph = graph;
+		myGraph = mySceneBuilder.getGraph();
 		myStage = stage;
-		myButtonList = buttonList;
+		myButtonList = mySceneBuilder.getButtons();
 		totalDuration = 0;
 		initializeButtons();
 
@@ -55,7 +68,10 @@ public class Simulator implements EventHandler<ActionEvent>{
 		animation.play();
 	}
 
-	
+	/**
+	 * Game logic loop - updates grid, graph, and total simulation duration
+	 * @param elapsedTime
+	 */
 	public void step(double elapsedTime){
 		myGame.updateGrid();
 		myGame.getGrid().updateCellPopulationMap();
@@ -64,6 +80,9 @@ public class Simulator implements EventHandler<ActionEvent>{
 	}
 
 	@Override
+	/**
+	 * Handles button events
+	 */
 	public void handle(ActionEvent event) {
 		if (event.getSource() == stepButton){
 			stepThrough();
@@ -98,7 +117,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 
 	private void loadFile() {
 		animation.stop();
-		Setup newGame = new Setup(myStage);
+		new Setup(myStage);
 	}
 
 
@@ -106,6 +125,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 		animation.stop();
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.setRate(DEFAULT_RATE);
+		myGraph.clear();
 		totalDuration = 0;
 		myGame.getGrid().resetGrid();
 		animation.play();
@@ -137,6 +157,10 @@ public class Simulator implements EventHandler<ActionEvent>{
 		animation.playFrom("step point");
 	}
 	
+	/**
+	 * Initializes buttons from list so that their events can be handled
+	 * in this class
+	 */
 	private void initializeButtons(){
 		for (Button b : myButtonList){
 			String buttonText = b.getText();
