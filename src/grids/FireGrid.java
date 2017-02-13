@@ -4,6 +4,10 @@ import cells.Cell;
 import cells.FireCell;
 import games.Game;
 
+/**
+ * Grid Class for Fire
+ *
+ */
 public class FireGrid extends Grid {
 
 	public FireGrid(int dimensions, Game game, String cellShape) {
