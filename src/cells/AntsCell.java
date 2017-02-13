@@ -72,7 +72,8 @@ public class AntsCell extends Cell{
 	}
 	
 	public void updateColor(double RGB){
-		getShape().setFill(Color.rgb(0,0,(int) Math.floor(RGB)));
+		int color = (int) Math.floor(RGB);
+		getShape().setFill(Color.rgb(255,color,255));
 	}
 	
 }

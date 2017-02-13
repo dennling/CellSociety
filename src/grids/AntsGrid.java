@@ -43,18 +43,23 @@ public class AntsGrid extends Grid{
 					currTemp = new ArrayList<>(curr.getAnts(false));
 					curr.setAnts(currTemp);
 					ArrayList<AntObject> currFuture = curr.getAnts(false);
-					
+
 					//System.out.println("curr size: "+ currTemp.size()+ " future size: "+ currFuture.size());
 					double color = currFuture.size();
 					currFuture.clear();
-					System.out.println(currFuture.size() + " future size");
-					
+					//System.out.println(x);
+
 					curr.setPheromes(0, curr.getPheromes()[2] - myGame.getDecAmt());
 					curr.setPheromes(1, curr.getPheromes()[3] - myGame.getDecAmt());
 					curr.setPheromes(2, 0);
 					curr.setPheromes(3, 0);
-					if(curr.getType().equals("ground") && color*20<= 255) {
-						curr.updateColor(color*20);
+					if(curr.getType().equals("ground")){
+						if((255-color*40)>=0 && (255-color*40)<=255) {
+							curr.updateColor(255 - color*40);
+						}
+						else{
+							curr.updateColor(255);
+						}
 					}
 				}
 			}

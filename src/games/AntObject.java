@@ -2,6 +2,7 @@ package games;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 import cells.AntsCell;
@@ -26,16 +27,6 @@ public class AntObject{
 		int max = selectLoc(0, current); 
 		
 		dropPhero(max,current,0);
-	}
-
-	private int helper(int[] temp, int maxP){
-		for(int a=0; a<temp.length; a++){
-			int b = 0;
-			if(maxP == temp[a]){
-				return b;
-			}
-		}
-		return 0;
 	}
 
 	public void findFood(AntsCell current){ //go towards max food pheromes,
@@ -67,8 +58,17 @@ public class AntObject{
 		int maxP[] = new int[neighbors.length];
 		int max = 0;
 		int pos[] = new int[2];
-		for(int i=0; i<neighbors.length; i++){ //determines where to move next
-			AntsCell n = (AntsCell)neighbors[i];
+		ArrayList<Integer> randomize = new ArrayList<Integer>();
+
+		for(int z=0; z<neighbors.length; z++){
+			randomize.add(z);
+		}
+		Collections.shuffle(randomize);
+		for(int z: randomize){
+			
+		
+		//for(int i=0; i<neighbors.length; i++){ //determines where to move next
+			AntsCell n = (AntsCell)neighbors[z];
 			int phero = n.getPheromes()[0+type];
 			if(phero >= max){
 				max = phero;
@@ -80,6 +80,7 @@ public class AntObject{
 //			pos[i][1] = n.getY();
 			//System.out.println("X :"+pos[i][0]+ " Y: "+pos[i][1]);
 
+		//}
 		}
 //		int[] temp = maxP.clone();
 //		Arrays.sort(temp);

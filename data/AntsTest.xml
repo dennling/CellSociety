@@ -3,9 +3,9 @@
     <gametype>Ants</gametype>
     <gameTitle>Ant Forage</gameTitle>
     <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
-    <dimension>20</dimension>
-    <initialPositions>4 4 nest</initialPositions>
-    <initialPositions>19 19 food</initialPositions>    
+    <dimension>10</dimension>
+    <initialPositions>0 0 nest</initialPositions>
+    <initialPositions>9 8 food</initialPositions>    
    <cellShape>rectangle</cellShape>
    <gridType>finite</gridType>
     <numAnts>100</numAnts>
