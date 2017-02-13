@@ -1,6 +1,8 @@
 package games;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import cells.AntsCell;
 import cells.Cell;
 import cellsociety_team12.GameData;
@@ -9,10 +11,7 @@ import grids.Grid;
 
 public class Ants extends Game{
 
-	private ArrayList<AntObject> currAnts;
-	private ArrayList<AntObject> futureAnts;
-	private int[] phero;
-	
+
 	public Ants(GameData data) {
 		super(data);
 		
@@ -27,17 +26,10 @@ public class Ants extends Game{
 	@Override
 	public void gameLogic(Cell currentCell) {
 		AntsCell curr = (AntsCell)currentCell;
-		for(AntObject ant: currAnts){
+		for(AntObject ant: curr.getAnts(true)){
 			antForage(ant, curr);
 		}
 	}
-
-//	@Override
-//	protected String setInitialCellType(int type) {
-//		if(type==0) return "nest";
-//		else if(type ==1) return "food";
-//		else return "ground";
-//	}
 	
 	private void antForage(AntObject ant, AntsCell curr){ //check if has food, return to nest or look for food
 		if(ant.hasFood()) ant.returnNest(curr);
@@ -47,7 +39,9 @@ public class Ants extends Game{
 
 	@Override
 	protected void setDefaultPositions(GameData data) {
-		// TODO Auto-generated method stub
-		
-	}	
+		Random numberGenerator = new Random();
+		int randomX = numberGenerator.nextInt(data.getDimensions());
+		int randomY = numberGenerator.nextInt(data.getDimensions());
+		getGrid().getCell(randomX, randomY).setType("ground");
+	}
 }

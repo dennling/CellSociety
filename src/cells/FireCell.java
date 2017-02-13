@@ -40,7 +40,7 @@ public class FireCell extends Cell{
 	
 	@Override
 	public void checkType(String type) {
-		if (!(type.equals("fire") || type.equals("tree"))) {
+		if (!(type.equals("fire") || type.equals("tree") || type.equals("empty"))) {
 			throw new XMLException("This is not a valid cell type for the chosen game %s", type);
 		}
 		return;

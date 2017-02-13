@@ -3,17 +3,18 @@ package cells;
 import java.util.ArrayList;
 
 import cellsociety_team12.XMLException;
+import games.AntObject;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class AntsCell extends Cell{
 
-	private ArrayList<Boolean> current; //bools keep track of if ant has food
-	private ArrayList<Boolean> future;
+	private ArrayList<AntObject> current; //bools keep track of if ant has food
+	private ArrayList<AntObject> future;
 	private int[] phero; //0 = home pheromes, 1 = food pheromes for CURRENT, 2 = home, 3 = food for FUTURE
 	
-	public AntsCell(int x, int y, String type, String shape, String gridType, String cellType, ArrayList<Boolean> currWorkers, ArrayList<Boolean> futureWorkers, int[] pheromes) {
+	public AntsCell(int x, int y, String type, String shape, String gridType, String cellType, ArrayList<AntObject> currWorkers, ArrayList<AntObject> futureWorkers, int[] pheromes) {
 		super(x, y, type, shape, gridType, cellType);
 		current = currWorkers;
 		future = futureWorkers;
@@ -39,7 +40,7 @@ public class AntsCell extends Cell{
 		getShape().setStroke(Color.BLACK);		
 	}
 	
-	public ArrayList<Boolean> getAnts(boolean type){
+	public ArrayList<AntObject> getAnts(boolean type){
 		if(type) return current;
 		else return future;
 	}
