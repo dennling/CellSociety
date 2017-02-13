@@ -44,10 +44,7 @@ public class Fire extends Game{
 
 	@Override
 	protected void setDefaultPositions(GameData data) {
-		Random numberGenerator = new Random();
-		int randomX = numberGenerator.nextInt(data.getDimensions());
-		int randomY = numberGenerator.nextInt(data.getDimensions());
-		getGrid().getCell(randomX, randomY).setType("fire");
+		randomCellGenerator("fire", data);
 	}
 
 	/*

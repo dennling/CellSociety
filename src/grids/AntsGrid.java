@@ -3,12 +3,9 @@ import java.util.ArrayList;
 
 import cells.AntsCell;
 import cells.Cell;
-import cells.WatorCell;
 import games.AntObject;
 import games.Ants;
 import games.Game;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public class AntsGrid extends Grid{
 
@@ -64,6 +61,11 @@ public class AntsGrid extends Grid{
 				}
 			}
 		}
+	}
+
+	@Override
+	protected String resetType() {
+		return "ground";
 	}
 
 }

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import cellsociety_team12.XMLException;
 import games.AntObject;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public class AntsCell extends Cell{
 
@@ -74,6 +72,19 @@ public class AntsCell extends Cell{
 	public void updateColor(double RGB){
 		int color = (int) Math.floor(RGB);
 		getShape().setFill(Color.rgb(255,color,255));
+	}
+
+	@Override
+	public void switchType() {
+		if (this.getType().equals("nest")){
+			this.setType("ground");
+		}
+		else if (this.getType().equals("ground")){
+			this.setType("food");
+		}
+		else {
+			this.setType("nest");
+		}
 	}
 	
 }

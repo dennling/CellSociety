@@ -1,5 +1,7 @@
-package cellsociety_team12;
+package scenes;
 
+import cells.Cell;
+import cellsociety_team12.GameData;
 import games.Game;
 import graphs.Graph;
 import javafx.scene.layout.Pane;
@@ -15,11 +17,13 @@ public class RectangleDisplay extends SceneBuilder{
 	protected void setGrid(Pane cells) {
 		for (int i=0; i<myGrid.getNumberOfRows(); i++){
 			for (int j=0; j<myGrid.getNumberOfColumns(); j++){
-				Rectangle shape = (Rectangle) myGrid.getCell(i, j).getShape();
+				Cell currentCell = myGrid.getCell(i, j);
+				Rectangle shape = (Rectangle) currentCell.getShape();
 				shape.setWidth(simulationWidth/(myGrid.getNumberOfRows()));
 				shape.setHeight(simulationHeight/(myGrid.getNumberOfColumns()));
 				shape.setX(i*shape.getWidth());
 				shape.setY(j*shape.getHeight());
+				shape.setOnMouseClicked(event -> currentCell.switchType());
 				cells.getChildren().add(shape);
 			}
 		}

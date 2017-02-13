@@ -4,9 +4,9 @@
     <gameTitle>Fire</gameTitle>
     <gameAuthor>Dennis, Henry, and Advait</gameAuthor>
     <dimension>10</dimension>
-    <initialPositions>2 2 fire</initialPositions>
    <cellShape>rectangle</cellShape>
-   <gridType>toroidal</gridType>
+   <gridType>finite</gridType>
+    <initialPositions>5 5 fire</initialPositions>
     
     <prob>0.7</prob>
 </data>

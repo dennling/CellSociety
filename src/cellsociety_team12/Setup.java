@@ -20,6 +20,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import scenes.HexagonDisplay;
+import scenes.RectangleDisplay;
+import scenes.SceneBuilder;
+import scenes.TriangleDisplay;
 
 public class Setup {
 	
@@ -111,6 +115,8 @@ public class Setup {
 				myGraph = new WatorGraph();
 				STYLESHEET = "resources/Wator.css";
 				break;
+			default: 
+				throw new XMLException("Not a valid Game Type", myData.getGameType());
 		}
 	}
 	
