@@ -23,7 +23,7 @@ public abstract class Game {
 		myGrid.updateCellNeighbors();
 	}
 	
-	private void setInitialPositions() {	
+	public void setInitialPositions() {	
 		String[][] positions = myData.getInitialPositions();
 		if (positions.length == 0) {
 			setDefaultPositions(myData);

@@ -15,5 +15,10 @@ public class SegregationGrid extends Grid {
 	protected SegregationCell cellType(int x, int y, String shape) {
 		return new SegregationCell(x, y, "empty", shape, getGame().getData().getGridType(), getGame().getData().getNeighborType());
 	}
+
+	@Override
+	protected String resetType() {
+		return "empty";
+	}
 	
 }
