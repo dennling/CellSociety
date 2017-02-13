@@ -9,9 +9,10 @@ import grids.Grid;
 
 /* Object that holds a boolean value and logic for ant movement. Takes care of pheromone and food dropping.
  * Directly tied to "Ants" class through gameLogic method.
+ * In all cases type 0 means the the ant has food, and 1 means the ant does not have food.
  */
 public class AntObject{
-	private static int MAX_PH = 1000; //Maximum amount of pheromones per cell
+	private static final int MAX_PH = 1000; //Maximum amount of pheromones per cell
 	private boolean hasFood;
 	Random rand = new Random();
 	private Grid myGrid;
@@ -55,11 +56,11 @@ public class AntObject{
 	/*
 	 * Drops pheromone type depending on algorithm in paper.
 	 */
-	private void dropPhero(int max, AntsCell current, int type){ //0 = food, 1 = home
+	private void dropPhero(int max, AntsCell current, int type){ 
 		int desired = max - 2;
 		int d = desired - current.getPheromes()[1-type];
 		if(d>0){
-			current.setPheromes(2+type, current.getPheromes()[1-type]+d); // add food pheromes to future state only if less than max of surrounding
+			current.setPheromes(2+type, current.getPheromes()[1-type]+d); 
 		}
 	}
 	
