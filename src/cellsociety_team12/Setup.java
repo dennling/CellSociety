@@ -15,7 +15,6 @@ import graphs.Graph;
 import graphs.SegregationGraph;
 import graphs.WatorGraph;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -51,7 +50,6 @@ public class Setup {
 	private SceneBuilder mySceneBuilder;
 	private Game myGame;
 	private Graph myGraph;
-	private Simulator mySimulator;
 	private GameData myData;
 	private FileChooser myChooser;
 	private static String STYLESHEET;
@@ -73,7 +71,7 @@ public class Setup {
 		myStage.show();
 		myStage.setResizable(false);
 		
-		mySimulator = new Simulator(myGame, mySceneBuilder, myStage);
+		new Simulator(myGame, mySceneBuilder, myStage);
 	}
 	
 	public Scene getScene(){

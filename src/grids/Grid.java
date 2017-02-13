@@ -151,6 +151,15 @@ public abstract class Grid {
 	 */
 	public void setNeighborOnSwitch(Cell currentCell) {
 		currentCell.switchType();
+		Cell[] neighbors = currentCell.getNeighbors();
+		for (Cell each: neighbors) {
+			Cell currNeighbor = getCell(each.getX(), each.getY());
+			for (Cell eachNeighbor: currNeighbor.getNeighbors()) {
+				if (eachNeighbor.getX() == currentCell.getX() && eachNeighbor.getY() == currentCell.getY()) {
+					eachNeighbor.setType(currentCell.getType());
+				}
+			}
+		}
 	}
 	
 

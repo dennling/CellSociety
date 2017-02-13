@@ -1,7 +1,6 @@
 package games;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 import cells.Cell;
 import cells.WatorCell;
 import cellsociety_team12.GameData;
@@ -36,6 +35,8 @@ public class Wator extends Game{
 	@Override
 
 	public void gameLogic(Cell currentCell) {
+		moved = false;
+		eaten = false;
 		WatorCell currCell = (WatorCell)currentCell;
 		Cell[] neighbors = currentCell.getNeighbors(); //adjacent is always closest 4
 

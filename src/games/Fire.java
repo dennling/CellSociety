@@ -11,8 +11,6 @@ import grids.Grid;
  */
 public class Fire extends Game{
 
-	private Grid myGrid = getGrid();
-	private Cell[][] grid = myGrid.getGrid();
 	private double fireChance;
 
 	public Fire(GameData data) {
