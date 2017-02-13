@@ -39,5 +39,10 @@ public class WatorGrid extends Grid {
 		}
 	}
 
+	@Override
+	protected String resetType() {
+		return "empty";
+	}
+
 
 }
