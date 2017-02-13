@@ -15,7 +15,9 @@ time working together to debug certain classes and fix problems.
 Outside Resources: JavaFX Online Documentation and occasionally Stack OverFlow
 
 Files Used to Start Project: Main.java
+
 Files Used To Test Project: Anything in the 'data' folder
+
 Files Needed For Game Data: Anything in 'resources' folder
 
 Information About the Program: You can use the mouse to scroll through the center pane
