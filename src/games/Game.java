@@ -1,8 +1,7 @@
 package games;
 
-import java.util.Arrays;
 import java.util.Random;
-
+import java.util.Arrays;
 import cells.Cell;
 import cellsociety_team12.GameData;
 import cellsociety_team12.XMLException;
@@ -23,6 +22,7 @@ public abstract class Game {
 		myGrid.updateCellNeighbors();
 	}
 	
+
 	public void setInitialPositions() {	
 		String[][] positions = myData.getInitialPositions();
 		if (positions.length == 0) {
