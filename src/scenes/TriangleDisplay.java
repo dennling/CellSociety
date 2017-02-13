@@ -5,7 +5,6 @@ import cellsociety_team12.GameData;
 import games.Game;
 import graphs.Graph;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 /** 

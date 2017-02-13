@@ -1,7 +1,6 @@
 package scenes;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -75,7 +74,6 @@ public abstract class SceneBuilder{
 	protected double simulationHeight;
 	protected double simulationWidth;
 	private Color background;
-	private Game myGame;
 	protected Grid myGrid;
 	private Graph myGraph;
 	private Scene myScene;
@@ -123,7 +121,6 @@ public abstract class SceneBuilder{
 		simulationWindow = new BorderPane();
 		myGraph = graph;
 		setGraphSize();
-		myGame = game;
 		myGrid = game.getGrid();
 		gameTitle = myData.getTitle();
 		gameAuthor = myData.getAuthor();

@@ -1,13 +1,10 @@
 package games;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Random;
 import cells.AntsCell;
 import cells.Cell;
-import cells.WatorCell;
 import grids.Grid;
 
 public class AntObject{
@@ -54,8 +51,6 @@ public class AntObject{
 
 	private int selectLoc(int type, AntsCell current){
 		Cell[] neighbors = current.getNeighbors();
-		//int pos[][] = new int[neighbors.length][2];
-		int maxP[] = new int[neighbors.length];
 		int max = 0;
 		int pos[] = new int[2];
 		ArrayList<Integer> randomize = new ArrayList<Integer>();

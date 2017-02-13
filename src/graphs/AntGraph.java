@@ -2,7 +2,6 @@ package graphs;
 
 import java.util.Map;
 
-import cellsociety_team12.GameData;
 import javafx.scene.chart.XYChart;
 
 public class AntGraph extends Graph{

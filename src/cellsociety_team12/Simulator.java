@@ -111,7 +111,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 
 	private void loadFile() {
 		animation.stop();
-		Setup newGame = new Setup(myStage);
+		new Setup(myStage);
 	}
 
 

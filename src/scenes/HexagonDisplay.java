@@ -6,7 +6,6 @@ import games.Game;
 import graphs.Graph;
 import grids.Grid;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 /** 

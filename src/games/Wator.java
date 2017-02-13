@@ -1,7 +1,6 @@
 package games;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 import cells.Cell;
 import cells.WatorCell;
 import cellsociety_team12.GameData;
