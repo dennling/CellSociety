@@ -25,12 +25,16 @@ import javafx.scene.chart.XYChart;
 public abstract class Graph {
 
 	    private static final String DEFAULT_RESOURCES = "resources/English";
+	    private static final double GRAPH_HEIGHT = 200;
+		private static final double GRAPH_WIDTH = 200;
 	    
 		public LineChart<Number, Number> populationGraph;
+		public double graphHeight;
 		protected ResourceBundle myResources;
 		
 		public Graph(){
 			myResources = ResourceBundle.getBundle(DEFAULT_RESOURCES);
+			graphHeight = GRAPH_HEIGHT;
 			NumberAxis timeAxis = new NumberAxis();
 			timeAxis.setTickLabelsVisible(false);
 			timeAxis.setMinorTickVisible(false);
@@ -40,6 +44,8 @@ public abstract class Graph {
 			populationAxis.setId("axis");
 			populationGraph = new LineChart<Number, Number>(timeAxis, populationAxis);
 			populationGraph.setCreateSymbols(false);
+			populationGraph.setMinHeight(GRAPH_HEIGHT);
+			populationGraph.setMinWidth(GRAPH_WIDTH);
 			initializeSeries();
 		}
 		
@@ -49,6 +55,10 @@ public abstract class Graph {
 		
 		public XYChart<Number, Number> getGraph(){
 			return populationGraph;
+		}
+		
+		public double getHeight(){
+			return graphHeight;
 		}
 		
 		public abstract void clear();

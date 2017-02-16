@@ -1,22 +1,18 @@
 package cellsociety_team12;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 /**
  * Holds all the data parsed from the XMLParser
  *
  */
 public class GameData {
-
 	public static final String DATA_TYPE = "GameData";
 	
 	public static final List<String> DATA_FIELDS = Arrays.asList("gametype", "dimension",
 			"initialPositions","prob", "fishBreed", "sharkBreed","sharkStarve", "gameTitle",
 			"gameAuthor", "cellShape", "gridType", "neighborType","numAnts","decPh", "manualSize");
-
 	private HashMap<String, String[]> myData; 
 	
 	
@@ -84,7 +80,6 @@ public class GameData {
 		} catch (NullPointerException e) {
 			throw new XMLException("Initial decrement amount does not exist", e);
 		}
-
 	}
 	
 	public double getProb(){
@@ -135,7 +130,6 @@ public class GameData {
 		if (myData.get(DATA_FIELDS.get(10)).length == 0) {
 			return "";
 		}
-
 		return myData.get(DATA_FIELDS.get(10))[0];
 	}
 	

@@ -55,7 +55,7 @@ public class Simulator implements EventHandler<ActionEvent>{
 		myGame = game;
 		myGraph = mySceneBuilder.getGraph();
 		myStage = stage;
-		myButtonList = mySceneBuilder.getButtons();
+		myButtonList = mySceneBuilder.getButtons().getList();
 		totalDuration = 0;
 		initializeButtons();
 

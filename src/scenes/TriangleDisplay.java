@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Advait Reddy
+
 package scenes;
 
 import cells.Cell;
@@ -11,6 +14,10 @@ import javafx.scene.shape.Polygon;
  * The TriangleDisplay class extends the SceneBuilder superclass, building the entire
  * GUI only filling the grid with properly spaced triangles. For more detailed 
  * documentation see the SceneBuilder superclass.
+ * 
+ * This class can be used to see an example of how to extend SceneBuilder. I think
+ * this class is designed well by itself because it takes the complicated logic 
+ * of evenly spacing triangles and makes it easily readable.
  *
  * @author advaitreddy
  *
@@ -54,7 +61,8 @@ public class TriangleDisplay extends SceneBuilder{
 				triangle.setOnMouseClicked(event -> myGrid.setNeighborOnSwitch(currentCell));
 				cells.getChildren().add(triangle);
 			}
-			if ((i+2) % 2 == 0){
+			boolean onEvenRow = (i+2) % 2 == 0;
+			if (onEvenRow){
 				xStart = 0;
 			}
 			else{

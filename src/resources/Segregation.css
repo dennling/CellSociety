@@ -6,6 +6,7 @@
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
+    -fx-font-family: Futura;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
@@ -36,9 +37,40 @@
     -fx-text-fill: #191970;
 }
 
+.scroll-pane{
+  -fx-hbar-policy: never;
+  -fx-vbar-policy: never;
+}
+
 #axis {   
     -fx-font-family: Futura;
     -fx-font-size: 10pt; 
+}
+
+#buttonBox {
+  -fx-background-color: #ADD8E6;
+  -fx-background-insets: 0px;
+  -fx-alignment: center;
+  -fx-spacing: 10px;
+  -fx-font-family: Futura;
+  -fx-font-size: 10pt; 
+}
+
+#header {
+  -fx-background-color: #ADD8E6;
+  -fx-background-insets: 0px;
+  -fx-alignment: center;
+  -fx-font-family: Futura;
+  -fx-font-size: 10pt; 
+}
+
+#headerText {
+  -fx-font-family: Futura;
+  -fx-font-size: 10pt;
+}
+
+#side {
+  -fx-background-color: #ADD8E6;
 }
 
 .default-color0.chart-series-line { -fx-stroke:  #FF0000, white; }
