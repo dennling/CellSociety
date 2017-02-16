@@ -6,6 +6,7 @@ import javafx.scene.shape.Shape;
 
 /**
  * MASTERPIECE
+ * hjt8
  * 
  * I think this is a good class because, like Game, it is a simple class that provides a framework
  * for extension. The way this class is implemented is to create subclasses. It sets up what the 

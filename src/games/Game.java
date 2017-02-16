@@ -8,6 +8,7 @@ import cellsociety_team12.XMLException;
 import grids.Grid;
 /**
  * MASTERPIECE
+ * hjt8
  * 
  * I think this code represents a good piece of code because it is a super class that is 
  * designed to be highly extendible. If any person wants to extend to a new game, they only

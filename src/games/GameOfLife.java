@@ -4,7 +4,13 @@ import cells.Cell;
 import cellsociety_team12.GameData;
 import grids.GameOfLifeGrid;
 import grids.Grid;
-
+/**
+ * 
+ * MASTERPIECE
+ * hjt8
+ * 
+ * This is an example on how to extend the game class
+ */
 /**
  * Game Class for GameOfLife
  * 

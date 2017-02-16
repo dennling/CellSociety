@@ -3,7 +3,12 @@ package cells;
 
 import cellsociety_team12.XMLException;
 import javafx.scene.paint.Color;
-
+/**
+ * 
+ * MASTERPIECE
+ * 
+ * This is just a simple example of how to extend the Cell Class
+ */
 /**
  * Cell for GameOfLife
  *

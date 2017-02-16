@@ -1,6 +1,7 @@
 package cells;
 /**
  * MASTERPIECE
+ * hjt8
  * 
  * I think this is a good class because it reflects my implementation idea to separate the neighbors
  * from the general Cell class. It also demonstrates what I think is a clever way to find neighbors,
