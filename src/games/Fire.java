@@ -2,7 +2,7 @@
 //Dennis Ling
 
 /* 
- * This class is a subclass of Game (the other part of my masterpiece).
+ * This class is a subclass of Game (the other part of my masterpiece), and handles the logic for the Fire simulation as well as the initial position of the fire.
  * This is well designed because it represents what I've learned about using super and subclasses to have extensible, flexible code.
  * This code is one example of how to extend our program to allow for more simulations.
  * The gameLogic method (along with all of the other methods) is also concise and understandable, with appropriate variable and method names.

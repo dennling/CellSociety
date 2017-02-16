@@ -11,8 +11,7 @@ import grids.Grid;
  * Simulation logic for Ants Foraging. 
  */
 public class Ants extends Game{
-	
-	private static int NUM_NESTS = 1;
+
 	private int startingAnts;
 	private int decreasePhoAmt;
 	
@@ -42,7 +41,7 @@ public class Ants extends Game{
 	}
 
 	/*
-	 * Handles all simulation logic. Passes methods through AntObject class
+	 * Handles all simulation logic. Passes methods through antForage and then AntObject class
 	 */
 	@Override
 	public void gameLogic(Cell currentCell) {
@@ -52,17 +51,15 @@ public class Ants extends Game{
 		}
 	}
 	
-	private void antForage(AntObject ant, AntsCell curr){ //check if has food, return to nest or look for food
+	private void antForage(AntObject ant, AntsCell curr){
 		if(ant.getFood()) ant.returnNest(curr);
 		else ant.findFood(curr);
 	}
 	
 	@Override
 	protected void setDefaultPositions(GameData data) {
-		for(int i =0; i < NUM_NESTS; i++) {
 			randomCellGenerator("nest", data);
 			randomCellGenerator("food", data);
-		}
 	}
 	
 	public int getDecAmt(){

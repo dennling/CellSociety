@@ -2,7 +2,6 @@ package games;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 import cells.AntsCell;
 import cells.Cell;
 import grids.Grid;
@@ -14,7 +13,6 @@ import grids.Grid;
 public class AntObject{
 	private static final int MAX_PH = 1000; //Maximum amount of pheromones per cell
 	private boolean hasFood;
-	Random rand = new Random();
 	private Grid myGrid;
 	private Cell[][] grid;
 	
@@ -27,7 +25,7 @@ public class AntObject{
 	/*
 	 * Handles action when ant has food
 	 */
-	public void returnNest(AntsCell current){ //go towards max home pheromes, handles food logic (drop food pheromes)
+	public void returnNest(AntsCell current){ 
 		checkCell("nest", current);
 		int max = selectLoc(0, current); 
 		dropPhero(max,current,0);
@@ -46,7 +44,7 @@ public class AntObject{
 	 * Checks if ant is at FOOD/NEST
 	 */
 	private void checkCell(String type, AntsCell current){
-		if(current.getType().equals(type)){ //if at nest with food, drop the food and wait a turn
+		if(current.getType().equals(type)){ 
 			this.hasFood = false;
 			current.setPheromes(2, MAX_PH);
 			return;
@@ -64,7 +62,7 @@ public class AntObject{
 		}
 	}
 	
-	/* Chooses location to moved based on max pheromone in neighboring cell. 
+	/* Chooses location to move based on max pheromone in neighboring cell. 
 	 * Randomly picks which place to check first to randomize ties.
 	 */
 	private int selectLoc(int type, AntsCell current){
