@@ -6,6 +6,14 @@ import cells.Cell;
 import cellsociety_team12.GameData;
 import cellsociety_team12.XMLException;
 import grids.Grid;
+/**
+ * MASTERPIECE
+ * 
+ * I think this code represents a good piece of code because it is a super class that is 
+ * designed to be highly extendible. If any person wants to extend to a new game, they only
+ * NEED to implement the abstract classes of this cell. In addition, I simplified the code to
+ * where all repeated code among classes is implemented in superclass
+ */
 
 /**
  * Superclass for game. Primary role of game classes is to specify game logic and set initial 

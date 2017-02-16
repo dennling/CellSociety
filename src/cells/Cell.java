@@ -5,6 +5,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 /**
+ * MASTERPIECE
+ * 
+ * I think this is a good class because, like Game, it is a simple class that provides a framework
+ * for extension. The way this class is implemented is to create subclasses. It sets up what the 
+ * new class needs. It also provides methods for returning necessary info. 
+ */
+/**
  * Superclass for cells, this class is responsible for maintaining everything pertaining to Cell.
  * Created another class for Neighbors, Neighbor manager, to actually manage the cell's current 
  * neighbors. Cell also contains the current shape of the cell that will be displayed on the UI.

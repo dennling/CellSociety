@@ -1,5 +1,12 @@
 package cells;
-
+/**
+ * MASTERPIECE
+ * 
+ * I think this is a good class because it reflects my implementation idea to separate the neighbors
+ * from the general Cell class. It also demonstrates what I think is a clever way to find neighbors,
+ * which was our vector method instead of looping through the entire grid to find the relevant 
+ * cells. 
+ */
 /**
  * Class that controls the Neighbors of each Cell. PossibleNeighbors is a 2x2 grid that controls
  * where the cell looks in the grid for it's neighbors
