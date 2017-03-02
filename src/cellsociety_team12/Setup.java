@@ -1,6 +1,7 @@
 package cellsociety_team12;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
 
 import games.Ants;
 import games.Fire;
@@ -115,6 +116,9 @@ public class Setup {
 	 * Initializes Game, Graph, and STYLESHEET based off the game type
 	 */
 	private void initializeGameGraphAndStyle() {
+		
+		Game reflectionGame = initializeGame(myData.getGameType(), myData);
+		
 		switch (myData.getGameType()){
 			case "GameOfLife": 
 				myGame = new GameOfLife(myData);
@@ -143,6 +147,18 @@ public class Setup {
 				break;
 			default: 
 				throw new XMLException("Not a valid Game Type", myData.getGameType());
+		}
+	}
+	
+	private Game initializeGame(String clazz, GameData data) {
+		try{
+		Class myGame = Class.forName(clazz);
+		Class[] params = new Class[1];
+		params[0] = GameData.class;
+		Constructor<? extends Game> ct = myGame.getConstructor(params);
+		return (Game)ct.newInstance(new Object[]{data});
+		}catch(Exception e){
+			throw new RuntimeException(e);
 		}
 	}
 	
